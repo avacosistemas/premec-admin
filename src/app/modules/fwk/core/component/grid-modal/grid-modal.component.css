@@ -1,0 +1,16 @@
+.abm-modal-content {
+    display: flex;
+    flex-direction: column;
+}
+  
+.example-container > * {
+    width: 100%;
+}
+.width-button_dialog-delate {
+    width:50%;
+    margin-left:0px !important;
+}
+
+button:last-child {
+    float: right;
+   }

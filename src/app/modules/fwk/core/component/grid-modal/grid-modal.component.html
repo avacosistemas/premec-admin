@@ -1,0 +1,16 @@
+<div>
+  <div class="clear-div">
+      <button (click)="onNoClick()"  mat-icon-button class="mat-icon-button_">
+          <mat-icon aria-label="clear">clear</mat-icon>
+      </button>
+  </div>
+  <h1 mat-dialog-title *ngIf="data.title">{{data.title}}</h1>
+  <div mat-dialog-content class='basic-modal-content'>
+    <app-crud-table
+        *ngIf="dataSource"
+        [datasource]="dataSource" 
+        [grid]="data.gridDef">
+    </app-crud-table>
+  </div>
+</div>
+

@@ -1,0 +1,58 @@
+.component-CONTENT_IMAGE{
+    app-search {
+        visibility:hidden;
+    }   
+    .crud-table{
+        /* @media screen and (max-width:899px) {
+            .mat-header-row, .mat-row {
+                width: max-content;
+            }
+        } */
+
+        .action-cell {
+            width: 40px !important;
+            min-width: 40px !important;
+            max-width: 40px !important;
+        }
+
+        #imageHeader,
+        #imageCell{
+            width: 800px;
+            min-width: 800px;
+            max-width: 800px;
+        }
+
+        mat-header-cell.checkbox-cell {
+            display: none;
+        }
+        
+        mat-row.mat-row > mat-cell:nth-child(1) {
+            display: none;
+        }
+
+    }
+}
+.control-mat-dialog .dynamicFormDiv[name=subForm]{
+    
+    .imageDiv{
+        width:100% !important;
+    }
+    
+
+}
+
+#info_title > label:nth-child(1) > div:nth-child(1), #agenda_title > label:nth-child(1) > div:nth-child(1) {
+	display:none;
+}
+
+#info_title > label:nth-child(1) > span:nth-child(2), #agenda_title > label:nth-child(1) > span:nth-child(2) {
+    font-size: 16px;
+    color: gray;
+    font-weight: bolder;
+}
+
+.info_titleDiv > div:nth-child(2), .agenda_titleDiv > div:nth-child(2) {
+    background-color: gainsboro;
+    text-align: center;
+    padding: 3px;
+}

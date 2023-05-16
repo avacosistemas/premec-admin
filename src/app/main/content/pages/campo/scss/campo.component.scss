@@ -1,0 +1,28 @@
+
+.component-CAMPO{   
+    app-search {
+        visibility:hidden;
+    }   
+
+    .crud-table {
+
+        .action-cell {
+            width: 160px !important;
+            min-width: 160px !important;
+            max-width: 160px !important;
+        }
+
+    }
+
+}
+.control-mat-dialog .dynamicFormDiv[name=subForm]{
+    .minValueDiv {
+        display: inline-block !important;
+        width:45% !important;
+        margin-right: 10% !important;
+    }
+    .maxValueDiv {
+        display: inline-block !important;
+        width:45% !important;
+    }
+}

@@ -1,0 +1,142 @@
+<div class="disabled-div"></div>
+<form *ngIf="form" #formDirective="ngForm" class="dynamicFormDiv" name="{{subFormName}}" [formGroup]="form" novalidate>
+  <div [formGroup]="form" *ngFor="let field of fields" class="{{field.key}}Div dynamicFieldDiv {{field.cssClass}}"
+    [ngClass]="hideField(field)">
+    <app-file *ngIf="field.controlType == 'file'" [field]="field" [parentForm]="form"></app-file>
+    <app-disclaimer [field]="field" [parentForm]="form"></app-disclaimer>
+    <div *ngIf="field.controlType == 'datepicker'">
+      <!--app-datepicker [field]="field" [parentForm]="form"></app-datepicker-->
+      <app-datepicker-2 [field]="field" [parentForm]="form"></app-datepicker-2>
+    </div>
+    <div *ngIf="field.controlType == 'datetimepicker'">
+      <app-datepicker-time [field]="field" [parentForm]="form"></app-datepicker-time>
+    </div>
+    <mat-radio-group *ngIf="field.controlType == 'radio-button'" [formControlName]="field.key">
+      <mat-radio-button *ngFor="let option of field.options.options"
+        [ngStyle]="{width: getOptionsWidth(field.options.options)}" name="field.key" value="{{option.value}}">
+        {{option.label}}</mat-radio-button>
+    </mat-radio-group>
+    <mat-form-field *ngIf="field.controlType == 'textarea'">
+      <textarea matInput placeholder="{{field.label}}" [formControlName]="field.key" [id]="field.key"></textarea>
+      <mat-error id="{{field.key}}Error" matTooltip="{{getMessageErrorValidation(field)}}"
+        *ngIf="form.controls[field.key].invalid ">
+        {{getMessageErrorValidation(field)}}
+      </mat-error>
+    </mat-form-field>
+
+    <img height="300" src="https://static.cpau.org{{field.value}}" alt="Ruta de imagen inválida"
+      *ngIf="field.controlType == 'image_preview'" align="center" />
+
+    <div *ngIf="field.controlType == 'image_preview_src'">
+      <img width="300" src="data:image/jpg;base64,{{field.value}}" alt="Imagen inválida" aling="center" />
+    </div>
+
+    <mat-form-field class="lineheight135" *ngIf="field.controlType == 'textbox'" [floatLabel]="getFloatLabel(field)">
+      <mat-label *ngIf="field.options && field.options.matLabel">{{field.options.matLabel}}</mat-label>
+      <input matInput restrictionKeys="{{getRestrictionKeys(field)}}" placeholder="{{field.label}}"
+        [formControlName]="field.key" [id]="field.key" [type]="field.type">
+      <mat-error id="{{field.key}}Error" matTooltip="{{getMessageErrorValidation(field)}}"
+        *ngIf="form.controls[field.key].invalid ">
+        {{getMessageErrorValidation(field)}}
+      </mat-error>
+    </mat-form-field>
+    <app-float *ngIf="field.controlType == 'float'" [field]="field" [parentForm]="form"></app-float>
+    <mat-form-field *ngIf="field.controlType == 'number'" [floatLabel]="getFloatLabel(field)">
+      <mat-label *ngIf="field.options && field.options.matLabel">{{field.options.matLabel}}</mat-label>
+      <input matInput restrictionKeys="{{getRestrictionKeys(field)}}" min="{{field.minValue}}"
+        placeholder="{{field.label}}" [formControlName]="field.key" [id]="field.key" [type]="field.controlType">
+      <span *ngIf="field.options && field.options.prefix" matPrefix>{{field.options.prefix}}&nbsp;</span>
+      <mat-error id="{{field.key}}Error" *ngIf="form.controls[field.key].invalid ">
+        {{getMessageErrorValidation(field)}}
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field *ngIf="field.controlType == 'password'">
+      <input matInput placeholder="{{field.label}}" [formControlName]="field.key" [id]="field.key"
+        [type]="field.controlType">
+      <mat-error id="{{field.key}}Error" *ngIf="form.controls[field.key].invalid ">
+        {{getMessageErrorValidation(field)}}
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field *ngIf="field.controlType == 'email'">
+      <input matInput placeholder="{{field.label}}" [formControlName]="field.key" [id]="field.key" [type]="field.type">
+      <mat-error id="{{field.key}}Error" *ngIf="form.controls[field.key].invalid ">
+        {{getMessageErrorValidation(field)}}
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field *ngIf="field.controlType == 'option'">
+      <input matInput placeholder="{{field.label}}" [formControlName]="field.key" [id]="field.key" [type]="field.type">
+      <mat-error id="{{field.key}}Error" *ngIf="form.controls[field.key].invalid ">
+        {{getMessageErrorValidation(field)}}
+      </mat-error>
+    </mat-form-field>
+    <div class="mat-checkbox" *ngIf="field.controlType == 'checkbox'">
+      <mat-checkbox [formControlName]="field.key" [id]="field.key">{{field.label}}</mat-checkbox>
+    </div>
+    <div *ngIf="field.controlType == 'pick-list'">
+      <app-pick-list [elementLabel]="field.options.elementLabel" [titleFrom]="field.options.titleFrom"
+        [titleTo]="field.options.titleTo" [fromData]="field.options.fromData" [toData]="field.options.toData"
+        [controlName]="field.key" [compositeKey]="field.options.compositeKey"
+        (onChangeControl)="onCustomControlChange(field.key,$event)"></app-pick-list>
+    </div>
+    <div *ngIf="field.controlType == 'autocomplete'">
+      <app-autocomplete [config]="field" [formGroup]="form" [searchTermInterface]="searchTermInterface(field)"
+        [formControlName]="field.key" [name]="field.key">
+      </app-autocomplete>
+    </div>
+    <div *ngIf="field.controlType == 'autocomplete-desplegable'">
+      <app-autocomplete-desplegable [config]="field" [formGroup]="form"
+        [searchTermInterface]="searchTermInterface(field)" [formControlName]="field.key" [name]="field.key">
+      </app-autocomplete-desplegable>
+    </div>
+    <div *ngIf="field.controlType === 'select'">
+      <mat-form-field [floatLabel]="getFloatLabel(field)">
+        <mat-label *ngIf="field.options && field.options.matLabel">{{field.options.matLabel}}</mat-label>
+        <mat-select (change)="onChangeSelect($event)" placeholder="{{field.label}}" [formControlName]="field.key">
+          <mat-option *ngFor="let data of field.options.fromData"
+            [value]="field.options.elementValue ? data[field.options.elementValue] : data">
+            {{ field.options.elementLabel ? data[field.options.elementLabel] : data}}
+          </mat-option>
+        </mat-select>
+        <mat-error id="{{field.key}}Error" *ngIf="form.controls[field.key].invalid  ">
+          {{getMessageErrorValidation(field)}}
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div *ngIf="field.controlType == 'html_editor'">
+      <editor [formControlName]="field.key" initialValue="{{field.value}}" [init]="{
+          base_url: '/tinymce',
+          suffix: '.min',
+          custom_elements:'style',
+          allow_unsafe_link_target: true,
+          allow_html_in_named_anchor: true,
+          height: 300,
+          menubar: true,
+          plugins: 'preview importcss searchreplace autolink autosave save directionality code visualblocks visualchars fullscreen image link media template codesample table charmap pagebreak nonbreaking anchor insertdatetime advlist lists wordcount help charmap quickbars emoticons',
+          toolbar: 'undo redo | bold italic underline strikethrough | fontfamily fontsize blocks | alignleft aligncenter alignright alignjustify | outdent indent |  numlist bullist | forecolor backcolor removeformat | pagebreak | charmap emoticons | fullscreen  preview save print | insertfile image media template link anchor codesample | ltr rtl',
+          base_url: '/tinymce',
+          toolbar_sticky: true,
+          toolbar_sticky_offset: isSmallScreen ? 102 : 108,
+          toolbar_mode: 'sliding',
+          contextmenu: 'link image table',
+          suffix: '.min',
+          quickbars_selection_toolbar: 'bold italic | quicklink h2 h3 blockquote quickimage quicktable'
+        }"></editor>
+      <!-- <ckeditor   [formControlName]="field.key" data="{{field.value}}"></ckeditor> -->
+    </div>
+
+    <div *ngIf="field.controlType == 'color_picker'">
+      <app-color-picker [config]="field" [formGroup]="form" [formControlName]="field.key" [name]="field.key">
+      </app-color-picker>
+    </div>
+
+    <div *ngIf="field.controlType == 'tags'">
+      <app-tags [config]="field" [formGroup]="form" [formControlName]="field.key" [name]="field.key">
+      </app-tags>
+    </div>
+
+    <div *ngIf="field.controlType == 'import_image'">
+      <app-import-image [config]="field" [formGroup]="form" [formControlName]="field.key" [name]="field.key">
+      </app-import-image>
+    </div>
+  </div>
+</form>

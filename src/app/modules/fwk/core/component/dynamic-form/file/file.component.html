@@ -1,0 +1,15 @@
+<div [formGroup]="parentForm">
+  <!-- [formControlName]="field.key"   placeholder="{{field.label}}" -->
+  
+  <input type='file' #fileinput [accept]='acceptTypes()' (change)="onFileChange($event)" [hidden]="true">
+  <mat-form-field class="acreditacion-styleWidth_form-field">
+    <input matInput placeholder="{{field.label}}"
+            [(ngModel)]="fileName" [ngModelOptions]="{standalone: true}" disabled>
+    <mat-error id="{{field.key}}Error" *ngIf="parentForm.controls[field.key].invalid ">
+        {{getMessageErrorValidation(field)}}
+    </mat-error>
+  </mat-form-field>
+  <button type="button" class="acreditacion-styleWidth_button" (click)="fileinput.click()" mat-icon-button>
+    <mat-icon aria-label="icon-button with a heart icon">attach_file</mat-icon>
+  </button>
+</div>

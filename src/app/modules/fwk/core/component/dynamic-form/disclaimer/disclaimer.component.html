@@ -1,0 +1,14 @@
+<div *ngIf="field.controlType.toLowerCase() == 'disclaimer' &&
+field.options && 
+field.options.disclaimer && 
+field.options.disclaimer.label && 
+field.options.disclaimer.content" [formGroup]="parentForm">
+
+  <mat-checkbox [formControlName]="field.key"
+  [id]="field.key">{{field.label}}</mat-checkbox>
+  <a href="javascript:void(0);" (click)="openDisclaimer()" (change)="checkValue()">{{field.options.disclaimer.label}}</a>
+  <mat-error matTooltip="{{getMessageErrorValidation(field)}}" *ngIf="parentForm.controls[field.key].invalid &&
+                                                                         parentForm.controls[field.key].touched">
+    {{getMessageErrorValidation(field)}}
+  </mat-error>  
+</div>

@@ -1,0 +1,21 @@
+<mat-card class="crud-card-body" >
+  <mat-card-title [ngClass]="fuseSettings.colorClasses.navbar" class="crud-card-title mat-toolbar mat-primary">
+      <div [ngClass]="fuseSettings.colorClasses.title" class="card-title-text" style="flex-direction: row; box-sizing: border-box; display: flex;">
+        <span>{{title}}</span>
+      </div>
+  </mat-card-title>
+  <mat-card-content class="crud-card-content">
+    <div class="mat-elevation-z4" *ngIf="crudDef">
+      <app-crud-table
+                            [onClickRow]="onClickRow"
+                            [datasource]="dataSource" 
+                            [tabledef]="crudDef.tableDef"
+                            [crud]="this"
+                            (status)="statusChanged($event)"
+                            >
+      </app-crud-table>
+    </div>
+  </mat-card-content>
+</mat-card>
+<button *ngIf="showAddButton()" mat-fab [ngClass]="fuseSettings.colorClasses.primary_button" class="crud-button-add" (click)="openAddDialog()"><i class="material-icons" [ngClass]="fuseSettings.colorClasses.primary_button_fg">&#xE148;</i></button>
+<button *ngIf="showDeleteButton()" mat-mini-fab [ngClass]="fuseSettings.colorClasses.secondary_button" color="accent" class="crud-button-delete" (click)="openDeleteDialog()"><i class="material-icons" [ngClass]="fuseSettings.colorClasses.secondary_button_fg">delete</i></button>

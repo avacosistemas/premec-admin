@@ -1,0 +1,14 @@
+<div class="{{modalName}}-html-modal {{getUrl()}}-html-modal">
+  <div class="clear-div">
+      <button (click)="onNoClick()" [disabled]="submitting" mat-icon-button>
+          <mat-icon aria-label="clear">clear</mat-icon>
+      </button>
+  </div>
+  <h1 mat-dialog-title *ngIf="titleLabel">{{titleLabel}}</h1>
+  <div mat-dialog-content class='basic-modal-content'>
+    <div class="html-content">
+      <iframe [outerHTML]="html | sanitizeHtml"></iframe>
+    </div>
+  </div>
+</div>
+

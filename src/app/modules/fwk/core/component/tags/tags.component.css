@@ -1,0 +1,7 @@
+.mat-chip-container {
+    max-height: 111px;
+    overflow-y: auto;
+}
+mat-form-field {
+    width: 100%
+}

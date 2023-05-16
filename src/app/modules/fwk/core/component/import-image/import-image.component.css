@@ -1,0 +1,22 @@
+.import-image-button {
+    padding: 0;
+    justify-content: right;
+    align-items: right;
+    display: inline-block !important;
+}
+
+ .import-image-input .input:read-only {
+    color: rgba(0,0,0,.26);
+ }
+ 
+ .import-image-input {
+    width: 89.8%;
+ }
+
+ .import-image-form {
+    width: 100%;
+ }
+
+ .color-picker-input .input:read-only {
+    color: rgba(0,0,0,.26);
+ }

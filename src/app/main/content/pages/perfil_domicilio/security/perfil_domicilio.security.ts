@@ -1,0 +1,6 @@
+export const PERFIL_DOMICILIO_SECURITY_DEF = {
+  readAccess: 'PERFIL_DOMICILIO_READ',
+  updateAccess: 'PERFIL_DOMICILIO_UPDATE',
+  createAccess: 'PERFIL_DOMICILIO_CREATE',
+  deleteAccess: 'PERFIL_DOMICILIO_DELETE'
+};

@@ -1,0 +1,105 @@
+<button #openButton mat-icon-button class="open-button mat-primary-bg mat-elevation-z2" (click)="openBar()">
+    <mat-icon>settings</mat-icon>
+</button>
+
+<div class="theme-options-panel-overlay" #overlay [fxHide]="barClosed" [@fadeInOut]="!barClosed"></div>
+
+<div #panel class="theme-options-panel mat-white-bg mat-elevation-z8">
+
+    <button mat-icon-button class="close-button" (click)="closeBar()">
+        <mat-icon>close</mat-icon>
+    </button>
+
+    <div *ngIf="i18nLoaded" class="theme-options-panel-inner" fxLayout="column" fxLayoutAlign="start start">
+
+        <h3>{{translate('theme_options_panel_title')}}</h3>
+        <mat-radio-group [(ngModel)]="config.layout.navigation" (ngModelChange)="onSettingsChange()"
+                         fxLayout="column" fxLayout.gt-xs="row wrap" fxLayoutAlign="start start">
+            <mat-radio-button class="mr-8 mb-8" value="top">{{translate('theme_options_panel_top_text')}}</mat-radio-button>
+            <mat-radio-button class="mr-8 mb-8" value="left">{{translate('theme_options_panel_left_text')}}</mat-radio-button>
+            <mat-radio-button class="mr-8 mb-8" value="right">{{translate('theme_options_panel_right_text')}}</mat-radio-button>
+            <mat-radio-button class="mr-8 mb-8" value="none">{{translate('theme_options_panel_none_text')}}</mat-radio-button>
+        </mat-radio-group>
+
+        <h3>{{translate('theme_options_panel_navigation_fold_text')}}</h3>
+        <mat-slide-toggle [(ngModel)]="config.layout.navigationFolded"
+                          (change)="onSettingsChange()">
+            {{translate('theme_options_panel_navigation_fold_button')}}
+        </mat-slide-toggle>
+
+        <h3 class="mt-24">{{translate('theme_options_panel_toolbar_text')}}</h3>
+        <mat-radio-group [(ngModel)]="config.layout.toolbar" (ngModelChange)="onSettingsChange()"
+                         fxLayout="column" fxLayout.gt-xs="row wrap" fxLayoutAlign="start start">
+            <mat-radio-button class="mr-8 mb-8" value="below">{{translate('theme_options_panel_below_text')}}</mat-radio-button>
+            <mat-radio-button class="mr-8 mb-8" value="above">{{translate('theme_options_panel_above_text')}}</mat-radio-button>
+            <mat-radio-button class="mr-8 mb-8" value="none">{{translate('theme_options_panel_none_text')}}</mat-radio-button>
+        </mat-radio-group>
+
+        <h3 class="mt-24">{{translate('theme_options_panel_footer_text')}}</h3>
+        <mat-radio-group [(ngModel)]="config.layout.footer" (ngModelChange)="onSettingsChange()"
+                         fxLayout="column" fxLayout.gt-xs="row  wrap" fxLayoutAlign="start start">
+            <mat-radio-button class="mr-8 mb-8" value="below">{{translate('theme_options_panel_below_text')}}</mat-radio-button>
+            <mat-radio-button class="mr-8 mb-8" value="above">{{translate('theme_options_panel_above_text')}}</mat-radio-button>
+            <mat-radio-button class="mr-8 mb-8" value="none">{{translate('theme_options_panel_none_text')}}</mat-radio-button>
+        </mat-radio-group>
+
+        <h3 class="mt-24">{{translate('theme_options_panel_layout_mode_text')}}</h3>
+        <mat-radio-group [(ngModel)]="config.layout.mode" (ngModelChange)="onSettingsChange()"
+                         fxLayout="column" fxLayout.gt-xs="row  wrap" fxLayoutAlign="start start">
+            <mat-radio-button class="mr-8 mb-8" value="boxed">{{translate('theme_options_panel_layout_mode_boxed_text')}}</mat-radio-button>
+            <mat-radio-button class="mr-8 mb-8" value="fullwidth">{{translate('theme_options_panel_layout_mode_fullwidth_text')}}</mat-radio-button>
+        </mat-radio-group>
+
+        <mat-divider></mat-divider>
+
+        <h3>{{translate('theme_options_panel_color_text')}}</h3>
+        <div class="colors">
+
+            <div fxFlex fxLayout="row" fxLayoutAlign="space-between center">
+                <h4 class="mr-8">{{translate('theme_options_panel_toolbar_color_text')}}</h4>
+                <fuse-material-color-picker [(selectedClass)]="config.colorClasses.toolbar"
+                                            (onValueChange)="onSettingsChange()"></fuse-material-color-picker>
+            </div>
+
+            <div fxFlex fxLayout="row" fxLayoutAlign="space-between center">
+                <h4 class="mr-8">{{translate('theme_options_panel_navigation_bar_color_text')}}</h4>
+                <fuse-material-color-picker [(selectedClass)]="config.colorClasses.navbar"
+                                            (onValueChange)="onSettingsChange()"></fuse-material-color-picker>
+            </div>
+
+            <div fxFlex fxLayout="row" fxLayoutAlign="space-between center">
+                <h4 class="mr-8">{{translate('theme_options_panel_footer_color_text')}}</h4>
+                <fuse-material-color-picker [(selectedClass)]="config.colorClasses.footer"
+                                            (onValueChange)="onSettingsChange()"></fuse-material-color-picker>
+            </div>
+
+        </div>
+
+        <mat-divider></mat-divider>
+
+        <h3>{{translate('theme_options_panel_router_animation_text')}}</h3>
+        <mat-form-field class="w-100-p">
+            <mat-select class="p-0" [(ngModel)]="config.routerAnimation">
+                <mat-option value="none">
+                    {{translate('theme_options_panel_router_animation_none_text')}}
+                </mat-option>
+                <mat-option value="slideUp">
+                    {{translate('theme_options_panel_router_animation_slideup_text')}}
+                </mat-option>
+                <mat-option value="slideDown">
+                    {{translate('theme_options_panel_router_animation_slidedown_text')}}
+                </mat-option>
+                <mat-option value="slideRight">
+                    {{translate('theme_options_panel_router_animation_slideright_text')}}
+                </mat-option>
+                <mat-option value="slideLeft">
+                    {{translate('theme_options_panel_router_animation_slideleft_text')}}
+                </mat-option>
+                <mat-option value="fadeIn">
+                    {{translate('theme_options_panel_router_animation_fadein_text')}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+
+</div>

@@ -1,0 +1,27 @@
+<div [formGroup]="parentForm">
+  <mat-form-field>
+    <input matInput
+           [formControlName]="field?.key"
+           placeholder="{{field?.label}}"
+           [id]="field?.key"
+           [dpDayPicker]="config"
+           mode="daytime"
+           theme="dp-material"
+           attachTo=".mat-form-field-wrapper"
+           [disabled]="field.disabled" />
+      <button title="Borrar" *ngIf="field.required === false || field.required === undefined && 
+             (!field.disabled || field.disabled === undefined)" class="icon-button" (click)="remove()" matSuffix mat-icon-button>
+            <mat-icon>clear</mat-icon>
+      </button>
+      <mat-error id="{{field.key}}Error" matTooltip="{{getMessageErrorValidation(field)}}" *ngIf="parentForm.controls[field.key]?.invalid ">
+        {{getMessageErrorValidation(field)}}
+      </mat-error>
+    </mat-form-field>
+</div>
+
+  <!-- <mat-form-field>
+
+      <button *ngIf="!field.disabled" class="icon-button" (click)="onChangeDate()" matSuffix mat-icon-button title="Abrir Calendario">
+          <mat-icon>calendar_today</mat-icon>
+      </button>
+  </mat-form-field> -->

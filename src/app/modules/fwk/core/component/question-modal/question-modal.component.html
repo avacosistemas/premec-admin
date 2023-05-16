@@ -1,0 +1,9 @@
+<h1 mat-dialog-title>{{data.title}}</h1>
+<div mat-dialog-content class='question-modal-content'>
+    {{data.message}}
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onReject()" class="width-button_dialog-delate">{{data.rejectButtonName}}</button>
+  <button mat-button (click)="onSubmit()" cdkFocusInitial class="width-button_dialog-delate">{{data.acceptButtonName}}</button>
+</div>
+

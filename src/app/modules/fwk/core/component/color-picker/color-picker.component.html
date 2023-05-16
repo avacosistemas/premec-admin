@@ -1,0 +1,28 @@
+<form [formGroup]="formGroup">
+  <mat-form-field appearance="outline" class="color-picker-input">
+
+    <input  matInput
+            class="input"
+            [id]="name"
+            [formControlName]="name"
+            [(ngModel)]="value"
+            [required]="config.required"
+            [readonly]="config.disabled"
+            [placeholder]="config.label" 
+            (blur)="changeInput()"> 
+
+            <mat-icon [style.background]="value"
+          >
+          </mat-icon>
+    <mat-error *ngIf="formGroup.get(name).errors?.required">{{config.options.requiredMessage}}</mat-error>
+    <mat-error *ngIf="formGroup.get(name).errors?.invalidValue">{{config.options.invalidValueMessage}}</mat-error>
+  </mat-form-field>
+
+  <button mat-button
+      color="primary"
+      class="color-picker-button"
+      [disabled]="config.disabled"
+      [(colorPicker)]="value">
+      <mat-icon>color_lens</mat-icon>
+  </button>
+</form>

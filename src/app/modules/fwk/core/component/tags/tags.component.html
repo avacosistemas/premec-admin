@@ -1,0 +1,26 @@
+<form [formGroup]="formGroup" class="tags-form-container">
+  <mat-form-field [style.width] ="config.options.width" appearance="outline">
+    <mat-chip-list #chipList [formControlName]="name" [required]="config.required">
+
+      <div class="mat-chip-container">
+        <mat-chip *ngFor="let val of formGroup.get(name).value?.toString().split(separator)" [selectable]="!config.disabled"
+                [removable]="!config.disabled" (removed)="remove(val)">
+          {{val}}
+          <mat-icon matChipRemove *ngIf="!config.disabled">cancel</mat-icon>
+        </mat-chip>
+      </div>
+
+      <input matInput
+            [placeholder]="config.label"
+            [matChipInputFor]="chipList"
+            [required]="config.required"
+            [disabled]="config.disabled"
+            [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+            [matChipInputAddOnBlur]="true"
+            (matChipInputTokenEnd)="add($event)">
+    </mat-chip-list>
+
+    <mat-error *ngIf="formGroup.get(name).errors?.required">{{config.options.requiredMessage}}</mat-error>
+    <mat-error *ngIf="formGroup.get(name).errors?.invalidValue">{{config.options.invalidValueMessage}}</mat-error>
+  </mat-form-field>
+</form>

@@ -1,0 +1,117 @@
+.component-OPCION{
+
+    app-search {
+        visibility: hidden;
+    }
+    .crud-table{
+        /* @media screen and (max-width:899px) {
+            .mat-header-row, .mat-row {
+                width: max-content;
+            }
+        } */
+
+        .action-cell {
+            width: 120px !important;
+            min-width: 120px !important;
+            max-width: 120px !important;
+        }
+
+        #allowCommentsHeader,
+        #allowCommentsCell{
+            width: 80px;
+            min-width: 80px;
+            max-width: 80px;
+        }
+
+        mat-header-cell.checkbox-cell {
+            //display: none;
+        }
+        
+        mat-row.mat-row > mat-cell:nth-child(1) {
+            //display: none;
+        }
+       
+    }
+}
+.control-mat-dialog .dynamicFormDiv[name=subForm]{
+    /*
+    .nameDiv{
+        display: inline-block;
+        width:45%;
+        margin-right: 10%;
+    }
+    .remarksDiv{
+        display: inline-block;
+        width:45%;
+    }
+    
+    
+    .minQuotaDiv{
+        display: inline-block;
+        width:30%;
+        margin-right: 5%;
+    }
+    .quotaDiv{
+        display: inline-block;
+        width:30%;
+        margin-right: 5%;
+    }
+    .allowQueueDiv{
+        display: inline-block;
+        width:20%;
+    }
+
+
+    .validateUserDiv{
+        display: inline-block;
+        width:13%;
+        margin-right: 8%;
+    }
+    .showUserDataDiv{
+        display: inline-block;
+        width:28%;
+        margin-right: 5%;
+    }
+    .allowUpdatesDiv{
+        display: inline-block;
+        width:22%;
+        margin-right: 5%;
+    }
+    .showTitleDiv{
+        display: inline-block;
+        width:15%;
+    }
+
+    .fromDateStringDiv{
+        display: inline-block;
+        width:45%;
+        margin-right: 10%;
+    }
+    .toDateStringDiv{
+        display: inline-block;
+        width:45%;
+    }
+
+    .placeDiv{
+        display: inline-block;
+        width:45%;
+        margin-right: 10%;
+    }
+    .dateDiv{
+        display: inline-block;
+        width:45%;
+    }
+
+    .categoryDiv{
+        display: inline-block;
+        width:45%;
+        margin-right: 10%;
+    }
+    .subcategoryDiv{
+    display: inline-block;
+    width:45%;
+    }
+    .favouriteDiv{
+    margin-top:15px;
+    }*/
+}

@@ -1,0 +1,83 @@
+@import "src/app/app.component.scss";
+mat-header-cell{
+    text-align: left;
+    padding:10px;
+}
+
+mat-cell{
+    text-align: left;
+    padding:0px 10px;
+    font-size: 12px;
+}
+.actionName_pad {
+    padding:0px !important;
+}
+.button-color-secondary[_ngcontent-c37], .icon-button[_ngcontent-c37] {
+    color: white;
+    width: 2.5em;
+    height: 2.5em;
+    background-color: #2d323e;
+}
+/* mat-table button{
+    width: auto;
+    min-width: auto !important;
+    margin-right: 5px;
+} */
+
+.checkbox-action{
+    display: table;
+    padding: 15px;
+}
+
+.checkbox-cell{
+    width: auto;
+    padding:0px 10px 0px 2px;
+    max-width: 65px;
+}
+.highlight{
+    background-color:#cfcfcf !important;
+}
+
+mat-row:hover {
+    background: rgb(240, 240, 240);
+    .action-buttons-div {
+        background-color: rgba(240, 240, 240, 255);
+    }
+}
+
+.action-cell{
+    overflow: visible;
+    min-width: 120px;
+    padding:0px 10px 0px 0px;
+    //position: absolute;
+    //z-index: 1;
+    //background-color: white;
+    //overflow-x: visible;
+}
+
+.action-cell-elevated {
+    overflow: visible;
+    width: 80px;
+    z-index: 1;
+}
+
+.action-cell *{
+  display: inline-block;
+  margin-block: 2px;
+}
+
+.control-mat-dialog{
+
+}
+
+.icon-button{
+    @extend .button-color-secondary;
+    margin-right: 5px;
+}
+.icon-button span {
+    padding: 0px 0px !important;
+}
+
+.action-buttons-div {
+    background-color: white;
+}

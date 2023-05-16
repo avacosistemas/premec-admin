@@ -1,0 +1,60 @@
+.component-PERFIL_IDENTIFICACION{
+    .crud-table{
+
+        #tipoHeader,
+        #tipoCell{
+            width: 80px;
+            min-width: 80px;
+            max-width: 80px;
+        }
+
+        #matriculaHeader,
+        #matriculaCell{
+            width: 70px;
+            min-width: 70px;
+            max-width: 70px;
+        }
+
+        #tipoDocumentoHeader,
+        #tipoDocumentoCell{
+            width: 40px;
+            min-width: 40px;
+            max-width: 40px;
+        }
+
+        #numeroDocumentoHeader,
+        #numeroDocumentoCell{
+            width: 80px;
+            min-width: 80px;
+            max-width: 80px;
+        }
+
+        #estadoHeader,
+        #estadoCell {
+            width: 80px;
+            min-width: 80px;
+            max-width: 80px;
+        }
+
+        #nombreHeader,
+        #nombreCell,
+        #apellidoHeader,
+        #apellidoCell,
+        #usernameHeader,
+        #usernameCell {
+            width: 160px;
+            min-width: 160px;
+            max-width: 160px;
+        }
+
+        .action-cell {
+            width: 230px !important;
+            min-width: 230px !important;
+            max-width: 230px !important;
+            overflow-wrap: break-word;
+            flex-wrap: wrap;
+            padding-bottom: 4px;
+            padding-top: 4px;
+        }
+    }
+}

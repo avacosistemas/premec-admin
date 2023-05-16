@@ -1,0 +1,124 @@
+app-dynamic-form-component{
+    display: inline-block !important;
+    width: 85%;
+    text-align: right;
+}
+form:first-child{
+    width: 100% !important;
+}
+.search-panel{
+    padding: 0px;
+    padding-top: 12px;
+    margin-bottom: 5px;
+}
+.search-content{
+    margin:0px;
+}
+.search-submit {
+    display: inline-block !important;
+    vertical-align: baseline;
+    width: 10%;
+}
+:host ::ng-deep{
+
+    app-dynamic-form-component form{
+        text-align: left;
+    }
+    // .dynamicFieldDiv{
+    //     display: inline-block;
+    //     width: 28%;
+    // }
+    
+
+    // .dynamicFieldDiv:nth-child(3n+1){
+    //     margin-left: 6%;
+    // }
+
+    // .dynamicFieldDiv:nth-child(3n+2){
+    //     margin-right: 5%;
+    //     margin-left: 5%;
+    // }
+
+    // .dynamicFieldDiv .visual_fieldDiv{
+    //     width: 100%;
+    //     margin-left: 0px;
+    // }
+
+}
+
+
+.new-search-content{
+    margin:0px;
+    padding-left: 10px;
+}
+
+.search .clean .drop_down{
+    background-color: transparent !important;
+}
+.float-search-options-background{
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    // background-color: #00000057;
+    left: 0;
+    top: 0;
+    z-index: 1;
+}
+
+.float-search-options{
+    background-color: white;
+    width: 100%;
+    position: absolute;
+    z-index: 3;
+    left: 0;
+    padding-top: 12px;
+    margin-top: 2px;
+    border: 1px solid rgba(0,0,0,0.17);
+}
+::ng-deep mat-grid-list app-dynamic-form-component {
+    width: 90% !important;
+}
+::ng-deep mat-grid-list {
+    height: 100px;
+    top: 10px;
+}
+::ng-deep .mat-grid-tile .mat-figure {
+    justify-content: flex-start !important ;
+    align-items: flex-start !important;
+}
+.search-content{
+    width: 100% !important;
+
+    .dynamicFieldDiv{
+        width: 100% !important;
+        margin-left: 0px;
+    }
+    .content-buttons {
+        right: -130px;
+        position: absolute;
+        top: 5px;
+    }
+    ::ng-deep.mat-form-field-wrapper {
+        font-size: 11px;
+    }
+    ::ng-deep.mat-form-field-label {
+        color: white;
+    }
+    ::ng-deep.mat-form-field-underline.mat-form-field-underline {
+        background-color: white;
+    }
+    ::ng-deep.mat-input-element {
+        caret-color: white !important;
+    }
+    ::ng-deep.first-tile {
+        left: -50px !important;
+    }
+    ::ng-deep.mat-form-field-ripple {
+        background-color: white !important;
+    }
+    .btns {
+        mat-icon {
+            vertical-align: sub !important;
+        }
+    }
+}

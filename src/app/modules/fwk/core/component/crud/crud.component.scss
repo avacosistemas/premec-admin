@@ -1,0 +1,44 @@
+
+.crud-card-body{
+    padding: 0px !important;
+    width: 100%;
+    overflow-y: auto;
+}
+
+.crud-card-title{
+    padding: 12px;
+    border-radius: 0px !important;
+    font-size: 1.2em;
+}
+
+.crud-card-content{
+    padding: 15px;
+    /* border-radius: 0px 0px 2px 2px;*/
+    margin-bottom: 80px !important;
+}
+
+.crud-button-add{
+    position: absolute;
+    right: 25px;
+    bottom: 25px;
+}
+
+mat-card-content{
+    overflow-y: scroll;
+}
+.crud-button-delete{
+    position: absolute;
+    right: 90px;
+    bottom: 25px;
+}
+
+.control-mat-dialog{
+
+}
+
+div[class*="update-modal-modal"] {
+    overflow-y: auto;
+    max-height: 90%;
+    overflow-x: hidden;
+}
+

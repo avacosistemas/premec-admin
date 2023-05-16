@@ -1,0 +1,54 @@
+
+<div class="nav-mobile navbar-fixed">
+    <div id="showBackgroundDropdown" class="dropdown-content_showoff" onclick="myMenuSecond();"></div>
+        <div class="custom-navbar-width-fixed header-menu">
+            <button mat-button style="display:none" class="toggle-button-navbar mat-icon-button"  (click)="toggleSidebarOpened('navbar')" id="hide_button_nav_left">
+                    <mat-icon>{{translate('menu_text')}}</mat-icon>
+            </button>
+            <img class="logo-img" src="https://premecsa.com.ar/wp-content/uploads/2018/05/logo-pestan%CC%83a-01.png">	
+
+            <!-- APP TITLE -->
+            <div class="content-logo" style="max-width: fit-content !important;">
+                <span class="logo-text h1"style="max-width: fit-content !important;">
+                    {{translate('page_title')}}{{getParentTitle()}}
+                </span>
+            </div>
+
+            <div style="display: inherit;">
+                <back-button *ngIf='crudDef?.backButton'></back-button>
+            </div>
+
+            <div id="myDropdownOnline" class="dropdown-content">
+                <div class="dropdown-content_1">
+                    <div class="dropdown-content_2"></div>
+                    <div class="button-login-a-navbar-static  user_menu_background_m">
+                        <div class="button-border-bottom user_online_responsive_hover">
+                            <div class="user_online_name user_online_responsive_m" style="margin-top: 0px;">
+                                <i class="material-icons material-icon_fixed"  style="padding: 1.5px 0px !important;">{{translate('menu_user_icon')}}</i>
+                                <div class="wrap-text"><span class="username">Admin</span></div>
+                                <span class="icon-user_menu icon-user_menu-fixed_m"></span>								
+                            </div>
+
+                                <div class="user_menu  user_menu_responsive_m">
+                                <div (click)="onLogout()" class="user_off" name="logout-button"><span name="logout-button" class="user_menu_icon icon-user_off"></span><span name="logout-button" style="padding:0px">{{translate('menu_user_item_5')}}</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="button-login-a-navbar-static user_menu_background user_menu_background_color_fixed">
+                <div class="button-border-bottom user_online_responsive_hover">
+                        <div class="user_online_name user_online_responsive">
+                            <i class="material-icons user_m_display material-icon_fixed">{{translate('menu_user_icon')}}</i>
+                            <div class="wrap-text user_m_display" style="padding: 3px 0px !important;"><span class="username">Admin</span></div>
+                            <div class="button-login-responsive"><i class="material-icons" style="top:0px !important;display:none;">{{translate('menu_user_icon')}}</i></div>
+                            <span class="icon-user_menu icon-user_menu-fixed"></span>								
+                        </div>
+                    
+                    <div class="user_menu  user_menu_responsive">
+                            <div (click)="onLogout()" class="user_off" name="logout-button"><span name="logout-button" class="user_menu_icon icon-user_off"></span><span name="logout-button" style="padding:0px">{{translate('menu_user_item_5')}}</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

@@ -1,0 +1,32 @@
+button#caret {
+    border : none;
+    background : none;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    width: auto;
+    color: #757575;
+}
+
+.dropdown {
+    position: relative;
+    display: inline;
+}
+
+input::-webkit-calendar-picker-indicator {
+    display: none;
+}
+.mat-chip-container {
+    max-height: 111px;
+    overflow-y: auto;
+}
+mat-form-field {
+    width: 100%
+}
+
+::ng-deep .mat-autocomplete-panel {
+    font-size: 12px !important;
+    .mat-option {
+        font-size: inherit;
+    }
+}

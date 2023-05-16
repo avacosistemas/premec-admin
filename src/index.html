@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <script type="application/javascript">
+            var global = window;
+        </script>
+        <title>PREMEC - Administración</title>
+        <base href="/">
+        <!-- Evita cache de archivos js y css -->
+        <meta http-equiv="Expires" content="0">
+        <meta http-equiv="Last-Modified" content="0">
+        <meta http-equiv="Cache-Control" content="no-cache, mustrevalidate">
+        <meta http-equiv="Pragma" content="no-cache">
+        <meta charset="utf-8">
+        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+        <meta name="description" content="Material design admin template with pre-built apps and pages">
+        <meta name="keywords" content="HTML,CSS,AngularJS,Angular,Angular 4,Angular 5,Angular 6,Material">
+        <meta name="author" content="Withinpixels">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <link rel="icon" type="image/x-icon" href="favicon.ico">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link href="assets/icons/meteocons/style.css" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
+
+        
+        <!-- / FUSE Splash Screen CSS -->
+         <!-- FUSE Splash Screen CSS -->
+            <style type="text/css">
+
+                            
+                .loader_container_transparent {
+                    background-color:rgba(0, 0, 0, 0.60) !important;
+                    z-index: 99999 !important;
+                }
+                .loader_container {
+                    position: fixed;
+                    left: 0px;
+                    top: 0px;
+                    width: 100%;
+                    height: 100%;
+                    z-index: 9999;
+                    opacity: 1;
+                    background-color:white;
+                }
+                .loader_center {
+                    margin: 48vh auto;
+                }
+                .loader,
+                .loader:before,
+                .loader:after {
+                    background:  #3400FF;
+                    -webkit-animation: load1 1s infinite ;
+                    animation: load1 1s infinite ease-in-out;
+                    width: 1em;
+                    height: 3em;
+                    border-radius:100px;
+                }
+                .loader:before,
+                .loader:after {
+                    position: absolute;
+                    top: 0;
+                    content: '';
+                }
+                .loader:before {
+                    left: -1.5em;
+                }
+                .loader {
+                    text-indent: -9999em;
+                    position: relative;
+                    font-size: 11px;
+                    -webkit-animation-delay: 0.16s;
+                    animation-delay: 0.16s;
+                }
+                .loader:after {
+                    left: 1.5em;
+                    -webkit-animation-delay: 0.32s;
+                    animation-delay: 0.32s;
+                }
+
+                @-webkit-keyframes load1 {
+                    0%, 80%, 100% { box-shadow: 0 0  #3400FF;height: 3em; }
+                    40% { box-shadow: 0 -2em  #3400FF; height: 4em; }
+                }
+                @keyframes load1 {
+                    0%, 80%, 100% { box-shadow: 0 0 #3400FF; height: 3em; }
+                    40% { box-shadow: 0 -2em  #3400FF; height: 4em; }
+                }
+        </style>
+        <script type="text/javascript">
+        function navbar_effect_start(){
+            updateMenuList();
+            // #################
+            // FUNCION______ OCULTA Y DESOCULTA MENU 
+            $(".custom-nav-menu").css("display", "none");
+
+
+            // ##### CSS DINAMICO NAVBAR #######
+
+            // Por ahora dejo una nav bar fija...
+            $(".custom-navbar").css("position", "fixed");
+            $(".custom-navbar").css("background-color", "#0197f6");
+            
+            // Con esto al clickear sobre cualquier elemento del menu cierro el menu contextual
+            $(".custom-nav-menu").find("a").click(function(){
+                
+                $("#nav-btn").click();
+            });
+            
+            //Si es resolucion full
+            cleanBarTimeout();
+
+            $(window).scroll(function(){
+                effectBar();
+            });
+        }	
+            function updateMenuList(){
+                $( "#nav-btn" ).click(function() {
+                if($('#nav-btn').is(":checked")){
+                    $(".custom-nav-menu").css("display", "block");
+                }else{
+                    $(".custom-nav-menu").css("display", "none");
+                }
+                });
+            }
+
+            function navbarMenuElementSelect(hrefElement){
+                $("a[href='" +hrefElement +"']").addClass("selected");
+            }
+            function myMenu(x) {
+                x.classList.toggle("change");
+            }
+            function showBackgroundDropdown() {
+                document.getElementById("showBackgroundDropdown").classList.toggle("show");
+            }
+            function showDropDownOnline() {
+                document.getElementById("myDropdownOnline").classList.toggle("show");
+            }
+            window.onclick = function(event) {
+            if (!event.target.matches('.dropbtn')) {
+    
+                var dropdowns = document.getElementsByClassName("dropdown-content");
+                var i;
+                for (i = 0; i < dropdowns.length; i++) {
+                var openDropdown = dropdowns[i];
+                if (openDropdown.classList.contains('show')) {
+                    openDropdown.classList.remove('show');
+                }
+                }
+            }
+            }
+            function myMenuSecond() {
+                var dropdowns = document.getElementsByClassName("dropdown-content");
+                var i;
+                for (i = 0; i < dropdowns.length; i++) {
+                var openDropdown = dropdowns[i];
+                if (openDropdown.classList.contains('show')) {
+                    openDropdown.classList.remove('show');
+                }
+                }
+                var dropdowns = document.getElementsByClassName("dropdown-content_showoff");
+                var i;
+                for (i = 0; i < dropdowns.length; i++) {
+                var openDropdown = dropdowns[i];
+                if (openDropdown.classList.contains('show')) {
+                    openDropdown.classList.remove('show');
+                }
+                }
+                var change = document.getElementsByClassName("change");
+                for (var i = 0; i<change.length; i++) {
+                change[i].classList.remove("change");
+                change[i].classList.add("none_");
+                }
+            }
+            var modal = document.getElementById('id01');
+    
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            }
+            window.onscroll = function() {scrollFunction()};
+    
+            function scrollFunction() {
+                var funct = function(navs){
+                    for(i = 0; i < navs.length; i++){
+                        var nav = navs[i];
+                        if (document.body.scrollTop > 400|| document.documentElement.scrollTop > 400) {
+                            nav.style.top = "0";
+                        }else {
+                            nav.style.top = "-60px";
+                        }
+                    }
+                }
+                var navs = document.getElementsByClassName("navbar-fixed");
+                funct(navs);
+            }
+        </script>
+    </head>
+
+    <body class="primary-800-bg">
+        <!-- Script de carga antes de mostrar la pagina completa -->
+        <div class="loader_container">
+            <div class="loader loader_center">Cargando...</div>
+        </div>
+
+        <fuse-root></fuse-root>
+    </body>
+
+</html>

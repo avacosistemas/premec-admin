@@ -1,0 +1,27 @@
+<form *ngIf="generalFields" #ngformElement="ngForm" (ngSubmit)="onSubmitSearch()" (keyup)="submitOnEnter($event)" name="{{subFormName}}" [formGroup]="form" novalidate class="search-content">
+      <mat-grid-list [cols]="generalFields.length <= 4 ? generalFields.length : 4" rowHeight="fit">
+        <div *ngFor="let gf of generalFields;let i = index">
+          <mat-grid-tile>
+            <app-dynamic-form-component [entity]="[entity[i]]"    
+                    [isEdit]="true"
+                    [fields]="[gf]"
+                    [parentForm]="form"
+                    (onChangeEntity)="onChangeEntity($event)">
+            </app-dynamic-form-component>
+          </mat-grid-tile>
+        </div>
+    
+        <div class="content-buttons">
+          <button #submitbutton  mat-icon-button class="btns icon-button_style- mat-mini-fab mat-accent ng-tns-c20-4 ng-star-inserted search" cdkFocusInitial title="Buscar">
+            <mat-icon caria-label="icon">search</mat-icon>  
+          </button>
+          <button mat-icon-button class="btns icon-button_style- mat-mini-fab mat-accent ng-tns-c20-4 ng-star-inserted clear" (click)="clearForm()" title="Limpiar">
+            <mat-icon aria-label="icon">clear</mat-icon>  
+          </button>
+          <button *ngIf="hasOptions()" type="button" mat-icon-button class="drop_down" (click)="openOptions()" >
+              <mat-icon *ngIf="userChangeOptions()" style="color: red !important" class="secondary-text">arrow_drop_down</mat-icon>  
+              <mat-icon *ngIf="!userChangeOptions()" class="secondary-text">arrow_drop_down</mat-icon>  
+          </button>
+        </div>
+      </mat-grid-list>
+</form>

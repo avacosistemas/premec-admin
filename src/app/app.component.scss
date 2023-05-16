@@ -1,0 +1,15 @@
+$primary: #222f3d;
+$secondary: #3400FF; 
+
+.button-color-secondary {
+    color: white;
+    background-color: $secondary;
+}
+
+.button-color-secondary mat-icon {
+    color: white;
+}
+
+.lineheight135 {
+    line-height: 1.350 !important;
+}

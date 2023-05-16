@@ -1,0 +1,43 @@
+.basic-modal-content {
+    display: flex;
+    flex-direction: column;
+}
+  
+.example-container > * {
+    width: 100%;
+}
+
+mat-form-field{
+    display: inline;
+}
+.mat-checkbox{
+    margin-top: 0.5em;
+    margin-bottom: 1.5em;
+}
+
+app-pick-list{
+    display: flex;
+    margin-bottom: 20px;
+}
+.mat-dialog-actions{
+  display: inline;
+}
+button:last-child {
+ float: right;
+}
+.clear-div{
+    display: inline;
+}
+.clear-div button{
+    float: right;
+}
+
+.html-content{
+    margin-top: 40px;
+}
+.perfil-inversor-modal .html-content {
+    margin-top:0px !important;
+}
+.solicitudPrestamo-modal .html-content {
+    margin-top: 0px;
+}

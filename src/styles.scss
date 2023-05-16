@@ -1,0 +1,151 @@
+// Import Fuse main library
+@import "@fuse/scss/core";
+
+@-webkit-keyframes load1 {
+    0%, 80%, 100% { box-shadow: 0 0  #3400FF;height: 3em; }
+    40% { box-shadow: 0 -2em  #3400FF; height: 4em; }
+}
+@keyframes load1 {
+    0%, 80%, 100% { box-shadow: 0 0 #3400FF; height: 3em; }
+    40% { box-shadow: 0 -2em  #3400FF; height: 4em; }
+}
+.loader_container_transparent {
+    background-color:rgba(0, 0, 0, 0.60) !important;
+    z-index: 99999 !important;
+}
+.loader_container {
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    opacity: 1;
+    background-color:white;
+}
+.loader_center {
+    margin: 48vh auto;
+}
+.loader,
+.loader:before,
+.loader:after {
+    background:  #3400FF;
+    -webkit-animation: load1 1s infinite ease-in-out;
+    animation: load1 1s infinite ease-in-out;
+    width: 1em;
+    height: 3em;
+    border-radius:100px;
+}
+.loader:before,
+.loader:after {
+    position: absolute;
+    top: 0;
+    content: '';
+}
+.loader:before {
+    left: -1.5em;
+}
+.loader {
+    text-indent: -9999em;
+    position: relative;
+    font-size: 11px;
+    -webkit-animation-delay: 0.16s;
+    animation-delay: 0.16s;
+}
+.loader:after {
+    left: 1.5em;
+    -webkit-animation-delay: 0.32s;
+    animation-delay: 0.32s;
+}
+.mat-raised-button.mat-accent, .mat-fab.mat-accent, .mat-mini-fab.mat-accent {
+    background-color: #3400FF;
+}
+.mat-raised-button.mat-accent i, .mat-fab.mat-accent i, .mat-mini-fab.mat-accent i {
+    color: #f9f9f9;
+}
+.mat-mini-fab .mat-button-wrapper {
+    padding: 0px 0;
+}
+.mat-raised-button.mat-accent i, .mat-fab.mat-accent i, .mat-mini-fab.mat-accent i {
+    .mat-raised-button.mat-accent i, .mat-fab.mat-accent i, .mat-mini-fab.mat-accent i , .mat-mini-fab.mat-accent i{
+        color: #f9f9f9;
+    }
+}
+.mat-accent-bg {
+    background-color: #3400FF !important;
+    color: white !important;
+}   
+.mat-checkbox-indeterminate.mat-accent .mat-checkbox-background, .mat-checkbox-checked.mat-accent .mat-checkbox-background {
+    background-color: #3400FF;
+}
+.icon-button_style- {
+    width: 30px !important;
+    height: 30px !important;
+    background-color: #222f3e !important;
+    font-family: Roboto, "Helvetica Neue", sans-serif !important;
+    font-weight: 700;
+    margin-right: 6px !important;
+}
+.icon-button_style- .mat-button-wrapper {
+    padding: 0px 0 !important;
+    display: inline-block !important;
+    line-height: 33px !important;
+    top: 0px;
+    position: absolute;
+    right: 0;
+    left: 0;
+    bottom: 0;
+}
+.icon-button_style- .mat-button-wrapper mat-icon {
+    color: #e5e5e5 !important;
+    font-size: 20px !important;
+}
+.notification-success-class {
+    background-color: #3400FF !important;
+}
+.mat-simple-snackbar-action {
+    margin-left: 15px !important;
+    float: right !important;
+    width:auto !important;
+}
+.mat-checkbox:not(.mat-checkbox-disabled).mat-accent .mat-checkbox-ripple .mat-ripple-element {
+    background-color: rgba(0, 198, 85, 0.26) !important;
+}
+
+.mat-row, .mat-header-row {
+    padding: 0 24px;
+}
+
+@media screen and (max-width: 599px) {
+    .top-bg {
+    height: 273px !important;
+    }
+    app-search {
+        width: 75% !important;
+    }
+}
+.mat-checkbox:not(.mat-checkbox-disabled).mat-accent .mat-checkbox-ripple .mat-ripple-element {
+    background-color: rgba(0, 198, 85, 0.26) !important;
+}
+.mat-green-300-bg {
+    background-color: #3400FF !important;
+}
+// Calendar Datetime
+.dp-day-calendar.dp-material .dp-calendar-month, dp-day-calendar.dp-material .dp-calendar-day {
+    color: black;
+}
+dp-calendar-nav.dp-material .dp-nav-header-btn {
+    color: black;
+}
+dp-calendar-nav.dp-material .dp-calendar-nav-left, dp-calendar-nav.dp-material .dp-calendar-nav-right, dp-calendar-nav.dp-material .dp-calendar-secondary-nav-left, dp-calendar-nav.dp-material .dp-calendar-secondary-nav-right {
+    color: black;
+}
+.dp-time-select-control-down {
+    color: black;
+}
+.dp-time-select-control-up {
+    color: black;
+}
+dp-month-calendar.dp-material .dp-calendar-month {
+    color: black;
+} 

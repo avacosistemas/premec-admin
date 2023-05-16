@@ -1,0 +1,52 @@
+<div id="login" fxLayout="row" fxLayoutAlign="start">
+
+    <div id="login-intro" fxFlex fxHide fxShow.gt-xs>
+
+        <div class="title" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'50ms',y:'25px'}}">
+                {{translate('login_title')}}
+        </div>
+
+        <div class="description" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',y:'25px'}}">
+            Premec
+        </div>
+
+    </div>
+    <div id="login-form-wrapper" fusePerfectScrollbar *fuseIfOnDom
+         [@animate]="{value:'*',params:{delay:'300ms',x:'100%'}}">
+
+        <div id="login-form">
+            <div class="logo_form" *fuseIfOnDom [@animate]="{value:'*',params:{scale:'0.2'}}">
+                <img src="https://premecsa.com.ar/wp-content/uploads/2018/05/logo-pestan%CC%83a-01.png">
+            </div>
+            <div class="title">{{translate('login_form_title')}}</div>
+
+            <form *ngIf="loginForm" (ngSubmit)="onSubmit()" name="loginForm" target="_parent" [formGroup]="loginForm" novalidate>
+
+                <mat-form-field>
+                    <input matInput placeholder="{{translate('login_form_field_username')}}" formControlName="username">
+                    <mat-error *ngIf="loginForm.controls.username.invalid">
+                            {{getMessageErrorValidation('username', translate('login_form_field_username'))}}
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <input matInput type="password" placeholder="{{translate('login_form_field_password')}}" formControlName="password">
+                    <mat-error *ngIf="loginFormErrors.password.required">
+                            {{translate('login_form_field_password_required')}}
+                    </mat-error>
+                </mat-form-field>
+                <mat-error *ngIf="loginFormErrors.userorpassinvalid">
+                        {{translate('login_form_error_username_or_password_invalid')}}
+                </mat-error>
+
+                <button mat-raised-button [ngClass]="[fuseSettings.colorClasses.primary_button, fuseSettings.colorClasses.primary_button_fg]" class="btnlogin submit-button" aria-label="LOGIN"
+                        [disabled]="loginForm.invalid">
+                        {{translate('login_form_button_submit')}}
+                </button>
+
+            </form>
+        </div>
+    </div>
+    <div class="logo" *fuseIfOnDom [@animate]="{value:'*',params:{scale:'0.2'}}">
+    </div>
+</div>

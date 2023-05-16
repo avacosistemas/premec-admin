@@ -1,0 +1,11 @@
+<div [formGroup]="parentForm">
+
+  <mat-form-field>
+    <input matInput [matDatepicker]="datepicker" [formControlName]="field.key"   placeholder="{{field.label}}">
+    <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
+    <mat-datepicker #datepicker></mat-datepicker>
+    <mat-error matTooltip="{{getMessageErrorValidation(field)}}" *ngIf="parentForm.controls[field.key].invalid ">
+      {{getMessageErrorValidation(field)}}
+    </mat-error>
+  </mat-form-field>
+</div>

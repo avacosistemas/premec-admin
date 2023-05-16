@@ -1,0 +1,35 @@
+
+.field-label{
+    color: #b0b0b0
+}
+
+mat-form-field {
+    width: 100%;    
+}
+
+.datepicker-2-modal{
+    .dayDiv, .yearDiv{
+        display: inline-block;
+        width: 25% !important;
+    }
+    .monthDiv {
+        display: inline-block;
+        width: 40% !important;
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+}
+.datepicker-2-hh-mm-modal{
+    .dayDiv,.yearDiv, .hourDiv, .minuteDiv {
+        display: inline-block;
+        width: 15% !important;
+    }
+    .monthDiv {
+        display: inline-block;
+        width: 25% !important;
+    }
+    form div:nth-child(2n+2){
+        margin-left: 2.5%;
+        margin-right: 2.5%; 
+    }    
+}

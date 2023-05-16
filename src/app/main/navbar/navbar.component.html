@@ -1,0 +1,37 @@
+
+<ng-container *ngIf="layout == 'vertical'">
+
+    <div class="navbar-vertical">
+
+        <div class="navbar-header">
+            <div class="logo">
+                
+                <span class="logo-text">{{translate('logo_text')}}</span>
+            </div>
+            <button mat-button class="toggle-button-navbar mat-icon-button"
+                    (click)="toggleSidebarFolded('navbar')" fxHide.lt-lg>
+                <mat-icon>sort</mat-icon>
+            </button>
+
+            <button mat-button class="toggle-button-navbar mat-icon-button"
+                    (click)="toggleSidebarOpened('navbar')" fxHide.gt-md>
+                <mat-icon>arrow_back</mat-icon>
+            </button>
+
+        </div>
+
+        <div class="navbar-content" fusePerfectScrollbar>
+            <fuse-navigation *ngIf="navigation" [ngClass]="fuseSettings.colorClasses.title" [navigation]="navigation" layout="vertical"></fuse-navigation>
+        </div>
+
+    </div>
+
+</ng-container>
+
+<ng-container *ngIf="layout == 'horizontal'">
+
+    <div class="navbar-horizontal">
+        <fuse-navigation [ngClass]="fuseSettings.colorClasses.title" [navigation]="navigation" layout="horizontal"></fuse-navigation>
+    </div>
+
+</ng-container>

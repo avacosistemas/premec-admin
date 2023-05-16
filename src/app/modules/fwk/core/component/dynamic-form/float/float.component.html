@@ -1,0 +1,9 @@
+<mat-form-field [formGroup]="parentForm" [floatLabel]="getFloatLabel(field)">
+  <mat-label *ngIf="field.options && field.options.matLabel">{{field.options.matLabel}}</mat-label>
+  <input matInput restrictionKeys="{{restrictionKeys}}" placeholder="{{field.label}}"  [formControlName]="field.key"
+          [id]="field.key">
+  <span *ngIf="field.options && field.options.prefix" matPrefix>{{field.options.prefix}}&nbsp;</span>
+  <mat-error id="{{field.key}}Error" *ngIf="parentForm.controls[field.key].invalid ">
+    {{getMessageErrorValidation(field)}}
+  </mat-error>
+</mat-form-field>

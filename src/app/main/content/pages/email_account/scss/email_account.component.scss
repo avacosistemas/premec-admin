@@ -1,0 +1,46 @@
+.component-EMAIL_ACCOUNT{
+    .crud-table{
+        /* @media screen and (max-width:899px) {
+            .mat-header-row, .mat-row {
+                width: max-content;
+            }
+        } */
+
+        .action-cell {
+            width: 40px !important;
+            min-width: 40px !important;
+            max-width: 40px !important;
+        }
+
+        
+        
+        mat-header-cell.checkbox-cell {
+            display: none;
+        }
+        
+        mat-row.mat-row > mat-cell:nth-child(1) {
+            display: none;
+        }
+
+
+    }
+
+    
+    
+}
+
+.control-mat-dialog .dynamicFormDiv[name=subForm]{
+    
+    .nameDiv{
+        min-width:100% !important;
+        max-width:100% !important;
+        width:100% !important;
+    }
+
+    .urlDiv{
+        min-width:100% !important;
+        max-width:100% !important;
+        width:100% !important;
+    }
+
+}

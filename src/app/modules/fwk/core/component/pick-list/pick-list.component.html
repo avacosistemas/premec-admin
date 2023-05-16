@@ -1,0 +1,42 @@
+<mat-card class="list-card">
+  <mat-card-header>
+    <mat-card-title>{{titleFrom}}</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <mat-selection-list #from [(ngModel)]="fromDataSelected" (ngModelChange)="onNgModelChangeFromList($event)">
+      <mat-list-option checkboxPosition="before" *ngFor="let data of _fromData" [value]="data">
+        {{getNameElementList(data)}}
+      </mat-list-option>
+    </mat-selection-list>
+  </mat-card-content>
+  <mat-card-actions>
+      <button  type="button" (click)="transferTo()" mat-icon-button>
+          <mat-icon aria-label="icon-button with a heart icon">keyboard_arrow_right</mat-icon>
+      </button>
+      <button type="button" (click)="transferToAll()" mat-icon-button>
+          <mat-icon aria-label="icon-button with a heart icon">fast_forward</mat-icon>
+      </button>
+  </mat-card-actions>
+</mat-card>
+<div class="list-spacer"></div>
+<mat-card class="list-card">
+  <mat-card-header>
+    <mat-card-title>{{titleTo}}</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <mat-selection-list [(ngModel)]="toDataSelected" #to (ngModelChange)="onNgModelChangeToList($event)">
+      <mat-list-option *ngFor="let data of _toData" [value]="data">
+        {{getNameElementList(data)}}
+      </mat-list-option>
+    </mat-selection-list>
+  </mat-card-content>
+  <mat-card-actions>
+    <button type="button" (click)="transferFromAll()" mat-icon-button>
+      <mat-icon aria-label="icon-button with a heart icon">fast_rewind</mat-icon>
+    </button>
+    <button type="button" (click)="transferFrom()" mat-icon-button>
+      <mat-icon aria-label="icon-button with a heart icon">keyboard_arrow_left</mat-icon>
+    </button>
+  </mat-card-actions>
+</mat-card>
+

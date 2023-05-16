@@ -1,0 +1,20 @@
+.color-picker-button {
+    padding: 0;
+    justify-content: center;
+    align-items: center;
+    width:10%;
+}
+ button > span {
+     display: flex;
+ }
+
+ .color-picker-input .input:read-only {
+    color: rgba(0,0,0,.26);
+ }
+ .color-picker-input {
+    width: 85.9%;
+ }
+
+ .color-picker-input input{
+    width: 95%;
+ }

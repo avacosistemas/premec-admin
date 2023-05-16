@@ -1,0 +1,35 @@
+<form [formGroup]="formGroup" class="import-image-form">
+  <mat-form-field appearance="outline" class="import-image-input">
+
+    <input  matInput
+            class="input"
+            [id]="name"
+            [formControlName]="name"
+            [(ngModel)]="value"
+            [required]="config.required"
+            [readonly]="config.disabled"
+            [placeholder]="config.label" 
+            (blur)="changeInput()">
+
+    <mat-error *ngIf="formGroup.get(name).errors?.required">{{config.options.requiredMessage}}</mat-error>
+    <mat-error *ngIf="formGroup.get(name).errors?.invalidValue">{{config.options.invalidValueMessage}}</mat-error>
+  </mat-form-field>
+
+  <!-- <button mat-button
+      color="primary"
+      (click)="clickOpenCkfinder()"
+      class="import-image-button"
+      title="Seleccionar"
+      [disabled]="config.disabled">
+      <mat-icon>{{config.icon != undefined ? config.icon : 'add_photo_alternate'}}</mat-icon>
+  </button> -->
+
+  <button mat-button *ngIf="config.showPreview != undefined ? config.showPreview : false"
+      color="primary"
+      (click)="clickOpenUrl()"
+      title="Previsualizar"
+      class="import-image-button"
+      [disabled]="config.disabled">
+      <mat-icon>{{config.iconOpenUrl != undefined ? config.iconOpenUrl : 'filter_none'}}</mat-icon>
+  </button>
+</form>

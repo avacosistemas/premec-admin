@@ -1,0 +1,14 @@
+.component-FORM_RESPONSE{
+    app-search .drop_down {
+        display: none;
+    }
+    .crud-table{
+        mat-header-cell.checkbox-cell {
+            display: none;
+        }
+        
+        mat-row.mat-row > mat-cell:nth-child(1) {
+            display: none;
+        }
+    }
+}

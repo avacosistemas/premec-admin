@@ -1,0 +1,27 @@
+<div [formGroup]="parentForm && form">
+    <!-- <app-dynamic-form-component 
+      [isEdit]="!field.disabled"
+      [fields]="fieldsVisualDatepicker"
+      [parentForm]="form"
+      (onChangeEntity)="onChangeEntity($event)">
+    </app-dynamic-form-component> -->
+    <mat-form-field>
+        <input  matInput placeholder="{{fieldLabel.label}}"  [formControlName]="fieldLabel.key"
+                [id]="fieldLabel.key">
+        <button title="Borrar" *ngIf="field.required === false || field.required === undefined && 
+                        (!field.disabled || field.disabled === undefined)" class="icon-button" (click)="remove()" matSuffix mat-icon-button>
+            <mat-icon>clear</mat-icon>
+        </button>
+        <button *ngIf="!field.disabled" class="icon-button" (click)="onChangeDate()" matSuffix mat-icon-button title="Abrir Calendario">
+            <mat-icon>calendar_today</mat-icon>
+        </button>
+        <mat-error id="{{field.key}}Error" matTooltip="{{getMessageErrorValidation(field)}}" *ngIf="form.controls[fieldLabel.key].invalid ">
+          {{getMessageErrorValidation(field)}}
+        </mat-error>
+    </mat-form-field>
+    
+
+    <!-- <div class="mat-error" matTooltip="{{errorMessage}}" *ngIf="errorMessage">
+      {{errorMessage}}
+    </div> -->
+</div>

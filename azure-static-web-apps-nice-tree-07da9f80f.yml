@@ -1,0 +1,45 @@
+name: Azure Static Web Apps CI/CD
+
+pr:
+  branches:
+    include:
+      - test
+jobs:
+- job: build_and_deploy_job
+  displayName: Build and Deploy Job
+  condition: or(eq(variables['Build.Reason'], 'Manual'),or(eq(variables['Build.Reason'], 'PullRequest'),eq(variables['Build.Reason'], 'IndividualCI')))
+  pool:
+    vmImage: ubuntu-latest
+  variables:
+  - group: Azure-Static-Web-Apps-nice-tree-07da9f80f-variable-group
+  steps:
+  - checkout: self
+    submodules: true
+  - task: NodeTool@0
+    inputs:
+      versionSource: 'spec'
+      versionSpec: '14.x'
+  - script: |
+      npm install -g @angular/cli@6.0.8
+    displayName: 'install angular cli'
+  - task: Npm@1
+    displayName: 'npm install '
+    inputs:
+     workingDir: '$(System.DefaultWorkingDirectory)'
+     verbose: false
+  - task: Npm@1
+    displayName: 'npm build-test'
+    inputs:
+        command: custom
+        workingDir: '$(System.DefaultWorkingDirectory)'
+        verbose: false
+        customCommand: 'run build-test'
+  - task: AzureStaticWebApp@0
+    inputs:
+      azure_static_web_apps_api_token: $(AZURE_STATIC_WEB_APPS_API_TOKEN_NICE_TREE_07DA9F80F)
+      app_location: "/dist" # App source code path
+      skip_app_build: true
+      skip_api_build: true
+      verbose: true
+      cwd: '$(System.DefaultWorkingDirectory)'
+  

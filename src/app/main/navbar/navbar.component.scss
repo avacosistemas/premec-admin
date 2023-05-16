@@ -1,0 +1,106 @@
+@import "src/@fuse/scss/fuse";
+
+body {
+
+    &.fuse-sidebar-folded {
+
+        .content-wrapper {
+
+            &:last-child {
+                padding-left: 64px !important;
+            }
+
+            &:first-child {
+                padding-right: 64px !important;
+            }
+
+            &:first-child:last-child {
+                padding-left: 0 !important;
+                padding-right: 0 !important;
+            }
+
+        }
+    }
+}
+
+fuse-sidebar {
+
+    &.folded:not(.unfolded) {
+
+        .navbar-vertical {
+
+            .navbar-header {
+                padding: 0 13px;
+
+                .logo {
+                    min-width: 0px;
+                    .logo-text {
+                        opacity: 0;
+                        transition: opacity 200ms ease;
+                    }
+                }
+            }
+        }
+    }
+}
+
+fuse-navbar {
+
+    &:not(.top-navbar) {
+        height: 100%;
+    }
+
+    .navbar-vertical {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: 100%;
+
+        .navbar-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 47px;
+            min-height: 47px;
+            padding: 0 16px 0 24px;
+            transition: padding 200ms ease;
+            background-color: rgba(255, 255, 255, .05);
+            @include mat-elevation(1);
+
+            .logo {
+                display: flex;
+                align-items: center;
+                min-width:0px;
+
+                .logo-icon {
+                    height: 15px;
+                }
+
+                .logo-text {
+                    margin-left: 8px;
+                    font-size: 18px;
+                    font-family: 'lato','sans-serif';
+                    font-style: italic;
+                    font-weight: 800;
+                    letter-spacing: 0.6px;
+                }
+            }
+        }
+
+        .navbar-content {
+            flex: 1;
+        }
+    }
+}
+
+.top-navbar + #wrapper {
+
+    & > .left-navbar {
+        display: none !important;
+
+        @include media-breakpoint-down(md) {
+            display: flex !important;
+        }
+    }
+}
+

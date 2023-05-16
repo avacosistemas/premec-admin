@@ -1,0 +1,74 @@
+<div id="item" *ngIf="itemDetail" class="page-layout carded fullwidth" fusePerfectScrollbar>
+
+    <!-- TOP BACKGROUND -->
+    <div class="top-bg mat-accent-bg"></div>
+    <!-- / TOP BACKGROUND -->
+
+    <!-- CENTER -->
+    <div class="center">
+
+        <!-- HEADER -->
+        <div class="header white-fg"  fxLayoutAlign="space-between center">
+
+            <!-- APP TITLE -->
+            <div class="app-title" fxLayout="row" fxLayoutAlign="start center">
+                <button *ngIf="redirect" class="mr-0 mr-sm-16" mat-icon-button  (click)="returnLink()">
+                    <mat-icon>arrow_back</mat-icon>
+                </button>
+                
+                <div class="title" fxLayout="column" fxLayoutAlign="start start">
+                    <div class="h2" *ngIf="pageType === 'edit'">
+                        {{itemDetail.title}}
+                    </div>
+                </div>
+
+                <button mat-raised-button
+                        class="save-item-button mat-white-bg mt-16 mt-sm-0"
+                        [disabled]="form.invalid || form.pristine || submitting"
+                        *ngIf="pageType ==='edit'" (click)="update()">
+                        <span>{{translate('page_detail_update_button')}}</span>
+                </button>
+
+            </div>
+
+
+           
+        </div>
+        <!-- / HEADER -->
+
+        <!-- CONTENT CARD -->
+        <div class="content-card mat-white-bg">
+
+            <!-- CONTENT -->
+            <div class="content">
+
+                <form name="form" [formGroup]="form" class="item w-100-p" fxLayout="column" fxFlex>
+
+                    <mat-tab-group>
+
+                        <mat-tab *ngFor="let tab of itemDetail.tabs" label="{{tab.name}}">
+                            <div class="tab-content p-24" fusePerfectScrollbar>
+                                <app-dynamic-form-component 
+                                    [entity]="tab.entity"
+                                    [isEdit]="tab.isEdit"
+                                    [fields]="tab.fields"
+                                    [parentForm]="form"
+                                    [subFormName]="tab.formName"
+                                    (onFieldsChanges)="onFieldsChanges(tab.dtoName, tab.fields, $event)"
+                                    (onChangeEntity)="onChangeEntity(tab.dtoName, $event)">
+                                 </app-dynamic-form-component>
+                            </div>
+                        </mat-tab>
+
+                    </mat-tab-group>
+                </form>
+
+            </div>
+            <!-- / CONTENT -->
+
+        </div>
+        <!-- / CONTENT CARD -->
+
+    </div>
+    <!-- / CENTER -->
+</div>

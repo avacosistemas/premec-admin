@@ -1,0 +1,28 @@
+<div class="upload-content">
+  <mat-card>
+    <mat-card-content>
+      <div *ngFor="let progressInfo of progressInfos" class="mb-2">
+        <span>{{ progressInfo.fileName }}</span>
+        <mat-progress-bar mode="determinate" [value]="progressInfo.value"></mat-progress-bar>
+      </div>
+
+      <div class="input-upload-content">
+        <label class="mat-accent">
+          <input type="file" multiple (change)="selectFiles($event)" />
+        </label>
+
+        <button
+          mat-button
+          class="mat-button mat-green-300-bg white-500-fg"
+          style="width: 15%;margin-left:15%;"
+          [disabled]="!selectedFiles"
+          (click)="uploadFiles()">
+          Subir
+        </button>
+
+        <div class="alert alert-light" role="alert">{{ message }}</div>
+
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

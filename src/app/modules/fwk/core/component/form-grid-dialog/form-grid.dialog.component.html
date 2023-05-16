@@ -1,0 +1,37 @@
+<div class="{{dialog.modalKey}}-modal {{getUrl()}}-modal">
+    <div class="clear-div">
+        <button (click)="onNoClick()"  mat-icon-button class="mat-icon-button_">
+            <mat-icon aria-label="clear">clear</mat-icon>
+        </button>
+    </div>
+    <h1 mat-dialog-title *ngIf="titleLabel">{{titleLabel}}</h1>
+    <div mat-dialog-content class='basic-modal-content' *ngIf="dialog.form.fields">
+      <app-dynamic-form-component [entity]="entity"    
+                                  [isEdit]="isEdit"
+                                  [fields]="dialog.form.fields"
+                                  [subFormName]="formKey"
+                                  [parentForm]="form"
+                                  (objectModified)="objectModified($event)"
+                                  (onChangeEntity)="onChangeEntity($event)">
+      </app-dynamic-form-component>
+      <!-- [crud]="this" -->
+      <!-- [urlDelete]="crudDef.ws.url" -->
+      <!-- (status)="statusChanged($event)" -->
+      <div *ngFor="let grid of dialog.grids" class="styleBox_dialog-grids">
+        <h2 *ngIf="grid.title" class="styleText_gird-title">{{grid.title}}</h2>
+        <app-crud-table 
+              [datasource]="getDataSource(grid, entity)" 
+              [grid]="grid">
+        </app-crud-table>
+      </div>
+    </div>
+    <div mat-dialog-actions>
+      <div *ngIf="dialog" class="custom-actions">
+        <button mat-button class="icon-button" *ngFor="let action of dialog.actions" (click)="submitAction(action)" class="modal-component_button-a">
+          {{action.actionName}}
+        </button>
+        <button mat-button [ngClass]="[fuseSettings.colorClasses.primary_button, fuseSettings.colorClasses.primary_button_fg]" *ngIf="isAdd || isEdit" type="submit" (click)="onSubmit()" [disabled]="!isObjectModified || form.invalid || submitting" cdkFocusInitial>{{submitLabel}}</button>
+      </div>
+    </div>
+  </div>
+  

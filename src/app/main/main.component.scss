@@ -1,0 +1,24 @@
+@import "src/@fuse/scss/fuse";
+
+
+.notification-success-class{
+    background-color: #689f38;
+    color: white;
+}
+
+.notification-success-class button{
+    color: white;
+}
+
+.notification-error-class{
+    background-color: #FFBABA;
+    color: #D8000C;
+}
+
+.notification-error-class button{   
+    color: #D8000C;
+}
+
+.toolbar{
+    background-color: #5cc15f !important;
+}

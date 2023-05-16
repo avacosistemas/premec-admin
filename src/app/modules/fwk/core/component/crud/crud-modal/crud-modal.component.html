@@ -1,0 +1,47 @@
+<div class="clear-div {{getFuncName()}}-modal {{getUrl()}}-modal">
+  <button (click)="onNoClick()" [disabled]="submitting" mat-icon-button class="mat-icon-button_">
+      <mat-icon aria-label="clear">clear</mat-icon>
+  </button>
+<h1 mat-dialog-title>{{titleLabel}}</h1>
+<div mat-dialog-content class='crud-modal-content' class="{{getFuncName()}}-modal newItemModal">
+    <div class="disabled-div"></div>
+    <app-dynamic-form-component #dynamicForm [entity]="entity"    
+                                [isEdit]="isEdit"
+                                [fields]="fields"
+                                [handlerFieldSourceData]="handlerFieldSourceData"
+                                [parentForm]="form"
+                                (objectModified)="objectModified($event)"
+                                (onFieldsChanges)="fieldsChanges(fields, $event)"
+                                (onChangeEntity)="onChangeEntity($event)">
+    </app-dynamic-form-component>
+</div>
+<div mat-dialog-actions>
+  <div *ngIf="formDef" class="custom-actions">
+    <button mat-button class="icon-button" *ngFor="let action of getActions(formDef)" (click)="submitAction(action)" class="modal-component_button-a">
+      {{action.actionName}}
+    </button>
+    <div *ngIf="formDef.showSubmitContinue">
+      <button mat-button [ngClass]="[fuseSettings.colorClasses.primary_button, fuseSettings.colorClasses.primary_button_fg]" 
+        class="buttonColorA" *ngIf="isAdd || isEdit" type="submit" (click)="onSubmit()" style="width: 49%; display: inline; float: left;"
+        [disabled]="!isObjectModified || form.invalid || submitting" cdkFocusInitial>{{saveLabel}}
+      </button>
+      <button mat-button [ngClass]="[fuseSettings.colorClasses.primary_button, fuseSettings.colorClasses.primary_button_fg]" 
+        class="buttonColorA" *ngIf="isAdd || isEdit" type="submit" (click)="onSubmitNoClose()" style="width: 49%; display: inline;"
+        [disabled]="!isObjectModified || form.invalid || submitting" cdkFocusInitial>Guardar y Continuar
+      </button>
+    </div>
+    <div *ngIf="!formDef.showSubmitContinue">
+      <button mat-button [ngClass]="[fuseSettings.colorClasses.primary_button, fuseSettings.colorClasses.primary_button_fg]" 
+        class="buttonColorA" *ngIf="isAdd || isEdit" type="submit" (click)="onSubmit()"
+        [disabled]="!isObjectModified || form.invalid || submitting" cdkFocusInitial>{{saveLabel}}
+      </button>
+    </div>
+  </div>
+  <!-- Deprecado, no se usa más porque se pasa el formcreate -->
+  <!--div *ngIf="formDef === undefined">
+    <button mat-button [ngClass]="[fuseSettings.colorClasses.primary_button, fuseSettings.colorClasses.primary_button_fg]" class="buttonColorA" *ngIf="isAdd || isEdit" 
+      type="submit" (click)="onSubmit()" [disabled]="!isObjectModified || form.invalid || submitting" cdkFocusInitial>{{saveLabel}}
+    </button>
+  </div-->
+</div>
+</div>

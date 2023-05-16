@@ -1,0 +1,47 @@
+.form-container > * {
+    width: 100%;
+}
+
+.separator{
+    display: block;
+}
+
+mat-form-field {
+    margin-bottom: 5px;
+    width: 100%;
+}
+
+mat-form-field textarea{
+    height: 120px;
+}
+
+mat-form-field input{
+    width: 100%;
+}
+
+mat-form-field input:disabled{
+    color: rgba(0, 0, 0, 0.38);
+}
+
+
+.mat-checkbox{
+    margin-top: 0.5em;
+    margin-bottom: 1.5em;
+}
+
+app-pick-list{
+    display: flex;
+    margin-bottom: 20px;
+}
+
+mat-radio-button{
+    margin: 20px 15px 15px 0px;
+}
+
+.hide{
+    position: fixed;
+}
+
+.lineheight135 {
+    line-height: 1.350 !important;
+}

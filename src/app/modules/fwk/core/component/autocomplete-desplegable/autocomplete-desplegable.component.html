@@ -1,0 +1,26 @@
+<form [formGroup]="formGroup" class="autocomplete-form-container">
+  <mat-form-field>
+    <div class="dropdown">
+      <input type="text"
+            placeholder="{{config.label}}" 
+              aria-label="Number" matInput 
+                [formControlName]="name" 
+                  [matAutocomplete]="auto"
+                  (focus)="listObj=[]">
+      <button id="caret" (click)="openSelect()"><div class="mat-select-arrow"></div></button>
+    </div>
+    <mat-error *ngIf="formGroup.get(name).errors?.required">{{config.options.requiredMessage}}</mat-error>
+    <mat-error *ngIf="formGroup.get(name).errors?.invalidValue">{{config.options.invalidValueMessage}}</mat-error>
+    <mat-error *ngIf="formGroup.get(name).errors?.selectOrCleanField">{{config.options.selectElementOrCleanField}}</mat-error>
+  </mat-form-field>
+  <mat-autocomplete  
+          (optionSelected)="onChangeSelect($event, config)" 
+          #auto="matAutocomplete" 
+          md-select-on-match='true'
+          [class]="'mat-autocomplete-desplegable-option'"
+          [displayWith]="displayWith()">
+    <mat-option *ngFor="let data of showList()" [value]="data">
+        {{ config.options.elementLabel ? data[config.options.elementLabel] :  data}}
+    </mat-option>
+  </mat-autocomplete>
+</form>
