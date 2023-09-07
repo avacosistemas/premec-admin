@@ -1,4 +1,5 @@
-export const PREFIX_DOMAIN_API =  'http://vm-sap:50001/ws-rest/';
+export const PREFIX_DOMAIN_API =  'http://premec.ddns.net:48080/ws-rest/';
+
 
 export const environment = {
     localAuth: true,
