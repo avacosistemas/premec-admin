@@ -47,5 +47,12 @@ export const USUARIOS_UPDATE_FORM_FIELDS_DEF = [
     label: 'Usuario SAP',
     type: 'string',
     controlType: 'textbox'
-  }
+  },
+  {
+    key: 'admin',
+    labelKey: 'usuarios_create_form_fields_def_field_admin',
+    label: 'Es admin',
+    controlType: 'checkbox'
+  },
+
 ];

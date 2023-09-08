@@ -34,13 +34,12 @@ export const USUARIOS_CREATE_FORM_FIELDS_DEF = [
     type: 'string',
     controlType: 'textbox'
   },
-  // {
-  //   key: 'enabled',
-  //   labelKey: 'usuarios_create_form_fields_def_field_enabled',
-  //   label: 'Habilitado',
-  //   type: 'string',
-  //   controlType: 'textbox'
-  // },
+  {
+    key: 'admin',
+    labelKey: 'usuarios_create_form_fields_def_field_admin',
+    label: 'Es admin',
+    controlType: 'checkbox'
+  },
   {
     key: 'usuariosap',
     labelKey: 'usuarios_create_form_fields_def_field_usuariosap',

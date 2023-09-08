@@ -1,4 +1,4 @@
-export const PREFIX_DOMAIN_API =  'http://vm-sap:50001/ws-rest/';
+export const PREFIX_DOMAIN_API =  'http://localhost:8080/ws-rest/';
 
 export const environment = {
     localAuth: true,
@@ -7,7 +7,7 @@ export const environment = {
     hmr: false,
 
     /** AUTHENTICATION */
-    AUTHENTICATION_URL:  PREFIX_DOMAIN_API + 'auth',
+    AUTHENTICATION_URL:  PREFIX_DOMAIN_API + 'authAdmin',
     AUTHENTICATION_REFRESH_TOKEN_URL:  PREFIX_DOMAIN_API + 'refresh',
 
     /* Config General URl*/

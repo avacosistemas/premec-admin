@@ -28,6 +28,10 @@ export const USUARIOS_GRID_DEF = {
     {
       columnDef: 'usuariosap',
       columnNameKey: 'usuarios_grid_def_column_usuariosap'
+    },
+    {
+      columnDef: 'admin',
+      columnNameKey: 'usuarios_grid_def_column_admin'
     }
   ],
   sortAllColumns: true,
@@ -39,6 +43,7 @@ export const USUARIOS_GRID_DEF = {
     'lastname',
     'email',
     'enabled',
-    'usuariosap'
+    'usuariosap',
+    'admin'
   ]
 };

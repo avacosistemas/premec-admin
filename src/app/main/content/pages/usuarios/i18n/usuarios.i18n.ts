@@ -11,6 +11,7 @@ export const USUARIOS_I18N_DEF = {
     usuarios_create_form_fields_def_field_email: 'Email',
     usuarios_create_form_fields_def_field_enabled: 'Habilitado',
     usuarios_create_form_fields_def_field_usuariosap: 'Usuario SAP',
+    usuarios_create_form_fields_def_field_admin: 'Es Admin',
     usuarios_update_form_fields_def_field_id: 'Id',
     usuarios_update_form_fields_def_field_username: 'Username',
     usuarios_update_form_fields_def_field_name: 'Nombre',
@@ -18,6 +19,7 @@ export const USUARIOS_I18N_DEF = {
     usuarios_update_form_fields_def_field_email: 'Email',
     usuarios_update_form_fields_def_field_enabled: 'Habilitado',
     usuarios_update_form_fields_def_field_usuariosap: 'Usuario SAP',
+    usuarios_update_form_fields_def_field_admin: 'Es Admin',
     usuarios_read_form_fields_def_field_id: 'Id',
     usuarios_read_form_fields_def_field_username: 'Username',
     usuarios_read_form_fields_def_field_name: 'Nombre',
@@ -38,6 +40,7 @@ export const USUARIOS_I18N_DEF = {
     usuarios_grid_def_column_lastname: 'Apellido',
     usuarios_grid_def_column_email: 'Email',
     usuarios_grid_def_column_enabled: 'Habilitado',
-    usuarios_grid_def_column_usuariosap: 'Usuario SAP'
+    usuarios_grid_def_column_usuariosap: 'Usuario SAP',
+    usuarios_grid_def_column_admin: 'Es Admin'
   }
 };
