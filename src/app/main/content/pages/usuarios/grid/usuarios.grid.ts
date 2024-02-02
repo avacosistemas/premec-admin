@@ -32,6 +32,10 @@ export const USUARIOS_GRID_DEF = {
     {
       columnDef: 'admin',
       columnNameKey: 'usuarios_grid_def_column_admin'
+    },
+    {
+      columnDef: 'deposito',
+      columnNameKey: 'usuarios_grid_def_column_deposito'
     }
   ],
   sortAllColumns: true,
@@ -44,6 +48,7 @@ export const USUARIOS_GRID_DEF = {
     'email',
     'enabled',
     'usuariosap',
-    'admin'
+    'admin',
+    'deposito'
   ]
 };

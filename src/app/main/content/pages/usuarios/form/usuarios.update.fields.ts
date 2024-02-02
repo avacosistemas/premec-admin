@@ -54,5 +54,12 @@ export const USUARIOS_UPDATE_FORM_FIELDS_DEF = [
     label: 'Es admin',
     controlType: 'checkbox'
   },
+  {
+    key: 'deposito',
+    labelKey: 'USUARIOS_UPDATE_FORM_FIELDS_DEF_FIELD_deposito',
+    label: 'Depósito',
+    type: 'string',
+    controlType: 'textbox'
+  },
 
 ];

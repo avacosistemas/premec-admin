@@ -43,7 +43,12 @@ export const USUARIOS_CREATE_FORM_FIELDS_DEF = [
   {
     key: 'usuariosap',
     labelKey: 'usuarios_create_form_fields_def_field_usuariosap',
-    label: 'Usuario SAP',
+    type: 'string',
+    controlType: 'textbox'
+  },
+  {
+    key: 'deposito',
+    labelKey: 'usuarios_create_form_fields_def_field_deposito',
     type: 'string',
     controlType: 'textbox'
   }
