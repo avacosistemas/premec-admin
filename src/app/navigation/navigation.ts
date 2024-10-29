@@ -13,6 +13,12 @@ export const navigation = [
                         'type': 'item',
                         'icon': 'group' ,
                         'url': USUARIOS_NAV_DEF.url
+                    },
+                    {
+                        'title': 'Generar Código QR',
+                        'type': 'item',
+                        'icon': 'group' ,
+                        'url': '/generarqr'
                     }
         ]
     }

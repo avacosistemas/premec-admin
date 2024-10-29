@@ -1,0 +1,102 @@
+.content-app-generar-qr {
+    width: 100%;
+}
+
+.top-header-generar-qr {
+    width: 100%;
+    padding: 13px;
+    padding-left: 35px;
+    font-size: 25px;
+    color: white;
+    font-weight: bold;
+    background-color: #383c48;
+}
+
+.qr-container {
+    max-width: 1200px;
+    padding: 35px;
+    box-sizing: border-box;
+    display: flex;
+    place-content: flex-start;
+    align-items: flex-start;
+    flex-flow: wrap;
+    column-gap: 18px;
+    row-gap: 18px;
+}
+
+.form-card,
+.qr-card {
+    max-width: 400px;
+    min-width: 315px;
+
+    text-align: center;
+    transition: all 0.3s ease;
+
+    box-shadow: 0px 10px 11px 0px rgba(0, 0, 0, 0.1), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+    border-radius: 15px;
+}
+
+.custom-input::-webkit-inner-spin-button,
+.custom-input::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.custom-input {
+    font-size: 30px;
+    padding: 10px;
+    text-align: center;
+}
+
+.full-width {
+    width: 100%;
+}
+
+.qr-display {
+    text-align: center;
+}
+
+.content-qr-preview {
+    background-color: #ededed;
+    border-radius: 20px;
+    padding: 24px;
+    width: 240px;
+    height: 240px;
+    margin: 0 auto;
+    position: relative;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    color: #9f9f9f;
+}
+
+.animation-qr {
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(1.05);
+        opacity: 0.8;
+    }
+}
+
+.loading-spinner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 11px;
+    margin: 7px;
+}
+
+.loading-spinner p {
+    padding: 0;
+    margin: 0;
+}

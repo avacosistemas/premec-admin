@@ -10,6 +10,7 @@ import { FuseSharedModule } from '@fuse/shared.module';
 import { FuseMainModule } from '../main.module';
 import { FwkModule } from '../../modules/fwk/core/fwk.module';
 import { DashboardModule } from '../content/dashboard/dashboard.module';
+import { GenerarQrModule } from '../content/generar-qr/generar-qr.module';
 import { AppRoutingModule } from '../../app-routing.module';
 import { environment } from 'environments/environment';
 import { AppConfigService } from './config/app.config.service';
@@ -49,6 +50,7 @@ const routes = [
         FuseSharedModule,
         FuseMainModule,
         DashboardModule,
+        GenerarQrModule,
         IntegrationModule,
         FwkModule,
     ],
@@ -60,6 +62,7 @@ const routes = [
         FuseSharedModule,
         FuseMainModule,
         DashboardModule,
+        GenerarQrModule,
         // AVACO
         FwkModule,
         AppRoutingModule
