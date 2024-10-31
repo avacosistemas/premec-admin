@@ -10,7 +10,7 @@
             <!-- APP TITLE -->
             <div class="content-logo" style="max-width: fit-content !important;">
                 <span class="logo-text h1"style="max-width: fit-content !important;">
-                    {{translate('page_title')}}{{getParentTitle()}}
+                {{ pageTitle || translate('page_title') }}{{ getParentTitle() }}
                 </span>
             </div>
 

@@ -9,7 +9,7 @@
     font-size: 25px;
     color: white;
     font-weight: bold;
-    background-color: #383c48;
+    background-color: #3400ff;
 }
 
 .qr-container {
@@ -33,7 +33,10 @@
     transition: all 0.3s ease;
 
     box-shadow: 0px 10px 11px 0px rgba(0, 0, 0, 0.1), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
-    border-radius: 15px;
+}
+
+.qr-card {
+    padding-bottom: 40px !important;
 }
 
 .custom-input::-webkit-inner-spin-button,

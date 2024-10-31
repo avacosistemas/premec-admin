@@ -1,10 +1,10 @@
 <div class="content-app-generar-qr">
     <div class="top-header-generar-qr">
-        <p>Generar Código QR</p>
+        <p>{{ translate('GENERAR_QR.TITULO') }}</p>
     </div>
     <div class="qr-container">
         <mat-card class="form-card">
-            <mat-card-title>Ingrese un ID</mat-card-title>
+            <mat-card-title>{{ translate('GENERAR_QR.INGRESE_ID') }}</mat-card-title>
             <mat-card-content>
 
                 <mat-form-field appearance="fill" class="full-width">
@@ -20,14 +20,14 @@
                         </div>
                     </ng-container>
                     <ng-template #defaultButton>
-                        Generar
+                        {{ translate('GENERAR_QR.GENERAR') }}
                     </ng-template>
                 </button>
             </mat-card-content>
         </mat-card>
 
         <mat-card class="qr-card">
-            <mat-card-title>Código QR</mat-card-title>
+            <mat-card-title>{{ translate('GENERAR_QR.CODIGO_QR') }}</mat-card-title>
             <mat-card-content>
                 <div class="content-qr-preview">
                     <svg *ngIf="!qrCodeData" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -43,7 +43,7 @@
                 </div>
                 <a *ngIf="qrCodeData && !loading" mat-raised-button color="accent" [href]="qrCodeData"
                     download="codigo-qr.png" style="margin-top: 16px;">
-                    Descargar QR
+                    {{ translate('GENERAR_QR.DESCARGAR_QR') }}
                 </a>
             </mat-card-content>
         </mat-card>

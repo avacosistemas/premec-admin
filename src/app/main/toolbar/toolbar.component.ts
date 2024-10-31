@@ -17,6 +17,7 @@ import { LocalStorageService } from '../../modules/fwk/core/service/local-storag
 import { HTTP_METHODS } from '../../modules/fwk/core/model/ws-def';
 import { CrudComponent } from 'app/modules/fwk/core/component/crud/crud.component';
 import { Subscription } from 'rxjs';
+import { PageTitleService } from '../../modules/fwk/core/service/page-title.service'; 
 
 @Component({
     selector   : 'fuse-toolbar',
@@ -40,6 +41,8 @@ export class FuseToolbarComponent extends CrudComponent implements OnInit, OnDes
     userDetailUrl: string;
     spinnerControl: any;
     componentDegSubscription: Subscription;
+
+    private titleSubscription: Subscription;
     constructor(
         dialog: MatDialog,
         dialogService: DialogService,
@@ -51,7 +54,8 @@ export class FuseToolbarComponent extends CrudComponent implements OnInit, OnDes
         private authService: AuthService,
         injector: Injector,
         configService: FuseConfigService,
-        activatedRoute: ActivatedRoute
+        activatedRoute: ActivatedRoute,
+        private titleService: PageTitleService
     )
     {
         // super(injector);
@@ -114,6 +118,7 @@ export class FuseToolbarComponent extends CrudComponent implements OnInit, OnDes
                 }
                 if ( event instanceof NavigationEnd )
                 {
+                    this.pageTitle = ''; 
                     this.showLoadingBar = false;
                 }
             });
@@ -152,7 +157,16 @@ export class FuseToolbarComponent extends CrudComponent implements OnInit, OnDes
         console.log(value);
     }
 
+    onInit() {
+        this.titleSubscription = this.titleService.currentTitle$.subscribe(title => {
+            this.pageTitle = title;
+        });
+    
+        this.pageTitle = '';
+    }
+    
     ngOnDestroy() {
+        this.titleSubscription.unsubscribe();
         this.componentDegSubscription.unsubscribe();
     }
 

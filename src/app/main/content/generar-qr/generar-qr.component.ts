@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { PREFIX_DOMAIN_WEB } from 'environments/environment';
+
+import { TranslateService } from '@ngx-translate/core';
+import { locale as esLocale } from './i18n/es';
+import { PageTitleService } from '../../../modules/fwk/core/service/page-title.service';
+import { GenerarQrService } from '../../../modules/fwk/core/service/generar-qr-service/generar-qr.service';
+
 import QRCode from 'qrcode';
 
 @Component({
@@ -15,8 +21,22 @@ export class GenerarQrComponent implements OnInit {
 
   private defaultDomain: string = 'http://premec.ddns.net:48080/';
 
+  constructor(
+    private titleService: PageTitleService,
+    private encodearService: GenerarQrService,
+    private translateService: TranslateService
+  ) {
+    this.translateService.setTranslation('es', esLocale.data, true);
+    this.translateService.use('es');
+  }
+
   ngOnInit() {
     this.qrCodeData = null;
+    this.titleService.changeTitle(this.translateService.instant('GENERAR_QR.TITULO_CORTO'));
+  }
+
+  translate(key: string): string {
+    return this.translateService.instant(key);
   }
 
   async generateQR(): Promise<void> {
@@ -25,17 +45,25 @@ export class GenerarQrComponent implements OnInit {
     }
 
     this.loading = true;
-    const url = (PREFIX_DOMAIN_WEB ? PREFIX_DOMAIN_WEB : this.defaultDomain) + `informe-qr/?serviceCallId=${this.id}`;
 
+    this.encodearService.getServiceCallId(this.id).subscribe({
+      next: async (newId: string) => {
+        const url = (PREFIX_DOMAIN_WEB ? PREFIX_DOMAIN_WEB : this.defaultDomain) + `informe-qr/?serviceCallId=${newId}`;
 
-    try {
-      const qrCodeDataUrl = await QRCode.toDataURL(url, { errorCorrectionLevel: 'M' });
-      this.qrCodeData = await this.addLogoToQRCode(qrCodeDataUrl, this.logoUrl);
-    } catch (error) {
-      console.error('Error al generar QR:', error);
-    } finally {
-      this.loading = false;
-    }
+        try {
+          const qrCodeDataUrl = await QRCode.toDataURL(url, { errorCorrectionLevel: 'M' });
+          this.qrCodeData = await this.addLogoToQRCode(qrCodeDataUrl, this.logoUrl);
+        } catch (error) {
+          console.error('Error al generar QR:', error);
+        } finally {
+          this.loading = false;
+        }
+      },
+      error: (error) => {
+        console.error('Error al obtener el serviceCallId:', error);
+        this.loading = false;
+      }
+    });
   }
 
   async addLogoToQRCode(qrCodeDataUrl: string, logoUrl: string): Promise<string> {
@@ -46,7 +74,6 @@ export class GenerarQrComponent implements OnInit {
       const qrImage = new Image();
       qrImage.crossOrigin = 'Anonymous';
       qrImage.onload = () => {
-
         const scaleFactor = 2;
         qrCanvas.width = qrImage.width * scaleFactor;
         qrCanvas.height = qrImage.height * scaleFactor;
@@ -57,7 +84,6 @@ export class GenerarQrComponent implements OnInit {
         logoImage.crossOrigin = 'Anonymous';
         logoImage.onload = () => {
           const logoSize = qrCanvas.width / 5;
-
           const logoX = (qrCanvas.width / 2) - (logoSize / 2);
           const logoY = (qrCanvas.height / 2) - (logoSize / 2);
 
