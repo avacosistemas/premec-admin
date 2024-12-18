@@ -1,0 +1,144 @@
+.component-REPORTE_HORAS_MAQUINA{
+    .crud-table{
+       
+        
+
+        #fechaStringHeader,
+        #fechaStringCell
+        {
+            max-width: 120px !important;
+        }
+
+        #promedioHeader,
+        #promedioCell,
+        #horasMaquinaHeader,
+        #horasMaquinaCell,
+        #horasContratadasHeader,
+        #horasContratadasCell,
+        #contractIdHeader,
+        #contractIdCell,
+        #idActividadHeader,
+        #idActividadCell,
+        #serviceCallIdHeader,
+        #serviceCallIdCell
+        {
+            max-width: 80px !important;
+        }
+
+       
+
+      
+
+    }
+}
+.control-mat-dialog .dynamicFormDiv[name=subForm]{
+    
+    .linkDiv{
+        display: inline-block !important;
+        width:82% !important;
+        max-width:82% !important;
+        min-width:82% !important;
+    }
+
+    .linkTargetDiv{
+        display: inline-block !important;
+        width:10% !important;
+        max-width:10% !important;
+        min-width:10% !important;
+    }
+
+    .posicionGaleriaDiv{
+        display: inline-block !important;
+        width:20% !important;
+        max-width:20% !important;
+        min-width:20% !important;
+    }
+
+    .control-mat-dialog .dynamicFormDiv[name=subForm] .import-image-input {
+        width: 83% !important;
+    }
+
+    .titleDiv {
+        display: inline-block !important;
+        min-width: 80% !important;
+        width:80% !important;
+        margin-right: 5%;
+    }
+
+    .showTitleDiv {
+        display: inline-block !important;
+        width:15% !important;
+    }
+    
+    .subTitleDiv {
+        display: inline-block !important;
+        width:85% !important;
+    }
+
+    .publishDateStringDiv{
+        display: inline-block !important;
+        width:30% !important;
+        margin-right: 5%;
+    }
+
+    .showPublishDateDiv{
+        display: inline-block !important;
+        width:30% !important;
+        margin-right: 5%;
+    }
+
+    .expirationDateStringDiv{
+        display: inline-block !important;
+        width:30% !important;
+    }
+
+    .allowAnonymousDiv{
+        display: inline-block;
+        width:15%;
+        margin-right: 5%;
+    }
+
+    
+
+    .percentDiv{
+        display: inline-block !important;
+        width:45% !important;
+    }
+
+    
+    .eventStartDateStringDiv{
+        display: inline-block;
+        width:33%;
+        margin-right: 5%;
+    }
+
+    .eventEndDateStringDiv{
+        display: inline-block;
+        width:33%;
+    }
+
+    .showEventStartDateDiv{
+        display: inline-block !important;
+        width:33% !important;
+        margin-right: 5%;
+    }
+
+    
+
+}
+
+#info_title > label:nth-child(1) > div:nth-child(1), #agenda_title > label:nth-child(1) > div:nth-child(1) {
+	display:none;
+}
+
+#info_title > label:nth-child(1) > span:nth-child(2), #agenda_title > label:nth-child(1) > span:nth-child(2) {
+    font-size: 16px;
+    color: gray;
+    font-weight: bolder;
+}
+
+.info_titleDiv > div:nth-child(2), .agenda_titleDiv > div:nth-child(2) {
+    background-color: gainsboro;
+    text-align: center;
+    padding: 3px;
+}

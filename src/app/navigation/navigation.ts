@@ -19,6 +19,11 @@ export const navigation = [
                         'type': 'item',
                         'icon': 'qr_code' ,
                         'url': '/generarqr'
+                    },
+                    {
+                        'title': 'Reporte Horas Máquina',
+                        'type': 'item',
+                        'url': '/reporteHorasMaquina'
                     }
         ]
     }

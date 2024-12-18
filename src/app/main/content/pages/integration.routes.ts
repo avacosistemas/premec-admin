@@ -19,7 +19,14 @@ export const ROUTES: Routes = [
     path: 'generarqr',
     component: GenerarQrComponent,
     canActivate: [AuthGuardService]  
+  },
+  {
+    path: 'reporteHorasMaquina',
+    component: IntegrationComponent,
+    canActivate: [AuthGuardService]  
   }
+
+  
 ];
 
 
