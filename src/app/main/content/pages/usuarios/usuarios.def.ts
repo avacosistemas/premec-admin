@@ -28,5 +28,9 @@ export const USUARIOS_DEF: CrudDef = {
     },
     dialogConfig: {
         width: '400px'
-    }   
+    },
+    pagination: {
+        page: 0,
+        pageSize: 100
+    }
 };

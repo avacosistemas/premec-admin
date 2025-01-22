@@ -30,5 +30,9 @@ export const REPORTE_HORAS_MAQUINA_DEF: CrudDef = {
         width: '400px'
     },
     cancelInitSearch: true,
-    filterInMemory: false
+    filterInMemory: false,
+    pagination: {
+        page: 0,
+        pageSize: 100
+    }
 };
