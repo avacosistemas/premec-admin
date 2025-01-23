@@ -7,7 +7,7 @@ export const GRUPOS_TIPO_ACTIVIDAD_UPDATE_FORM_FIELDS_DEF = [
     controlType: 'number'
   },
   {
-    key: 'tipoActividad',
+    key: 'tipo',
     labelKey: 'grupos_tipo_actividad_create_form_fields_def_field_tipoactividad',
     label: 'Tipo de Actividad',
     controlType: 'select',

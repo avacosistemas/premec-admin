@@ -1,15 +1,15 @@
 export const GRUPOS_TIPO_ACTIVIDAD_FILTER_FORM_FIELDS_DEF = [
   {
-    key: 'tipoActividad',
+    key: 'tipo',
     labelKey: 'grupos_tipo_actividad_create_form_fields_def_field_tipoactividad',
     label: 'Tipo de Actividad',
     controlType: 'select',
-    value: 'todos',
     options: {
       handlerSourceData: false,
       elementLabel: 'label',
       elementValue: 'value',
       fromData: [ 
+        {value: '', label: 'Todos' },
         {value: 'R', label: 'Reparación' },
         {value: 'C', label: 'Checklist' },
         {value: 'p', label: 'Piezas a Reparar' },

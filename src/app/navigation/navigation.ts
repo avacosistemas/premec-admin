@@ -1,3 +1,5 @@
+import { GRUPOS_TIPO_ACTIVIDAD_DEF } from 'app/main/content/pages/grupos_tipo_actividad/grupos_tipo_actividad.def';
+import { GRUPOS_TIPO_ACTIVIDAD_NAV_DEF } from 'app/main/content/pages/grupos_tipo_actividad/navigation/grupos_tipo_actividad.nav';
 import { USUARIOS_NAV_DEF } from 'app/main/content/pages/usuarios/navigation/usuarios.nav';
 import { USUARIOS_DEF } from 'app/main/content/pages/usuarios/usuarios.def';
 import { environment } from 'environments/environment';
@@ -24,6 +26,11 @@ export const navigation = [
                         'title': 'Reporte Horas Máquina',
                         'type': 'item',
                         'url': '/reporteHorasMaquina'
+                    },
+                    {
+                        'title': 'Grupos Checklist',
+                        'type': 'item',
+                        'url': GRUPOS_TIPO_ACTIVIDAD_NAV_DEF.url
                     }
         ]
     }

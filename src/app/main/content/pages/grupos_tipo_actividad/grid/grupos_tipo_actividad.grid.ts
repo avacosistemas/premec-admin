@@ -1,11 +1,11 @@
 export const GRUPOS_TIPO_ACTIVIDAD_GRID_DEF = {
   columnsDef: [
     {
-      columnDef: 'idGrupo',
+      columnDef: 'id',
       columnNameKey: 'grupos_tipo_actividad_grid_def_column_idgrupo'
     },
     {
-      columnDef: 'tipoActividad',
+      columnDef: 'tipo',
       columnNameKey: 'grupos_tipo_actividad_grid_def_column_tipoactividad'
     },
     {
@@ -23,8 +23,8 @@ export const GRUPOS_TIPO_ACTIVIDAD_GRID_DEF = {
   ],
   sortAllColumns: true,
   displayedColumns: [
-    'idGrupo',
-    'tipoActividad',
+    'id',
+    'tipo',
     'titulo',
     'orden'
   ]

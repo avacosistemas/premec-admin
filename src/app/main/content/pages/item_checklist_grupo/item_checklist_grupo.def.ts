@@ -6,6 +6,7 @@ import { ITEM_CHECKLIST_GRUPO_SECURITY_DEF } from './security/item_checklist_gru
 import { ITEM_CHECKLIST_GRUPO_GRID_DEF } from './grid/item_checklist_grupo.grid';
 import { ITEM_CHECKLIST_GRUPO_I18N_DEF } from './i18n/item_checklist_grupo.i18n';
 import { ITEM_CHECKLIST_GRUPO_NAV_DEF } from './navigation/item_checklist_grupo.nav';
+import { CrudDef } from 'app/modules/fwk/core/model/component-def/crud-def';
 
 // Definicion de un template crud(Create,Read,Update and Delete)
 export const ITEM_CHECKLIST_GRUPO_DEF: CrudDef = { 

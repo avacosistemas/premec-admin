@@ -24,7 +24,7 @@ export const GRUPOS_TIPO_ACTIVIDAD_DEF: CrudDef = {
     security: GRUPOS_TIPO_ACTIVIDAD_SECURITY_DEF,
     ws: {
         key: 'GRUPOS_TIPO_ACTIVIDAD_CRUD_URL',
-        url: PREFIX_DOMAIN_API + 'gruposTipoActividad'
+        url: PREFIX_DOMAIN_API + 'grupoTipoActividad'
     },
     dialogConfig: {
         width: '400px'
