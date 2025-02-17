@@ -25,12 +25,14 @@ export const navigation = [
                     {
                         'title': 'Reporte Horas Máquina',
                         'type': 'item',
-                        'url': '/reporteHorasMaquina'
+                        'url': '/reporteHorasMaquina',
+                        'icon': 'description' ,
                     },
                     {
                         'title': 'Grupos Checklist',
                         'type': 'item',
-                        'url': GRUPOS_TIPO_ACTIVIDAD_NAV_DEF.url
+                        'url': GRUPOS_TIPO_ACTIVIDAD_NAV_DEF.url,
+                        'icon': 'checklist' ,
                     }
         ]
     }

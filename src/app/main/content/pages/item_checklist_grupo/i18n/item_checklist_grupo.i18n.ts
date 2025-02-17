@@ -4,25 +4,27 @@ export const ITEM_CHECKLIST_GRUPO_I18N_DEF = {
   words: {
     page_title: 'Items del Grupo',
     item_checklist_grupo_nav_def: 'Items del Grupo',
-    item_checklist_grupo_create_form_fields_def_field_idgrupo: 'Id',
+    item_checklist_grupo_create_form_fields_def_field_idgrupo: 'IdGrupo',
     item_checklist_grupo_create_form_fields_def_field_iditemchecklist: 'idItemChecklist',
     item_checklist_grupo_create_form_fields_def_field_nombre: 'nombre',
     item_checklist_grupo_create_form_fields_def_field_orden: 'Orden',
-    item_checklist_grupo_update_form_fields_def_field_idgrupo: 'Id',
+    item_checklist_grupo_update_form_fields_def_field_idgrupo: 'IdGrupo',
     item_checklist_grupo_update_form_fields_def_field_iditemchecklist: 'idItemChecklist',
     item_checklist_grupo_update_form_fields_def_field_nombre: 'nombre',
     item_checklist_grupo_update_form_fields_def_field_orden: 'Orden',
-    item_checklist_grupo_read_form_fields_def_field_idgrupo: 'Id',
+    item_checklist_grupo_read_form_fields_def_field_idgrupo: 'IdGrupo',
     item_checklist_grupo_read_form_fields_def_field_iditemchecklist: 'idItemChecklist',
     item_checklist_grupo_read_form_fields_def_field_nombre: 'nombre',
     item_checklist_grupo_read_form_fields_def_field_orden: 'Orden',
-    item_checklist_grupo_filter_form_fields_def_field_idgrupo: 'Id',
+    item_checklist_grupo_filter_form_fields_def_field_idgrupo: 'IdGrupo',
     item_checklist_grupo_filter_form_fields_def_field_iditemchecklist: 'idItemChecklist',
     item_checklist_grupo_filter_form_fields_def_field_nombre: 'nombre',
     item_checklist_grupo_filter_form_fields_def_field_orden: 'Orden',
-    item_checklist_grupo_grid_def_column_idgrupo: 'Id',
+    item_checklist_grupo_grid_def_column_idgrupo: 'IdGrupo',
     item_checklist_grupo_grid_def_column_iditemchecklist: 'idItemChecklist',
     item_checklist_grupo_grid_def_column_nombre: 'nombre',
-    item_checklist_grupo_grid_def_column_orden: 'Orden'
+    item_checklist_grupo_grid_def_column_orden: 'Orden',
+    item_checklist_grupo_grid_def_column_id: 'Id',
+    grupos_tipo_actividad_grid_def_column_tipoTitulo: 'Tipo y titulo'
   }
 };

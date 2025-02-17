@@ -12,7 +12,7 @@ export const GRUPOS_TIPO_ACTIVIDAD_FILTER_FORM_FIELDS_DEF = [
         {value: '', label: 'Todos' },
         {value: 'R', label: 'Reparación' },
         {value: 'C', label: 'Checklist' },
-        {value: 'p', label: 'Piezas a Reparar' },
+        {value: 'P', label: 'Piezas a Reparar' },
         {value: 'M', label: 'Mantenimiento Maquinaria' },
         {value: 'EE', label: 'Entrega Maquina Electrica' },
         {value: 'EC', label: 'Entrega Maquina Combustion' },

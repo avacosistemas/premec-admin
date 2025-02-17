@@ -4,14 +4,8 @@ export const ITEM_CHECKLIST_GRUPO_CREATE_FORM_FIELDS_DEF = [
     labelKey: 'item_checklist_grupo_create_form_fields_def_field_idgrupo',
     label: 'Id',
     type: 'number',
-    controlType: 'number'
-  },
-  {
-    key: 'idItemChecklist',
-    labelKey: 'item_checklist_grupo_create_form_fields_def_field_iditemchecklist',
-    label: 'idItemChecklist',
-    type: 'number',
-    controlType: 'number'
+    controlType: 'hidden',
+    mappingQuerystring: true
   },
   {
     key: 'nombre',

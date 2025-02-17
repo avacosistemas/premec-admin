@@ -7,6 +7,7 @@ import { ITEM_CHECKLIST_GRUPO_GRID_DEF } from './grid/item_checklist_grupo.grid'
 import { ITEM_CHECKLIST_GRUPO_I18N_DEF } from './i18n/item_checklist_grupo.i18n';
 import { ITEM_CHECKLIST_GRUPO_NAV_DEF } from './navigation/item_checklist_grupo.nav';
 import { CrudDef } from 'app/modules/fwk/core/model/component-def/crud-def';
+import { PREFIX_DOMAIN_API } from 'environments/environment';
 
 // Definicion de un template crud(Create,Read,Update and Delete)
 export const ITEM_CHECKLIST_GRUPO_DEF: CrudDef = { 
@@ -23,9 +24,17 @@ export const ITEM_CHECKLIST_GRUPO_DEF: CrudDef = {
     security: ITEM_CHECKLIST_GRUPO_SECURITY_DEF,
     ws: {
         key: 'ITEM_CHECKLIST_GRUPO_CRUD_URL',
-        url: 'itemChecklistGrupo'
+        url:  PREFIX_DOMAIN_API + 'itemChecklistGrupo'
     },
     dialogConfig: {
         width: '400px'
-    }   
+    },
+    filterInMemory: false,
+    backButton: true,
+    serverPagination: true,
+    pagination: {
+        page: 0,
+        pageSize: 10
+    },
+    cancelInitSearch: false
 };

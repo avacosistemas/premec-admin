@@ -4,7 +4,7 @@ export const GRUPOS_TIPO_ACTIVIDAD_UPDATE_FORM_FIELDS_DEF = [
     labelKey: 'GRUPOS_TIPO_ACTIVIDAD_UPDATE_FORM_FIELDS_DEF_FIELD_idgrupo',
     label: 'Id',
     type: 'number',
-    controlType: 'number'
+    controlType: 'hidden'
   },
   {
     key: 'tipo',

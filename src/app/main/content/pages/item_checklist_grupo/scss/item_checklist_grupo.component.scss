@@ -1,0 +1,15 @@
+.component-ITEM_CHECKLIST_GRUPO{
+
+
+    .crud-table{
+        
+        mat-header-cell.checkbox-cell {
+            display: none;
+        }
+        
+        mat-row.mat-row > mat-cell:nth-child(1) {
+            display: none;
+        }
+
+    }
+}

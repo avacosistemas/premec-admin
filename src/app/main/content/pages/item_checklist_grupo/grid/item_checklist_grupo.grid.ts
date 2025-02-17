@@ -5,8 +5,8 @@ export const ITEM_CHECKLIST_GRUPO_GRID_DEF = {
       columnNameKey: 'item_checklist_grupo_grid_def_column_idgrupo'
     },
     {
-      columnDef: 'idItemChecklist',
-      columnNameKey: 'item_checklist_grupo_grid_def_column_iditemchecklist'
+      columnDef: 'id',
+      columnNameKey: 'item_checklist_grupo_grid_def_column_id'
     },
     {
       columnDef: 'nombre',
@@ -18,9 +18,8 @@ export const ITEM_CHECKLIST_GRUPO_GRID_DEF = {
     }
   ],
   sortAllColumns: true,
+  deleteAction: true,
   displayedColumns: [
-    'idGrupo',
-    'idItemChecklist',
     'nombre',
     'orden'
   ]

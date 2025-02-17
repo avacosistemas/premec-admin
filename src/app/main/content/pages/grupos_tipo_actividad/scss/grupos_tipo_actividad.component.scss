@@ -1,0 +1,15 @@
+.component-GRUPOS_TIPO_ACTIVIDAD{
+
+
+    .crud-table{
+        
+        mat-header-cell.checkbox-cell {
+            display: none;
+        }
+        
+        mat-row.mat-row > mat-cell:nth-child(1) {
+            display: none;
+        }
+
+    }
+}
