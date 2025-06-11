@@ -34,14 +34,8 @@ export const locale = {
             'AUTORES.TITLE': { 'TITLE': 'Autores' },
             'CONTENIDOS.TITLE': { 'TITLE': 'Contenidos' },
             'REVISTAS.TITLE': { 'TITLE': 'Revistas' },
-            'PRODUCTOS.TITLE': { 'TITLE': 'Productos' }
-
-            
-
-            
-
-            
-
+            'PRODUCTOS.TITLE': { 'TITLE': 'Productos' },
+            'RECIBOS': { 'TITLE': 'Recibos' }
         }
     }
 };

@@ -1,0 +1,268 @@
+.top-header-recibos-procesamiento {
+    margin-bottom: 24px;
+
+    p {
+        font-size: 24px;
+        font-weight: 500;
+    }
+}
+
+.results-card {
+    margin-bottom: 18px;
+}
+
+.full-width {
+    width: 100%;
+}
+
+.process-button {
+    width: 100%;
+    margin-top: 4px;
+    height: 43px;
+}
+
+.loading-spinner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.table-container {
+    overflow-x: auto;
+    margin-top: 16px;
+}
+
+.recibos-table {
+    width: 100%;
+    min-width: 800px;
+    box-shadow: none;
+}
+
+.mat-header-cell,
+.mat-cell {
+    padding: 8px 12px;
+    word-wrap: break-word;
+    white-space: normal;
+    align-items: center;
+}
+
+.mat-column-legajo {
+    flex: 0 0 80px;
+}
+
+.mat-column-nombreCompleto {
+    flex: 0 0 200px;
+}
+
+.mat-column-periodo {
+    flex: 0 0 120px;
+}
+
+.mat-column-neto {
+    flex: 0 0 100px;
+}
+
+.mat-column-tipo {
+    flex: 0 0 150px;
+}
+
+.mat-column-aprobado {
+    flex: 0 0 120px;
+    text-align: center;
+    justify-content: center;
+}
+
+.mat-column-observaciones {
+    flex: 1 1 250px;
+    min-width: 250px;
+}
+
+.approval-cell {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.approved-text {
+    color: green;
+    font-weight: 500;
+}
+
+.rejected-text {
+    color: red;
+    font-weight: 500;
+}
+
+.full-width-input-cell {
+    width: 100%;
+
+    .mat-form-field-wrapper {
+        padding-bottom: 0;
+    }
+
+    .mat-form-field-flex {
+        align-items: flex-start;
+    }
+}
+
+mat-paginator {
+    margin-top: 16px;
+}
+
+.send-button {
+    width: 205px;
+    margin-top: 0px;
+    height: 38px;
+    background-color: #222f3e !important;
+    color: white;
+}
+
+.content-app-recibos-procesamiento {
+    width: 100%;
+}
+
+.top-header-recibos-procesamiento {
+    width: 100%;
+    padding: 10px 35px 40px 35px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 25px;
+    color: white;
+    font-weight: bold;
+    background-color: #3400ff;
+}
+
+.container-recibos-procesamiento {
+    width: 100%;
+    height: 100%;
+    padding: 35px;
+    padding-top: 0px;
+    transform: translateY(-62px);
+    box-sizing: border-box;
+    display: flex;
+    place-content: flex-start;
+    align-items: flex-start;
+    flex-flow: wrap;
+    -moz-column-gap: 18px;
+    column-gap: 18px;
+}
+
+.form-card,
+.qr-card {
+    max-width: 400px;
+    min-width: 315px;
+
+    text-align: center;
+    transition: all 0.3s ease;
+
+    box-shadow: 0px 10px 11px 0px rgba(0, 0, 0, 0.1), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+}
+
+.qr-card {
+    padding-bottom: 40px !important;
+}
+
+.custom-input::-webkit-inner-spin-button,
+.custom-input::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.custom-input {
+    font-size: 30px;
+    padding: 10px;
+    text-align: center;
+}
+
+.full-width {
+    width: 100%;
+}
+
+.qr-display {
+    text-align: center;
+}
+
+.content-qr-preview {
+    background-color: #ededed;
+    border-radius: 20px;
+    padding: 24px;
+    width: 240px;
+    height: 240px;
+    margin: 0 auto;
+    position: relative;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    color: #9f9f9f;
+}
+
+.animation-qr {
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(1.05);
+        opacity: 0.8;
+    }
+}
+
+.loading-spinner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 11px;
+    margin: 7px;
+}
+
+.loading-spinner p {
+    padding: 0;
+    margin: 0;
+}
+
+.form-container {
+    display: flex;
+    gap: 18px;
+}
+
+.input-field {
+    cursor: pointer;
+}
+
+.processing-card {
+    padding-bottom: 0px;
+}
+
+.observation-text-display {
+    padding: 8px 0;
+    display: block;
+    min-height: 48px;
+    box-sizing: border-box;
+    word-wrap: break-word;
+    white-space: pre-wrap;
+}
+
+.recibos-table {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+    overflow-x: auto;
+    overflow-y: auto;
+    max-height: 60%;
+}
+
+.table-container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    overflow: hidden;
+    box-shadow: 0px 4px 5px -2px rgba(0, 0, 0, 0.2), 0px 7px 10px 1px rgba(0, 0, 0, 0.14), 0px 2px 16px 1px rgba(0, 0, 0, 0.12);
+}

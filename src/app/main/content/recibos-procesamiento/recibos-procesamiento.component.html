@@ -1,0 +1,146 @@
+<div class="content-app-recibos-procesamiento">
+    <div class="top-header-recibos-procesamiento">
+        <p>{{ translate('RECIBOS_PROCESAMIENTO.TITULO') }}</p>
+        <ng-container *ngIf="canSend()">
+            <button mat-raised-button color="primary" (click)="sendRecibos()" [disabled]="!canSend() || isLoadingSend"
+                class="send-button">
+                <ng-container *ngIf="isLoadingSend; else sendButtonContent">
+                    <div class="loading-spinner">
+                        <mat-spinner diameter="24"></mat-spinner>
+                        <span>{{ translate('RECIBOS_PROCESAMIENTO.CARGANDO') }}</span>
+                    </div>
+                </ng-container>
+                <ng-template #sendButtonContent>
+                    {{ translate('RECIBOS_PROCESAMIENTO.RESULTS_SECTION.SEND_BUTTON') }}
+                </ng-template>
+            </button>
+        </ng-container>
+    </div>
+
+    <div class="container-recibos-procesamiento">
+        <mat-card class="processing-card" fxFlex="grow">
+            <!-- <mat-card-title>{{ translate('RECIBOS_PROCESAMIENTO.PROCESS_SECTION.TITLE') }}</mat-card-title> -->
+            <mat-card-content>
+                <form class="form-container" [formGroup]="processingForm" (ngSubmit)="processRecibos()">
+
+                    <mat-form-field appearance="outline" class="full-width input-field">
+                        <mat-label>{{ translate('RECIBOS_PROCESAMIENTO.PROCESS_SECTION.SELECT_PDF') }}</mat-label>
+                        <input matInput [value]="fileName" readonly (click)="fileInput.click()">
+                        <button mat-icon-button matSuffix type="button" (click)="fileInput.click()">
+                            <mat-icon>attach_file</mat-icon>
+                        </button>
+                        <input hidden type="file" #fileInput (change)="onFileSelected($event)" accept="application/pdf">
+                        <mat-error
+                            *ngIf="processingForm.get('pdfFile').hasError('required') && processingForm.get('pdfFile').touched">
+                            {{ translate('RECIBOS_PROCESAMIENTO.PROCESS_SECTION.PDF_REQUIRED') }}
+                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>{{ translate('RECIBOS_PROCESAMIENTO.PROCESS_SECTION.RECEIPT_TYPE') }}</mat-label>
+                        <mat-select formControlName="receiptType">
+                            <mat-option *ngFor="let type of receiptTypes" [value]="type">
+                                {{ type }}
+                            </mat-option>
+                        </mat-select>
+                        <mat-error
+                            *ngIf="processingForm.get('receiptType').hasError('required') && processingForm.get('receiptType').touched">
+                            {{ translate('RECIBOS_PROCESAMIENTO.PROCESS_SECTION.TYPE_REQUIRED') }}
+                        </mat-error>
+                    </mat-form-field>
+
+                    <button mat-raised-button color="accent" type="submit"
+                        [disabled]="processingForm.invalid || isLoadingProcess" class="process-button">
+                        <ng-container *ngIf="isLoadingProcess; else processButtonContent">
+                            <div class="loading-spinner">
+                                <mat-spinner diameter="24"></mat-spinner>
+                                <span>{{ translate('RECIBOS_PROCESAMIENTO.CARGANDO') }}</span>
+                            </div>
+                        </ng-container>
+                        <ng-template #processButtonContent>
+                            {{ translate('RECIBOS_PROCESAMIENTO.PROCESS_SECTION.PROCESS_BUTTON') }}
+                        </ng-template>
+                    </button>
+                </form>
+            </mat-card-content>
+        </mat-card>
+
+
+        <div class="table-container">
+            <mat-table [dataSource]="dataSource" matSort class="recibos-table">
+
+                <ng-container matColumnDef="legajo">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> {{
+                        translate('RECIBOS_PROCESAMIENTO.TABLE.LEGAJO') }} </mat-header-cell>
+                    <mat-cell *matCellDef="let element"> {{ element.legajo }} </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="nombreCompleto">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> {{
+                        translate('RECIBOS_PROCESAMIENTO.TABLE.NOMBRE_COMPLETO') }} </mat-header-cell>
+                    <mat-cell *matCellDef="let element"> {{ element.nombreCompleto }} </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="periodo">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> {{
+                        translate('RECIBOS_PROCESAMIENTO.TABLE.PERIODO') }} </mat-header-cell>
+                    <mat-cell *matCellDef="let element"> {{ element.periodo }} </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="neto">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> {{ translate('RECIBOS_PROCESAMIENTO.TABLE.NETO')
+                        }} </mat-header-cell>
+                    <mat-cell *matCellDef="let element"> {{ element.neto }} </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="tipo">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> {{ translate('RECIBOS_PROCESAMIENTO.TABLE.TIPO')
+                        }} </mat-header-cell>
+                    <mat-cell *matCellDef="let element"> {{ element.tipo }} </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="aprobado">
+                    <mat-header-cell *matHeaderCellDef> {{ translate('RECIBOS_PROCESAMIENTO.TABLE.APROBADO') }}
+                    </mat-header-cell>
+                    <mat-cell *matCellDef="let element">
+                        <div class="approval-cell">
+                            <mat-slide-toggle [checked]="element.aprobado"
+                                [color]="element.aprobado ? 'primary' : 'warn'"
+                                (change)="onApprovalChange(element, $event)" class="approval-toggle">
+                            </mat-slide-toggle>
+                            <span [ngClass]="{'approved-text': element.aprobado, 'rejected-text': !element.aprobado}">
+                                {{ element.aprobado ? translate('RECIBOS_PROCESAMIENTO.TABLE.YES') :
+                                translate('RECIBOS_PROCESAMIENTO.TABLE.NO') }}
+                            </span>
+                        </div>
+                    </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="observaciones">
+                    <mat-header-cell *matHeaderCellDef> {{ translate('RECIBOS_PROCESAMIENTO.TABLE.OBSERVACIONES') }}
+                    </mat-header-cell>
+                    <mat-cell *matCellDef="let element">
+                        <mat-form-field class="full-width-input-cell" appearance="outline" *ngIf="!element.aprobado">
+                            <textarea matInput [(ngModel)]="element.observaciones"
+                                placeholder="{{ translate('RECIBOS_PROCESAMIENTO.TABLE.OBSERVATIONS_PLACEHOLDER') }}"
+                                rows="2" (blur)="onObservationsChange(element)"></textarea>
+                            <mat-error *ngIf="!element.aprobado && element.observaciones.trim() === ''">
+                                {{ translate('RECIBOS_PROCESAMIENTO.TABLE.OBSERVATIONS_REQUIRED') }}
+                            </mat-error>
+                        </mat-form-field>
+
+                        <div *ngIf="element.aprobado" class="observation-text-display">
+                            {{ element.observaciones || translate('RECIBOS_PROCESAMIENTO.TABLE.NO_OBSERVATIONS') }}
+                        </div>
+                    </mat-cell>
+                </ng-container>
+
+                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+            </mat-table>
+
+            <mat-paginator [pageSizeOptions]="[5, 10, 20, 50]" showFirstLastButtons></mat-paginator>
+
+        </div>
+    </div>
+</div>

@@ -11,6 +11,7 @@ import { FuseMainModule } from '../main.module';
 import { FwkModule } from '../../modules/fwk/core/fwk.module';
 import { DashboardModule } from '../content/dashboard/dashboard.module';
 import { GenerarQrModule } from '../content/generar-qr/generar-qr.module';
+import { RecibosProcesamientoModule as Recibos } from '../content/recibos-procesamiento/recibos-procesamiento.module';
 import { AppRoutingModule } from '../../app-routing.module';
 import { environment } from 'environments/environment';
 import { AppConfigService } from './config/app.config.service';
@@ -21,24 +22,21 @@ import { LoginComponent } from '../content/authentication/login/login.component'
 import { IntegrationModule } from '../content/integration/integration.module';
 import { IntegrationComponent } from '../content/integration/integration.component';
 
-
-
-
 const routes = [
     {
-        path     : "auth/login",
+        path: "auth/login",
         component: LoginComponent
     },
     {
-        path     : environment.URL_ROOT,
+        path: environment.URL_ROOT,
         component: FuseContentComponent,
         canActivate: [AppConfigAuthGuardService],
         children: ROUTES
     }
-  ];
+];
 
 @NgModule({
-    imports     : [
+    imports: [
         BrowserModule,
         BrowserAnimationsModule,
         HttpClientModule,
@@ -51,6 +49,7 @@ const routes = [
         FuseMainModule,
         DashboardModule,
         GenerarQrModule,
+        Recibos,
         IntegrationModule,
         FwkModule,
     ],
@@ -63,6 +62,7 @@ const routes = [
         FuseMainModule,
         DashboardModule,
         GenerarQrModule,
+        Recibos,
         // AVACO
         FwkModule,
         AppRoutingModule
@@ -72,10 +72,9 @@ const routes = [
         AppConfigAuthGuardService
     ]
 })
-export class SharedModule
-{
+export class SharedModule {
     constructor(configAuthGuardService: AppConfigAuthGuardService,
-                configService: AppConfigService){
+        configService: AppConfigService) {
         configAuthGuardService.addCallbackGuard({
             next: (url) => {
                 configService.setConfigByURL(url);
