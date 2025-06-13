@@ -46,7 +46,11 @@ export const RECIBOS_GRID_DEF = {
                 url: PREFIX_DOMAIN_API + 'descargarRecibo',
                 method: 'GET',
                 querystring: {
-                    id: 'id'
+                    attachmentEntry: 'attachmentEntry',
+                    year: 'year',
+                    month: 'month',
+                    monthString: 'monthString',
+                    tipo: 'tipo'
                 }
             }
         },

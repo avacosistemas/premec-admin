@@ -19,22 +19,18 @@
 
     <div class="container-recibos-procesamiento">
         <mat-card class="processing-card" fxFlex="grow">
-            <!-- <mat-card-title>{{ translate('RECIBOS_PROCESAMIENTO.PROCESS_SECTION.TITLE') }}</mat-card-title> -->
             <mat-card-content>
                 <form class="form-container" [formGroup]="processingForm" (ngSubmit)="processRecibos()">
 
-                    <mat-form-field appearance="outline" class="full-width input-field">
-                        <mat-label>{{ translate('RECIBOS_PROCESAMIENTO.PROCESS_SECTION.SELECT_PDF') }}</mat-label>
-                        <input matInput [value]="fileName" readonly (click)="fileInput.click()">
-                        <button mat-icon-button matSuffix type="button" (click)="fileInput.click()">
+                    <div class="file-input-group">
+                        <div class="file-select-button" (click)="triggerFileInput()">
                             <mat-icon>attach_file</mat-icon>
-                        </button>
+                            <span class="file-name-display">
+                                {{ fileName || translate('RECIBOS_PROCESAMIENTO.PROCESS_SECTION.SELECT_FILE_BUTTON_TEXT') }}
+                            </span>
+                        </div>
                         <input hidden type="file" #fileInput (change)="onFileSelected($event)" accept="application/pdf">
-                        <mat-error
-                            *ngIf="processingForm.get('pdfFile').hasError('required') && processingForm.get('pdfFile').touched">
-                            {{ translate('RECIBOS_PROCESAMIENTO.PROCESS_SECTION.PDF_REQUIRED') }}
-                        </mat-error>
-                    </mat-form-field>
+                    </div>
 
                     <mat-form-field appearance="outline" class="full-width">
                         <mat-label>{{ translate('RECIBOS_PROCESAMIENTO.PROCESS_SECTION.RECEIPT_TYPE') }}</mat-label>
@@ -50,7 +46,7 @@
                     </mat-form-field>
 
                     <button mat-raised-button color="accent" type="submit"
-                        [disabled]="processingForm.invalid || isLoadingProcess" class="process-button">
+                        [disabled]="processingForm.invalid || isLoadingProcess || isProcessed" class="process-button">
                         <ng-container *ngIf="isLoadingProcess; else processButtonContent">
                             <div class="loading-spinner">
                                 <mat-spinner diameter="24"></mat-spinner>
@@ -105,7 +101,7 @@
                     <mat-cell *matCellDef="let element">
                         <div class="approval-cell">
                             <mat-slide-toggle [checked]="element.aprobado"
-                                [color]="element.aprobado ? 'primary' : 'warn'"
+                                [color]="element.aprobado ? 'success' : 'error'"
                                 (change)="onApprovalChange(element, $event)" class="approval-toggle">
                             </mat-slide-toggle>
                             <span [ngClass]="{'approved-text': element.aprobado, 'rejected-text': !element.aprobado}">

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit, ElementRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 import { PageTitleService } from 'app/modules/fwk/core/service/page-title.service';
@@ -16,6 +16,7 @@ import { MatSort } from '@angular/material/sort';
     styleUrls: ['./recibos-procesamiento.component.scss']
 })
 export class RecibosProcesamientoComponent implements OnInit, AfterViewInit {
+    @ViewChild('fileInput') fileInputRef: ElementRef<HTMLInputElement>;
     @ViewChild(MatPaginator) paginator: MatPaginator;
     @ViewChild(MatSort) sort: MatSort;
 
@@ -36,6 +37,7 @@ export class RecibosProcesamientoComponent implements OnInit, AfterViewInit {
 
     isLoadingProcess: boolean = false;
     isLoadingSend: boolean = false;
+    isProcessed: boolean = false;
 
     tableData: ReciboTabla[] = [];
     dataSource: MatTableDataSource<ReciboTabla>;
@@ -84,16 +86,31 @@ export class RecibosProcesamientoComponent implements OnInit, AfterViewInit {
         return this.translateService.instant(key);
     }
 
+    triggerFileInput(): void {
+        if (this.fileInputRef) {
+            this.fileInputRef.nativeElement.value = '';
+        }
+        this.fileInputRef.nativeElement.click();
+    }
+
     onFileSelected(event: Event): void {
         const input = event.target as HTMLInputElement;
         if (input.files && input.files.length > 0) {
             this.selectedFile = input.files[0];
             this.fileName = this.selectedFile.name;
             this.processingForm.get('pdfFile').setValue(this.selectedFile);
+
+            this.tableData = [];
+            this.dataSource.data = [];
+            this.isProcessed = false;
         } else {
             this.selectedFile = null;
             this.fileName = '';
             this.processingForm.get('pdfFile').setValue(null);
+
+            this.tableData = [];
+            this.dataSource.data = [];
+            this.isProcessed = false;
         }
     }
 
@@ -108,6 +125,7 @@ export class RecibosProcesamientoComponent implements OnInit, AfterViewInit {
         this.isLoadingProcess = true;
         this.tableData = [];
         this.dataSource.data = [];
+        this.isProcessed = false;
 
         try {
             const base64File = await this.fileToBase64(this.selectedFile);
@@ -125,15 +143,18 @@ export class RecibosProcesamientoComponent implements OnInit, AfterViewInit {
                     }));
                     this.dataSource.data = this.tableData;
                     this.isLoadingProcess = false;
+                    this.isProcessed = true;
                 },
                 error: (error) => {
                     console.error('Error al procesar recibos:', error);
                     this.isLoadingProcess = false;
+                    this.isProcessed = false;
                 }
             });
         } catch (error) {
             console.error('Error al convertir archivo a Base64:', error);
             this.isLoadingProcess = false;
+            this.isProcessed = false;
         }
     }
 
@@ -201,6 +222,7 @@ export class RecibosProcesamientoComponent implements OnInit, AfterViewInit {
                 this.processingForm.get('receiptType').setValue('');
                 this.processingForm.get('pdfFile').setValue(null);
                 this.isLoadingSend = false;
+                this.isProcessed = false;
             },
             error: (error) => {
                 console.error('Error al enviar recibos:', error);

@@ -1,5 +1,3 @@
-// src/app/main/content/recibos-procesamiento/i18n/es.ts
-
 export const locale = {
     lang: 'es',
     data: {
@@ -9,7 +7,8 @@ export const locale = {
             'CARGANDO': 'Cargando...',
             'PROCESS_SECTION': {
                 'TITLE': 'Cargar Archivo y Tipo de Recibo',
-                'SELECT_PDF': 'Seleccionar archivo PDF',
+                'SELECT_PDF': 'Seleccionar Archivo PDF',
+                'SELECT_FILE_BUTTON_TEXT': 'Seleccionar archivo...',
                 'PDF_REQUIRED': 'El archivo PDF es requerido.',
                 'RECEIPT_TYPE': 'Tipo de Recibo',
                 'TYPE_REQUIRED': 'El tipo de recibo es requerido.',
