@@ -213,7 +213,6 @@ export class RecibosProcesamientoComponent implements OnInit, AfterViewInit {
 
         this.recibosService.approveRejectRecibos(requestData).subscribe({
             next: (response) => {
-                console.log('Recibos enviados exitosamente:', response);
                 this.tableData = [];
                 this.dataSource.data = [];
                 this.processingForm.reset();

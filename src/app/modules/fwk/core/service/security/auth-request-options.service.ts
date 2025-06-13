@@ -13,7 +13,6 @@ export class AuthRequestOptionsService extends HttpParams {
     if (token) {
       this.headers.append(AUTH_HEADER_KEY, `${AUTH_PREFIX} ${token}`);
     }
-    console.log(this.headers);
   }
 }
 

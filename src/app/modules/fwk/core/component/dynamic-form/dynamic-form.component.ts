@@ -279,7 +279,6 @@ export class DynamicFormComponent extends AbstractComponent implements OnInit {
   }
 
   onChangeSelect(obj, event) {
-    console.log(event, obj);
     this.forceEmitChangeEntity();
   }
 

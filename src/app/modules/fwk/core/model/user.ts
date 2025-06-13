@@ -1,10 +1,11 @@
 import { Entity } from './entity';
 
 export class User extends Entity {
-    username: String;
-    password: String;
-    name: String;
-    lastname: String;
-    email: String;
+    token: string;
+    username: string;
+    password: string;
+    name: string;
+    lastname: string;
+    email: string;
     profiles: any;
 }

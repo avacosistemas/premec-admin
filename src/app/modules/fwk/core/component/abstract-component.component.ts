@@ -83,8 +83,6 @@ export abstract class AbstractComponent implements OnInit{
       i18n => {
                 this.i18n = i18n;
                 this.i18nLoaded = true;
-                console.log(`init i18n -> ${this.getI18nName()}`);
-                console.log(this.i18n);
               },
       e => {}
     );

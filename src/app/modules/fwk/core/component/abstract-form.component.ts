@@ -119,7 +119,6 @@ export class RequestQeue {
       control.setSpinnerControl(this.spinnerControl);
     }
     control.sent(this.requests);
-    console.log(this.requests);
     return control;
   }
 
@@ -138,7 +137,6 @@ export class RequestControl {
   sent(requests) {
     this.requests = requests;
     this.id = this.requests.length;
-    console.log('request -> ' + this.id);
     this.requests.push({id: this.id});
     if (this.spinnerControl){
       if (!this.spinnerControl.isShow()){

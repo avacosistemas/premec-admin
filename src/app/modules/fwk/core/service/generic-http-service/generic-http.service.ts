@@ -77,8 +77,6 @@ export class GenericHttpService extends HttpService {
     }
 
     callWs(ws: WsDef, data = null){
-        console.log('call ws: ' + ws.url);
-        console.log('method: ' + ws.method);
         switch (ws.method.toUpperCase()){
             case HTTP_METHODS.post: return this.basicPost(ws.url, data);
             case HTTP_METHODS.delete: return this.basicDelete(ws.url, data);

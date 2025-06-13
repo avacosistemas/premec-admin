@@ -113,7 +113,7 @@ export class LoginComponent extends AbstractFormComponent implements OnInit {
                 error => {
                     if (error.status === 401) {
                         this.loginFormErrors.userorpassinvalid = true;
-                        console.log(this.loginFormErrors);
+                        console.error(this.loginFormErrors);
                     }
                     control.received();
                 },

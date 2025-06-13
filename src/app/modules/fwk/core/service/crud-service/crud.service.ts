@@ -112,7 +112,6 @@ export abstract class CrudService<E extends Entity> extends HttpService implemen
     /** GET E by id. Will 404 if id not found */
     getById(id: number): Observable<E> {
         const url = `${this.baseUrl}${id}`;
-        console.log('get by id: ' + url);
         return this.httpGet(url, this.httpOptions);
     }
       /** PUT: update the E on the server */

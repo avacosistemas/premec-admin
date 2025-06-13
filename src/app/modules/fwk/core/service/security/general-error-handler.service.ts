@@ -36,7 +36,6 @@ export class GeneralErrorHandlerService extends BaseService implements ErrorHand
   }
 
   handleError(error: Error | HttpErrorResponse | any) {
-    console.log(error);
     const router = this.injector.get(Router);
     const errorMessageService = this.injector.get(ErrorMessageService);
     const notificationService = this.injector.get(NotificationService);
@@ -49,8 +48,7 @@ export class GeneralErrorHandlerService extends BaseService implements ErrorHand
         }
         // Http Error
         if (error.status === 401) {
-          console.log('Error 401');
-          console.log(error);
+          console.error(error);
         }
         if (error && error.error && VALIDATIONS_ERRORS === error.error.status && error.error.message) {
           notificationService.notifyError(error.error.message);  

@@ -3,37 +3,56 @@ import { Observable } from 'rxjs';
 import { Injector } from '@angular/core';
 import { User } from '../../model/user';
 import { HttpService } from '../http-service/http.service';
-import { environment } from 'environments/environment';
+import { environment, PREFIX_DOMAIN_API } from 'environments/environment';
 import { GenericHttpService } from '../generic-http-service/generic-http.service';
 import { SpinnerService } from '../../module/spinner/service/spinner.service';
 import { Router } from '@angular/router';
 
 
 const USER_DATA = 'currentUser';
+const PASSWORD_UPDATE_URL = PREFIX_DOMAIN_API + 'password/update/';
 
 @Injectable()
 export class AuthService extends HttpService {
-  
+
   private genericHttpService: GenericHttpService;
   private spinnerService: SpinnerService;
-  constructor(protected injector: Injector, private router: Router) { 
+
+  constructor(protected injector: Injector, private router: Router) {
     super(injector, '');
     this.spinnerService = injector.get(SpinnerService);
     this.genericHttpService = injector.get(GenericHttpService);
   }
 
+  updatePassword(username: string, currentPassword: string, newPassword: string): Observable<any> {
+    return new Observable((observer) => {
+      const body = {
+        username: username,
+        password: currentPassword,
+        newPassword: newPassword
+      };
+      this.genericHttpService.basicPost(PASSWORD_UPDATE_URL, body).subscribe(
+        response => {
+          observer.next(response);
+        },
+        e => {
+          observer.error(e);
+        }
+      );
+    });
+  }
 
   logout() {
     this.spinnerService.getControlGlobalSpinner().show();
-    
-      this.localStorageService.remove(USER_DATA);
-      this.localStorageService.cleanUserSession();
-      if(environment["localAuth"] == true){
-        this.router.navigate(['/auth/login']);
-      } else {
-        window.location.href = environment.URL_LOGIN; 
-      }
-      this.spinnerService.getControlGlobalSpinner().hide();
+
+    this.localStorageService.remove(USER_DATA);
+    this.localStorageService.cleanUserSession();
+    if (environment["localAuth"] == true) {
+      this.router.navigate(['/auth/login']);
+    } else {
+      window.location.href = environment.URL_LOGIN;
+    }
+    this.spinnerService.getControlGlobalSpinner().hide();
 
   }
 
@@ -41,7 +60,7 @@ export class AuthService extends HttpService {
     return new Observable<any>(obs => {
       const token = this.getToken();
       if (token) {
-        this.genericHttpService.basicPost(environment.AUTHENTICATION_REFRESH_TOKEN_URL, {token}).subscribe(response => {
+        this.genericHttpService.basicPost(environment.AUTHENTICATION_REFRESH_TOKEN_URL, { token }).subscribe(response => {
           this.setToken(response.token);
           obs.next(false);
         }, e => {
@@ -53,12 +72,14 @@ export class AuthService extends HttpService {
     });
   }
 
-  login(username, password): Observable<any> {
+  login(username: string, password: string): Observable<any> {
     return new Observable((observer) => {
-      this.genericHttpService.basicPost(environment.AUTHENTICATION_URL, {username, password}).subscribe(response => {
-        this.setUser(response);
-        this.setToken(response.token);
-        observer.next(response);
+      this.genericHttpService.basicPost(environment.AUTHENTICATION_URL, { username, password }).subscribe(response => {
+        const userToSet: User = response;
+        userToSet.username = username;
+        this.setUser(userToSet);
+        this.setToken(userToSet.token);
+        observer.next(userToSet);
       }, e => {
         observer.error(e);
       });
@@ -69,7 +90,7 @@ export class AuthService extends HttpService {
     return this.localStorageService.getTokenData();
   }
 
-  setToken(token: any): void{
+  setToken(token: any): void {
     this.localStorageService.saveTokenData(token);
   }
 
@@ -85,4 +106,3 @@ export class AuthService extends HttpService {
     return this.localStorageService.get(USER_DATA);
   }
 }
-

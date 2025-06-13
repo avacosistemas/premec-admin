@@ -13,7 +13,6 @@ export class MappingComponentService {
       mappings.forEach(mapping => {
           styleUrls.push(mapping.styleUrl);
       });
-      console.log(styleUrls);
       return (styleUrls);
   }
 }

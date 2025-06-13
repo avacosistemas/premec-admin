@@ -14,6 +14,7 @@ import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { HttpHeaders } from '@angular/common/http';
 import { AuthService } from './auth.service';
+import { environment } from 'environments/environment';
 
 @Injectable()
 export class JwkInterceptor implements HttpInterceptor {
@@ -22,7 +23,10 @@ export class JwkInterceptor implements HttpInterceptor {
               private router: Router) {}
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-      const headers = request.headers;
+      if (request.url.includes(environment.AUTHENTICATION_URL)) {
+          return next.handle(request);
+      }
+
       if (this.auth.getToken()) {
         request = request.clone({
             headers: request.headers.set('Authorization', 'Bearer ' + this.auth.getToken())

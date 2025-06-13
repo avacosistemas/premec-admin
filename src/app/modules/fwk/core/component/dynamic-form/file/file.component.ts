@@ -23,7 +23,6 @@ export class FileComponent extends DynamicFieldFormComponent{
     if (event.target.files && event.target.files.length) {
       const [file] = event.target.files;
       this.fileName = file.name;
-      console.log(file);
       reader.readAsArrayBuffer(file);
       reader.onloadend = () => {
         const arrayBuffer: any = reader.result,

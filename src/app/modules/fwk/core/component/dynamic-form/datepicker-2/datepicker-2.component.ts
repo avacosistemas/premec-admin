@@ -30,7 +30,6 @@ function getMonth(){
              value: i + 1
             };
           });
-    console.log(objMap);
   return objMap;
 }
 const FORM_VISUAL_INPUT: DynamicField<any> [] = [
@@ -265,7 +264,7 @@ export class Datepicker2Component extends DynamicFieldFormComponent implements O
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+      // console.log('The dialog was closed');
     });
   }
 

@@ -87,7 +87,6 @@ export class HttpService extends BaseService {
        return this.dummyService.httpGet(url);
     }
     const observable = new Observable((observer) => {
-        console.log('****** get -> ' + url);
         this.http.get<any>(url, options)
             .subscribe(response => this.subHandleResponse(observer, response),
                         e => this.subHandleError(observer, e),
@@ -98,9 +97,6 @@ export class HttpService extends BaseService {
 
   httpPut(url, data, options): Observable<any> {
         const urlid = url;
-        console.log('****** put -> ' + urlid);
-        console.log('****** object sended ⬎');
-        console.log(data);
         if (this.dummyService) {
             return this.dummyService.httpPut(url, data);
         }
@@ -115,9 +111,6 @@ export class HttpService extends BaseService {
   }
 
   httpPost(url, data, options): Observable<any> {
-    console.log('****** post -> ' + url);
-    console.log('****** object sended ⬎');
-    console.log(data);
     if (this.dummyService) {
         return this.dummyService.httpPost(url, data);
     }
@@ -135,7 +128,6 @@ export class HttpService extends BaseService {
         url = url + '/';
     }
     const urlid = `${url}${id}`;
-    console.log('****** delete -> ' + urlid);
     if (this.dummyService) {
         const ids = [];
         ids.push(id);
@@ -174,7 +166,6 @@ export class HttpService extends BaseService {
             ids = ids + ',' + element.id;
         });
         const url = this.baseUrl.substring(0, this.baseUrl.length) + '/' + ids;
-        console.log('****** multiples delete -> ' + url);
         this.http.delete(url, this.httpOptions).subscribe(
             response => this.subHandleResponse(observer, response),
             e => this.subHandleError(observer, e),
@@ -191,7 +182,6 @@ export class HttpService extends BaseService {
         multiId = multiId + ',' + element.multiId;
       });
       const url = this.baseUrl + columnDefSingleId + "/" + singleId + "/" + columnDefMultiId + "/" + multiId;
-      console.log('****** multiples delete ternario-> ' + url);
       this.http.delete(url, this.httpOptions).subscribe(
         response => this.subHandleResponse(observer, response),
         e => this.subHandleError(observer, e),
@@ -202,8 +192,6 @@ export class HttpService extends BaseService {
   }
   
   subHandleResponse(observer, response) {
-    console.log('****** server response ⬎');
-    console.log(response);
     if (response === undefined || response === null){
         observer.next();
     }else{
@@ -221,8 +209,6 @@ export class HttpService extends BaseService {
 
   applyMemoryFilter(entities: any, filterEntity, fieldsDef: any): any {
         if (filterEntity && filterEntity !== null) {
-            console.log('***** filter by entity ⬎');
-            console.log(filterEntity);
             Object.getOwnPropertyNames(filterEntity).forEach((val, index) => {
                 entities = entities.filter(ent => {
                     const field = fieldsDef.find(f => f.key === val);
@@ -233,19 +219,14 @@ export class HttpService extends BaseService {
                     const filterValue = filterEntity[val];
                     const filterType = field.filterType ? field.filterType.toUpperCase() : FILTER_TYPE.LIKE;
                     const result = this.filterService.filter(entityValue, filterEntity[val], filterType, field);
-                    console.log(`${field.filterType} for -> ${filterValue} to -> ${entityValue} -> result ${result}`);
                     return result;
             });
             });
-            console.log('***** output ⬎');
-            console.log(entities);
         }
         return entities;
     }
 
   subHandleError(observer, error) {
-    console.log('****** server error ⬎');
-    console.log(error);
     if (error && error.error && error.error.message) {
         this.notificationService.notifyError(error.error.message);  
     } else {

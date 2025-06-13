@@ -225,7 +225,7 @@ export class FormValidatorService {
       }
     }
 
-    console.log(errors);
+    console.error(errors);
     return String.Format(this.i18n.translate('error_message_not_set'));
   }
 

@@ -205,7 +205,7 @@ export class CrudComponent extends AbstractCrudComponent<any, any> implements On
       }
     });
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+      // console.log('The dialog was closed');
     });
   }
 

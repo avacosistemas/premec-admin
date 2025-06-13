@@ -196,9 +196,6 @@ export class CrudTableComponent extends AbstractComponent implements OnInit {
     return this.actionDefService.getActions(this.grid.displayedActionsCondition, this.grid.actions, element);
   }
   submitAction(action, entity, $event){
-
-    console.log($event);
-
     if (this.columnDefId){
       entity.id = entity[this.columnDefId];
     }
@@ -433,7 +430,7 @@ export class CrudTableComponent extends AbstractComponent implements OnInit {
           
           dialogRef.afterClosed().subscribe(result => {
             this.crud.findAll();
-            console.log('The dialog was closed');
+            // console.log('The dialog was closed');
           });
         }
       }
@@ -452,7 +449,7 @@ export class CrudTableComponent extends AbstractComponent implements OnInit {
       });
       dialogRef.afterClosed().subscribe(result => {
         this.crud.findAll();
-        console.log('The dialog was closed');
+        // console.log('The dialog was closed');
       });
     }
   }

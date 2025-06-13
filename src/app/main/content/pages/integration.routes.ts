@@ -8,6 +8,7 @@ import { ITEM_CHECKLIST_GRUPO_DEF } from './item_checklist_grupo/item_checklist_
 import { GRUPOS_TIPO_ACTIVIDAD_DEF } from './grupos_tipo_actividad/grupos_tipo_actividad.def';
 import { RECIBOS_DEF } from './recibos/recibos.def';
 import { RecibosProcesamientoComponent } from '../recibos-procesamiento/recibos-procesamiento.component';
+import { PasswordUpdateComponent } from '../authentication/password-update/password-update.component';
 
 export const ROUTES: Routes = [
   {
@@ -49,5 +50,10 @@ export const ROUTES: Routes = [
     path: 'recibos-procesamiento',
     component: RecibosProcesamientoComponent,
     canActivate: [AuthGuardService]
-  }
+  },
+  {
+    path: 'auth/password-update',
+    component: PasswordUpdateComponent,
+    canActivate: [AuthGuardService]
+  },
 ];
