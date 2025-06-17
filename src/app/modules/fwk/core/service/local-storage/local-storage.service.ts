@@ -7,7 +7,7 @@ export const USER_DATA_FOR_FORCE_CHANGE_PASSWORD = 'USER_DATA_FOR_FORCE_CHANGE_P
 
 @Injectable()
 export class LocalStorageService {
-  private tokenKey = 'jwt_token';
+  private tokenKey = 'jwt_token_admin_premec';
   
   constructor() { }
 

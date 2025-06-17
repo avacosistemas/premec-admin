@@ -10,7 +10,7 @@ export const LOGIN_FORM_USERDATA = 'LOGIN_FORM_USERDATA';
 export const I18N_DATA = 'I18N_DATA';
 export const TO_CLONE_DATA = 'TO_CLONE_DATA';
 export const USER_DATA_FOR_FORCE_CHANGE_PASSWORD = 'USER_DATA_FOR_FORCE_CHANGE_PASSWORD';
-export const TOKEN_NAME = 'jwt_token';
+export const TOKEN_NAME = 'jwt_token_admin_premec';
 
 @Injectable()
 export class FileService {

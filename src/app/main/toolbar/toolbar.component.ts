@@ -15,6 +15,7 @@ import { HTTP_METHODS } from '../../modules/fwk/core/model/ws-def';
 import { CrudComponent } from 'app/modules/fwk/core/component/crud/crud.component';
 import { Subscription } from 'rxjs';
 import { PageTitleService } from '../../modules/fwk/core/service/page-title.service';
+import JwtDecode from 'jwt-decode';
 
 @Component({
     selector: 'fuse-toolbar',
@@ -165,6 +166,19 @@ export class FuseToolbarComponent extends CrudComponent implements OnInit, OnDes
     }
 
     getUsername() {
+        
+        interface JwtPayload {
+            sub: string;
+            exp: number;
+            iat: number;
+            }
+
+        const token = localStorage.jwt_token_admin_premec;
+        if (token) {
+        const decoded = JwtDecode<JwtPayload>(token);
+            return decoded.sub;
+        }
+        
         if (this.user) {
             return this.user.username;
         }
