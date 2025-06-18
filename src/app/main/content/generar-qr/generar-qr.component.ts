@@ -3,7 +3,6 @@ import { PREFIX_DOMAIN_WEB } from 'environments/environment';
 
 import { TranslateService } from '@ngx-translate/core';
 import { locale as esLocale } from './i18n/es';
-import { PageTitleService } from '../../../modules/fwk/core/service/page-title.service';
 import { GenerarQrService } from '../../../modules/fwk/core/service/generar-qr-service/generar-qr.service';
 
 import QRCode from 'qrcode';
@@ -22,7 +21,6 @@ export class GenerarQrComponent implements OnInit {
   private defaultDomain: string = 'http://premec.ddns.net:48080/';
 
   constructor(
-    private titleService: PageTitleService,
     private encodearService: GenerarQrService,
     private translateService: TranslateService
   ) {
@@ -32,7 +30,6 @@ export class GenerarQrComponent implements OnInit {
 
   ngOnInit() {
     this.qrCodeData = null;
-    this.titleService.changeTitle(this.translateService.instant('GENERAR_QR.TITULO_CORTO'));
   }
 
   translate(key: string): string {

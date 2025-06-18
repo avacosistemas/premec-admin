@@ -27,7 +27,7 @@ export class GeneralErrorHandlerService extends BaseService implements ErrorHand
       lang: 'es',
       dictionary: {
         error_unknown_message: 'Se ha producido un error. Por favor, intente mas tarde',
-        error_internet_disconnected_message: 'Se ha perdido la conexión a internet. Por favor, compruebela y recargue la página',
+        error_unknown_messageerror_internet_disconnected_message: 'Se ha perdido la conexión a internet. Por favor, compruebela y recargue la página',
       }
     });
     this.i18nService.getByName('error-handler').subscribe(i18n => {
@@ -56,6 +56,7 @@ export class GeneralErrorHandlerService extends BaseService implements ErrorHand
       } else if (error.message === 'revalidate' || error.message === 'notuserlogged') {
         // Client Error Happend
       }else{
+        console.error(error);
         notificationService.notifyError(this.i18n.translate(ERROR_UNKNOWN_MESSAGE));
       }
   }

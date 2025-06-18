@@ -1,11 +1,11 @@
 import { PREFIX_DOMAIN_API } from 'environments/environment';
-import { HTTP_METHODS } from 'app/modules/fwk/core/model/ws-def';
 
 export const RECIBOS_GRID_DEF = {
     columnsDef: [
         {
             columnDef: 'attachmentEntry',
-            columnNameKey: 'recibos_grid_column_attachmentEntry'
+            columnNameKey: 'recibos_grid_column_attachmentEntry',
+            id: true
         },
         {
             columnDef: 'year',

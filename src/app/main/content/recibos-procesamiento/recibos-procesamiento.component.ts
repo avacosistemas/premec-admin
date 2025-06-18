@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewChild, AfterViewInit, ElementRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
-import { PageTitleService } from 'app/modules/fwk/core/service/page-title.service';
 import { RecibosProcesamientoService } from './recibos-procesamiento.service';
 import { ReciboTabla, ReciboProcesarResponse, ReciboAprobarRechazarRequest, RecibosProcesarApiResponse } from './recibos-procesamiento.models';
 import { locale as esLocale } from './i18n/es';
@@ -46,7 +45,6 @@ export class RecibosProcesamientoComponent implements OnInit, AfterViewInit {
     constructor(
         private fb: FormBuilder,
         private translateService: TranslateService,
-        private pageTitleService: PageTitleService,
         private recibosService: RecibosProcesamientoService
     ) {
         this.translateService.setTranslation('es', esLocale.data, true);
@@ -61,7 +59,6 @@ export class RecibosProcesamientoComponent implements OnInit, AfterViewInit {
     }
 
     ngOnInit(): void {
-        this.pageTitleService.changeTitle(this.translate('RECIBOS_PROCESAMIENTO.TITULO_CORTO'));
         this.setupTableColumns();
     }
 

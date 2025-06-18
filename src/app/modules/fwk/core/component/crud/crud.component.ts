@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Input } from '@angular/core';
 
-import { Subscription ,  Observable } from 'rxjs';
+import { Subscription, Observable } from 'rxjs';
 import { OnDestroy } from '@angular/core';
 
 import { MatDialog } from '@angular/material/dialog';
@@ -33,7 +33,7 @@ import { DynamicField } from '../../model/dynamic-form/dynamic-field';
   templateUrl: './crud.component.html',
   styleUrls: ['./crud.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  animations   : fuseAnimations
+  animations: fuseAnimations
 })
 export class CrudComponent extends AbstractCrudComponent<any, any> implements OnInit, OnDestroy {
 
@@ -62,59 +62,59 @@ export class CrudComponent extends AbstractCrudComponent<any, any> implements On
   fileService: FileService;
   activatedRoute: ActivatedRoute;
   @Input()
-  set componentName(componentName: string){
+  set componentName(componentName: string) {
     this.name = componentName;
     super.ngOnInit();
   }
 
   @Output()
-  onChangeSearchEntity =  new EventEmitter(true);
-  
+  onChangeSearchEntity = new EventEmitter(true);
+
   constructor(configService: FuseConfigService,
-              dialog: MatDialog,
-              localStorageService: LocalStorageService,
-              injector: Injector) {
+    dialog: MatDialog,
+    localStorageService: LocalStorageService,
+    injector: Injector) {
     super(injector);
     this.activatedRoute = injector.get(ActivatedRoute);
     this.dialogService = injector.get(DialogService);
     this.dialog = dialog;
     this.configService = configService;
     this.localStorageService = localStorageService;
-    
+
     this.onConfigChanged =
-    this.configService.onConfigChanged
+      this.configService.onConfigChanged
         .subscribe(
-            (newSettings) => {
-                this.setting = newSettings;
-            }
+          (newSettings) => {
+            this.setting = newSettings;
+          }
         );
-    this.display =  {
-                      deleteButton: false
-                    };
+    this.display = {
+      deleteButton: false
+    };
     this.fileService = injector.get(FileService);
-    
+
   }
-  
-  postSetUpCrud(crudDef){
-    if (this.crudDef.forms === undefined){  
-      this.findAll()  ;
-    }else if (this.crudDef.forms.filter === undefined){
+
+  postSetUpCrud(crudDef) {
+    if (this.crudDef.forms === undefined) {
+      this.findAll();
+    } else if (this.crudDef.forms.filter === undefined) {
       this.findAll();
     }
-    if (this.crudDef.grid){
-      if (this.crudDef.grid.deleteAction || this.crudDef.grid.deleteColumn){
+    if (this.crudDef.grid) {
+      if (this.crudDef.grid.deleteAction || this.crudDef.grid.deleteColumn) {
         this.display.deleteButton = true;
       }
     }
   }
 
-  onInit() {}
+  onInit() { }
 
   statusChanged(status: StatusTable<any>) {
     this.displayGlobalButtons(status.existSelectedItems());
     this.selects = status.selects;
   }
-  
+
   displayGlobalButtons(hasElementsSelected: boolean): any {
     // this.display.deleteButton = hasElementsSelected;
     this.display.selects = hasElementsSelected;
@@ -123,56 +123,58 @@ export class CrudComponent extends AbstractCrudComponent<any, any> implements On
   openAddDialog(): void {
     this.getFormCreate(this.crudDef).subscribe((formCreate: FormDef) => {
       let funcName = this.crudDef.name;
-      if (funcName === undefined){
+      if (funcName === undefined) {
         funcName = '';
       }
       const fieldsBehavior = formCreate.fieldsBehavior;
       const dialogRef = this.dialog.open(CrudModalComponent, {
         width: this.crudDef.dialogConfig &&
-                this.crudDef.dialogConfig.width ?
-                    this.crudDef.dialogConfig.width :
-                      '320px',
+          this.crudDef.dialogConfig.width ?
+          this.crudDef.dialogConfig.width :
+          '320px',
         panelClass: 'control-mat-dialog',
-        data: { isAdd: true,
-                formDef: this.clone(formCreate),
-                translate: (key) => { 
-                              return this.translate(key);
-                            },
-                form: this.addForm,
-                formName: 'formCreate',
-                funcName: funcName,
-                fields: this.clone(formCreate.fields),
-                fieldsBehavior: fieldsBehavior,
-                handlerFieldSourceData: this.handlerFieldSourceData,
-                crud: this}
+        data: {
+          isAdd: true,
+          formDef: this.clone(formCreate),
+          translate: (key) => {
+            return this.translate(key);
+          },
+          form: this.addForm,
+          formName: 'formCreate',
+          funcName: funcName,
+          fields: this.clone(formCreate.fields),
+          fieldsBehavior: fieldsBehavior,
+          handlerFieldSourceData: this.handlerFieldSourceData,
+          crud: this
+        }
       });
-  
+
       dialogRef.afterClosed().subscribe(reopen => {
-        if(reopen) {
+        if (reopen) {
           this.openAddDialog();
         }
       });
     });
   }
 
-  showCrudActions(){
+  showCrudActions() {
     return this.display.selects ? true : false;
   }
 
-  executeCrudAction(action: ActionDef){
-    if (action.formDef){
+  executeCrudAction(action: ActionDef) {
+    if (action.formDef) {
       let funcName = this.crudDef.name;
-      if (funcName === undefined){
+      if (funcName === undefined) {
         funcName = '';
       }
-      if (action.ws){
-        this.genericHttpService.callWs(action.ws, this.selects).subscribe( r => {
+      if (action.ws) {
+        this.genericHttpService.callWs(action.ws, this.selects).subscribe(r => {
           this.callCrudDialog(action, r, funcName);
         });
-      }else{
+      } else {
         this.callCrudDialog(action, undefined, funcName);
       }
-    }else{
+    } else {
       this.actionDefService.submitAction(action, this.selects, this.i18nCurrentCrudComponent, undefined).subscribe(r => {
         this.findAll();
         this.notificationService.notifySuccess(this.translate('success_message'));
@@ -189,7 +191,7 @@ export class CrudComponent extends AbstractCrudComponent<any, any> implements On
         '320px',
       panelClass: 'control-mat-dialog',
       data: {
-        entity : entity,
+        entity: entity,
         translate: (key) => {
           return this.translate(key);
         },
@@ -209,21 +211,21 @@ export class CrudComponent extends AbstractCrudComponent<any, any> implements On
     });
   }
 
-  getCrudActions(){
+  getCrudActions() {
     return this.actionDefService.filterActionsByCondition(this.crudDef.crudActions, this.crudDef.displayGlobalActions, this.selects);
   }
   getFormCreate(crudDef: CrudDef): Observable<FormDef> {
-    return new Observable( obs => {
+    return new Observable(obs => {
       let form: FormDef;
-      if (crudDef.formsDef && crudDef.formsDef.create){
+      if (crudDef.formsDef && crudDef.formsDef.create) {
         form = crudDef.formsDef.create;
-      } else if (crudDef.forms && crudDef.forms.create){
+      } else if (crudDef.forms && crudDef.forms.create) {
         form = new FormDef();
         form.fields = crudDef.forms.create;
         form.fieldsBehavior = crudDef.forms.createBehavior;
       }
 
-      if (form.initWs && form.initWs.url){
+      if (form.initWs && form.initWs.url) {
         this.genericHttpService.basicGet(form.initWs.url, undefined, undefined, undefined).subscribe(r => {
           r = r[0];
           Object.getOwnPropertyNames(r).forEach(attribute => {
@@ -239,17 +241,16 @@ export class CrudComponent extends AbstractCrudComponent<any, any> implements On
         obs.next(form);
       }
     });
-    
   }
 
   clone(obj) {
     return this.localStorageService.clone(obj);
   }
 
-  delete(selects){
+  delete(selects) {
     this.deleteAll(selects).subscribe(
-      r => {},
-      e => {},
+      r => { },
+      e => { },
       () => {
         this.findAll();
         this.notificationService.notifySuccess(this.translate('success_message'));
@@ -268,7 +269,7 @@ export class CrudComponent extends AbstractCrudComponent<any, any> implements On
   }
 
   ngOnDestroy() {
-      this.onConfigChanged.unsubscribe();
+    this.onConfigChanged.unsubscribe();
   }
 
   getI18nName(): string {
@@ -294,16 +295,16 @@ export class CrudComponent extends AbstractCrudComponent<any, any> implements On
     return this.addForm !== undefined;
   }
 
-  setUpCRUDDef(def){
+  setUpCRUDDef(def) {
     super.setUpCRUDDef(def);
   }
 
-  exportCsv(){
+  exportCsv() {
     if (this.crudDef.exportCsv && this.crudDef.exportCsv.csvExportFileName) {
       const data = this.entities.map(e => {
-        const reg = {}; 
-        Object.getOwnPropertyNames(e).forEach( prop => {
-          const column = this.crudDef.grid.columnsDef.find( c => c.columnDef === prop);
+        const reg = {};
+        Object.getOwnPropertyNames(e).forEach(prop => {
+          const column = this.crudDef.grid.columnsDef.find(c => c.columnDef === prop);
           if (column) {
             const colname = column.columnName;
             reg[colname] = e[prop];
@@ -315,10 +316,9 @@ export class CrudComponent extends AbstractCrudComponent<any, any> implements On
     }
   }
 
-  translate(key: string){
+  translate(key: string) {
     let word = super.translate(key);
-    // Hago esto para guardar compatibilidad sobre el titulo a mostrar
-    if (word === key && 'page_title' === key){
+    if (word === key && 'page_title' === key) {
       word = this.title;
     }
     return word;

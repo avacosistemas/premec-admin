@@ -1,5 +1,5 @@
-import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
-import { NavigationEnd, NavigationStart, Router } from '@angular/router';
+import { Component, OnDestroy, OnInit, ViewEncapsulation, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
+import { NavigationEnd, NavigationStart, Router, ActivatedRoute } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
 import { FuseConfigService } from '@fuse/services/config.service';
@@ -13,17 +13,18 @@ import { MatDialog } from '@angular/material/dialog';
 import { LocalStorageService } from '../../modules/fwk/core/service/local-storage/local-storage.service';
 import { HTTP_METHODS } from '../../modules/fwk/core/model/ws-def';
 import { CrudComponent } from 'app/modules/fwk/core/component/crud/crud.component';
-import { Subscription } from 'rxjs';
+import { Observable, of, Subscription } from 'rxjs';
 import { PageTitleService } from '../../modules/fwk/core/service/page-title.service';
 import JwtDecode from 'jwt-decode';
+import { filter, map, startWith, distinctUntilChanged, switchMap, tap } from 'rxjs/operators';
 
 @Component({
     selector: 'fuse-toolbar',
     templateUrl: './toolbar.component.html',
     styleUrls: ['./toolbar.component.scss'],
-    encapsulation: ViewEncapsulation.None
+    encapsulation: ViewEncapsulation.None,
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
-
 export class FuseToolbarComponent extends CrudComponent implements OnInit, OnDestroy {
     userStatusOptions: any[];
     languages: any;
@@ -31,27 +32,32 @@ export class FuseToolbarComponent extends CrudComponent implements OnInit, OnDes
     showLoadingBar: boolean;
     horizontalNav: boolean;
     noNav: boolean;
-    pageTitle: any;
+
+    pageTitle$: Observable<string>;
+    parentTitle$: Observable<string>;
+
+    public crudDef$: Observable<any>;
+
     urls: any;
     user: User;
     userDetailUrl: string;
     spinnerControl: any;
-    componentDegSubscription: Subscription;
 
-    private titleSubscription: Subscription;
     constructor(
         dialog: MatDialog,
         private spinnerService: SpinnerService,
-        localStorage: LocalStorageService,
+        localStorageService: LocalStorageService,
         private sidebarService: FuseSidebarService,
         private translateFuse: TranslateService,
         private authService: AuthService,
         injector: Injector,
         configService: FuseConfigService,
         private titleService: PageTitleService,
-        public router: Router
+        public router: Router,
+        private changeDetectorRef: ChangeDetectorRef,
     ) {
-        super(configService, dialog, localStorage, injector);
+        super(configService, dialog, localStorageService, injector);
+
         this.setUpI18n({
             name: 'toolbar',
             lang: 'es',
@@ -61,7 +67,7 @@ export class FuseToolbarComponent extends CrudComponent implements OnInit, OnDes
                 menu_user_item_1: 'Mis Datos',
                 menu_user_item_4: 'Cambiar contraseña',
                 menu_user_item_5: 'Cerrar sesión',
-
+                'page_title_default': 'Aplicación',
             }
         });
         this.userStatusOptions = [
@@ -108,7 +114,6 @@ export class FuseToolbarComponent extends CrudComponent implements OnInit, OnDes
                     this.showLoadingBar = true;
                 }
                 if (event instanceof NavigationEnd) {
-                    this.pageTitle = '';
                     this.showLoadingBar = false;
                 }
             });
@@ -120,85 +125,94 @@ export class FuseToolbarComponent extends CrudComponent implements OnInit, OnDes
         this.urls = environment;
         this.spinnerControl = this.spinnerService.getControlGlobalSpinner();
         this.user = new User();
-        // this.authService.subscribeChangeUser((user) => {
-        //     this.user = user;
-        // });
-        this.componentDegSubscription = this.componentDefService.componentDefObs$.subscribe(data => {
-            this.componentDefService.getByName(data.name).subscribe(
-                def => {
-                    if (def === null) {
-                        return;
-                    }
-                    this.setUpCRUDDef(def);
+
+        this.crudDef$ = this.componentDefService.componentDefObs$.pipe(
+            distinctUntilChanged((prev, curr) => prev?.name === curr?.name),
+            switchMap(data => {
+                if (!data || !data.name) {
+                    return of(undefined);
                 }
-            );
-        });
+                return this.componentDefService.getByName(data.name).pipe(
+                    tap(def => {
+                        if (def) {
+                            this.setUpCRUDDef(def);
+                        }
+                    }),
+                    startWith(undefined)
+                );
+            }),
+            distinctUntilChanged((prev, curr) => prev?.name === curr?.name && prev?.backButton === curr?.backButton),
+            startWith(undefined)
+        );
     }
 
     onChangePassword(): void {
         this.router.navigate(['/auth/password-update']);
     }
 
-    toggleSidebarOpened(key) {
+    toggleSidebarOpened(key: string): void {
         this.sidebarService.getSidebar(key).toggleOpen();
     }
 
-    search(value) {
-       // console.log(value);
+    search(value: any): void {
     }
 
-    onInit() {
-        this.titleSubscription = this.titleService.currentTitle$.subscribe(title => {
-            this.pageTitle = title;
-        });
+    ngOnInit(): void {
+        super.ngOnInit();
 
-        this.pageTitle = '';
+        this.pageTitle$ = this.titleService.currentTitle$;
+
+        this.parentTitle$ = this.activatedRoute.queryParams.pipe(
+            map(params => (params && params.parentTitle) ? " - " + params.parentTitle : ''),
+            startWith('')
+        );
     }
 
-    ngOnDestroy() {
-        this.titleSubscription.unsubscribe();
-        this.componentDegSubscription.unsubscribe();
+    ngOnDestroy(): void {
+        super.ngOnDestroy();
     }
 
-    setLanguage(lang) {
+    setLanguage(lang: any): void {
         this.selectedLanguage = lang;
         this.translateFuse.use(lang.id);
     }
 
-    getUsername() {
-        
+    getUsername(): string {
         interface JwtPayload {
             sub: string;
             exp: number;
             iat: number;
-            }
-
-        const token = localStorage.jwt_token_admin_premec;
-        if (token) {
-        const decoded = JwtDecode<JwtPayload>(token);
-            return decoded.sub;
         }
-        
-        if (this.user) {
+
+        const token = this.localStorageService.getTokenData();
+        if (token) {
+            try {
+                const decoded = JwtDecode<JwtPayload>(token);
+                return decoded.sub;
+            } catch (e) {
+                console.error('Error decoding JWT token:', e);
+            }
+        }
+
+        if (this.user && this.user.username) {
             return this.user.username;
         }
         return '';
     }
 
-    onLogout() {
+    onLogout(): void {
         this.authService.logout();
     }
 
-    goUserDetails() {
-        // this.navigate(environment.URL_CLIENTE_DETAIL, undefined);
+    goUserDetails(): void {
         this.showDialogProfile();
     }
 
-    showDialogProfile() {
+    showDialogProfile(): void {
         this.spinnerControl.show();
         this.componentDefService.getByName('usuario_user_detail_definition').subscribe(componentDef => {
             if (componentDef.ws) {
-                const wsDef = localStorage.clone(componentDef.ws);
+                const wsDef = this.localStorageService.clone(componentDef.ws);
                 wsDef.method = HTTP_METHODS.get;
                 this.genericHttpService.callWs(wsDef).subscribe(userdata => {
                     this.spinnerControl.hide();
@@ -214,16 +228,5 @@ export class FuseToolbarComponent extends CrudComponent implements OnInit, OnDes
 
     getI18nName(): string {
         return 'toolbar';
-    }
-    // onInit() {
-    // }
-    getParentTitle() {
-        var title = '';
-        this.activatedRoute.queryParams.subscribe(params => {
-            if (params && params.parentTitle) {
-                title = params.parentTitle;
-            }
-        });
-        return title ? " - " + title : '';
     }
 }

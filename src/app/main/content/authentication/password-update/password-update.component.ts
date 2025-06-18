@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Injector } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
@@ -143,7 +143,7 @@ export class PasswordUpdateComponent extends AbstractComponent implements OnInit
         const currentPassword = this.resetPasswordForm.controls.currentPassword.value;
         const resetPassword = this.resetPasswordForm.controls.newPassword.value;
 
-        this.authService.updatePassword(this.currentUser, currentPassword, resetPassword)
+        this.authService.updatePassword(this.currentUser as string, currentPassword, resetPassword)
             .subscribe(res => {
                 this.notificationService.notifySuccess(this.translate('success_message_line1'));
                 this.formSubmittedSuccessfully = true;

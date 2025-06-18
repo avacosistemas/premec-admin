@@ -20,9 +20,7 @@ export const RECIBOS_DEF: CrudDef = {
     dialogConfig: {
         width: '400px'
     },
-    filterInMemory: true,
     backButton: false,
-    serverPagination: false,
     pagination: {
         page: 0,
         pageSize: 10
