@@ -2,6 +2,9 @@ import { GRUPOS_TIPO_ACTIVIDAD_DEF } from 'app/main/content/pages/grupos_tipo_ac
 import { GRUPOS_TIPO_ACTIVIDAD_NAV_DEF } from 'app/main/content/pages/grupos_tipo_actividad/navigation/grupos_tipo_actividad.nav';
 import { USUARIOS_NAV_DEF } from 'app/main/content/pages/usuarios/navigation/usuarios.nav';
 import { RECIBOS_NAV_DEF } from 'app/main/content/pages/recibos/navigation/recibos.nav';
+import { PERMISO_DEF } from 'app/main/content/pages/permiso/permiso.def';
+import { SEGURIDAD_GRUPO_DEF } from 'app/main/content/pages/seguridad_grupo/seguridad_grupo.def';
+import { USUARIOS_DEF } from 'app/main/content/pages/usuarios/usuarios.def';
 
 export const navigation = [
     {
@@ -10,12 +13,6 @@ export const navigation = [
         'translate': 'NAV.ADMINISTRATION',
         'type': 'group',
         'children': [
-            {
-                'title': 'Usuarios',
-                'type': 'item',
-                'icon': 'group',
-                'url': USUARIOS_NAV_DEF.url
-            },
             {
                 'title': 'Generar QR',
                 'type': 'item',
@@ -45,7 +42,39 @@ export const navigation = [
                 'type': 'item',
                 'icon': 'send',
                 'url': '/recibos-procesamiento'
-            }
+            },
+            {
+                'title': 'Seguridad',
+                'type': 'collapse',
+                'icon': 'security',
+                // 'permission': 'MENU_SEGURIDAD',
+                'children': [
+                    {
+                        'id': 'usuarios',
+                        'title': 'Usuarios',
+                        'icon': 'manage_accounts',
+                        'type': 'item',
+                        'url': USUARIOS_DEF.navigation.url,
+                        // 'permission': 'USER_ADMIN_READ'
+                    },
+                    {
+                        'id': 'grupos',
+                        'title': 'Grupos',
+                        'icon': 'group_work',
+                        'type': 'item',
+                        'url': SEGURIDAD_GRUPO_DEF.navigation.url,
+                        // 'permission': 'SEGURIDAD_GRUPO_READ'
+                    },
+                    {
+                        'id': 'permisos',
+                        'title': 'Permisos',
+                        'icon': 'lock',
+                        'type': 'item',
+                        'url': PERMISO_DEF.navigation.url,
+                        // 'permission': 'PERMISO_READ'
+                    }
+                ]
+            },
         ]
     }
 ];

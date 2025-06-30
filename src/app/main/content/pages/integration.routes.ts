@@ -14,6 +14,10 @@ import { PasswordUpdateComponent } from '../authentication/password-update/passw
 
 import { locale as generarQrLocale } from '../generar-qr/i18n/es';
 import { locale as recibosProcesamientoLocale } from '../recibos-procesamiento/i18n/es';
+import { PERMISO_DEF } from './permiso/permiso.def';
+import { SEGURIDAD_GRUPO_PERMISO_DEF } from './seguridad_grupo_permiso/seguridad_grupo_permiso.def';
+import { SEGURIDAD_GRUPO_USUARIO_DEF } from './seguridad_grupo_usuario/seguridad_grupo_usuario.def';
+import { SEGURIDAD_GRUPO_DEF } from './seguridad_grupo/seguridad_grupo.def';
 
 export const ROUTES: Routes = [
   {
@@ -69,5 +73,29 @@ export const ROUTES: Routes = [
     component: PasswordUpdateComponent,
     canActivate: [AuthGuardService],
     data: { title: 'Cambiar Contraseña' }
+  },
+  {
+    path: PERMISO_DEF.navigation.url.split('/')[1],
+    component: IntegrationComponent,
+    canActivate: [AuthGuardService],
+    data: { title: 'Permisos' }
+  },
+  {
+    path: SEGURIDAD_GRUPO_PERMISO_DEF.navigation.url.split('/')[1],
+    component: IntegrationComponent,
+    canActivate: [AuthGuardService],
+    data: { title: 'Permisos asignados al grupo' }  
+  },
+  {
+    path: SEGURIDAD_GRUPO_USUARIO_DEF.navigation.url.split('/')[1],
+    component: IntegrationComponent,
+    canActivate: [AuthGuardService],
+    data: { title: 'Grupos asignados al usuario' }
+  },
+  {
+    path: SEGURIDAD_GRUPO_DEF.navigation.url.split('/')[1],
+    component: IntegrationComponent,
+    canActivate: [AuthGuardService],
+    data: { title: 'Grupos' }
   },
 ];

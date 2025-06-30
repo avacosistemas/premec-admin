@@ -1,0 +1,6 @@
+export const SEGURIDAD_GRUPO_SECURITY_DEF = {
+  readAccess: 'SEGURIDAD_GRUPO_READ',
+  updateAccess: 'SEGURIDAD_GRUPO_UPDATE',
+  createAccess: 'SEGURIDAD_GRUPO_CREATE',
+  deleteAccess: 'SEGURIDAD_GRUPO_DELETE'
+};
