@@ -1,0 +1,225 @@
+.content-app-fichado-procesamiento {
+    width: 100%;
+}
+
+.top-header-fichado-procesamiento {
+    width: 100%;
+    padding: 10px 35px 40px 35px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 25px;
+    color: white;
+    font-weight: bold;
+    background-color: #3400ff;
+    box-sizing: border-box;
+    margin-bottom: 24px;
+
+    p {
+        font-size: 24px;
+        font-weight: 500;
+    }
+}
+
+.container-fichado-procesamiento {
+    width: 100%;
+    height: 70vh;
+    padding: 35px;
+    padding-top: 0px;
+    transform: translateY(-62px);
+    box-sizing: border-box;
+    display: flex;
+    place-content: flex-start;
+    align-items: flex-start;
+    flex-flow: wrap;
+    gap: 25px;
+}
+
+.processing-card {
+    max-width: 400px;
+    min-width: 315px;
+    text-align: center;
+    transition: all 0.3s ease;
+    box-shadow: 0px 10px 11px 0px rgba(0, 0, 0, 0.1), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+}
+
+.form-container {
+    display: flex;
+    gap: 18px;
+
+    .file-input-group {
+        width: 100%;
+    }
+}
+
+.file-select-button {
+    min-width: 300px;
+    width: 100%;
+    height: 43px;
+    margin-top: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    box-sizing: border-box;
+    text-align: left;
+    border: 2px dotted gray;
+    background-color: transparent;
+    color: #272727;
+    box-shadow: none;
+    overflow: hidden;
+    cursor: pointer;
+    border-radius: 5px;
+
+    &:hover {
+        opacity: 0.75;
+        border: 2px solid #272727;
+    }
+
+    .mat-icon {
+        margin-right: 5px;
+        flex-shrink: 0;
+    }
+
+    .file-name-display {
+        flex-grow: 1;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}
+
+.process-button {
+    max-width: 300px;
+    width: 100%;
+    margin-top: 4px;
+    height: 43px;
+}
+
+.loading-spinner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 11px;
+}
+
+.loading-spinner p {
+    padding: 0;
+    margin: 0;
+}
+
+.send-button {
+    width: 205px;
+    height: 38px;
+    background-color: #ff7a00 !important;
+    color: white;
+    margin: 0;
+    padding: 0 16px;
+    line-height: 38px;
+}
+
+.table-container {
+    height: 65vh;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    overflow: auto;
+    box-shadow: 0px 4px 5px -2px rgba(0, 0, 0, 0.2), 0px 7px 10px 1px rgba(0, 0, 0, 0.14), 0px 2px 16px 1px rgba(0, 0, 0, 0.12);
+}
+
+.fichado-table {
+    width: 100%;
+    min-width: 800px;
+    box-shadow: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.mat-header-cell,
+.mat-cell {
+    word-wrap: break-word;
+    white-space: normal;
+    align-items: center;
+}
+
+tr.detail-row {
+    height: 0;
+}
+
+tr.element-row:not(.expanded-row):hover {
+    background: whitesmoke;
+}
+
+tr.element-row:not(.expanded-row):active {
+    background: #efefef;
+}
+
+.element-row td {
+    border-bottom-width: 0;
+}
+
+.element-detail {
+    overflow: hidden;
+    display: flex;
+    background-color: #fafafa;
+
+    .p-16 {
+        padding: 16px;
+    }
+
+    h3 {
+        margin-bottom: 8px;
+    }
+
+    table {
+        background-color: #fafafa;
+        width: 100%;
+        box-shadow: none;
+
+        th.mat-header-cell,
+        td.mat-cell {
+            border-bottom-color: rgba(0, 0, 0, 0.06);
+        }
+    }
+}
+
+::ng-deep .custom-table {
+    th.mat-header-cell {
+        background-color: #3400fd;
+        color: #c6c6ea;
+    }
+
+    tr.mat-row:nth-child(even) {
+        background-color: #eeeeee;
+    }
+
+    tr.mat-row:nth-child(odd) {
+        background-color: #fafafa;
+    }
+}
+
+.fichado-table {
+
+    .mat-row {
+        cursor: pointer;
+        transition: background-color 0.2s ease-in-out;
+    }
+
+    .expanded-row {
+        background-color: #3400fd;
+
+        td {
+            color: white;
+            font-size: 19px;
+            font-weight: 600;
+        }
+
+        mat-icon {
+            color: white;
+        }
+    }
+
+    .element-detail {
+        .custom-table {
+            background-color: #fafafa;
+        }
+    }
+}

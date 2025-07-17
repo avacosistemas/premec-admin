@@ -1,0 +1,172 @@
+<div class="content-app-fichado-procesamiento" fusePerfectScrollbar>
+    <div class="top-header-fichado-procesamiento">
+        <p>{{ translate('FICHADO_PROCESAMIENTO.TITULO') }}</p>
+        <ng-container *ngIf="isProcessed">
+            <button mat-raised-button color="primary" (click)="sendToSap()" [disabled]="isSendingToSap"
+                class="send-button">
+                <ng-container *ngIf="isSendingToSap; else sendButtonContent">
+                    <div class="loading-spinner">
+                        <mat-spinner diameter="24"></mat-spinner>
+                        <span>{{ translate('FICHADO_PROCESAMIENTO.ENVIANDO') }}</span>
+                    </div>
+                </ng-container>
+                <ng-template #sendButtonContent>
+                    {{ translate('FICHADO_PROCESAMIENTO.RESULTADOS_SECTION.SEND_BUTTON') }}
+                </ng-template>
+            </button>
+        </ng-container>
+    </div>
+
+    <div class="container-fichado-procesamiento">
+        <mat-card class="processing-card" fxFlex="grow">
+            <mat-card-content>
+                <form class="form-container" (ngSubmit)="processExcel()">
+                    <div class="file-input-group">
+                        <div class="file-select-button" (click)="triggerFileInput()">
+                            <mat-icon>attach_file</mat-icon>
+                            <span class="file-name-display">
+                                {{ fileName || translate('FICHADO_PROCESAMIENTO.CARGA_SECTION.SELECT_EXCEL') }}
+                            </span>
+                        </div>
+                        <input hidden type="file" #fileInput (change)="onFileSelected($event)" accept=".xlsx, .xls">
+                    </div>
+
+                    <button mat-raised-button color="accent" type="submit"
+                        [disabled]="!selectedFile || isProcessingExcel || isProcessed" class="process-button">
+                        <ng-container *ngIf="!isProcessingExcel; else loadingSpinner">
+                            {{ translate('FICHADO_PROCESAMIENTO.CARGA_SECTION.PROCESS_BUTTON') }}
+                        </ng-container>
+                        <ng-template #loadingSpinner>
+                            <div class="loading-spinner">
+                                <mat-spinner diameter="24"></mat-spinner>
+                                <span>{{ translate('FICHADO_PROCESAMIENTO.PROCESANDO') }}</span>
+                            </div>
+                        </ng-template>
+                    </button>
+                </form>
+            </mat-card-content>
+        </mat-card>
+
+        <div class="table-container" *ngIf="isProcessed">
+            <table mat-table [dataSource]="dataSource" multiTemplateDataRows class="w-full fichado-table">
+                <ng-container matColumnDef="legajo">
+                    <th mat-header-cell *matHeaderCellDef style="width:80px;">
+                        {{'FICHADO_PROCESAMIENTO.TABLE_EMPLEADO.LEGAJO' | translate}} </th>
+                    <td mat-cell *matCellDef="let element" style="width:80px;"> {{element.legajo}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="nombreCompleto">
+                    <th mat-header-cell *matHeaderCellDef> {{'FICHADO_PROCESAMIENTO.TABLE_EMPLEADO.NOMBRE_COMPLETO' |
+                        translate}} </th>
+                    <td mat-cell *matCellDef="let element"> {{element.nombreCompleto}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="expand">
+                    <th mat-header-cell *matHeaderCellDef aria-label="row actions"> </th>
+                    <td mat-cell *matCellDef="let element" style="text-align: right;">
+                        <button mat-icon-button aria-label="expand row"
+                            (click)="expandRow(element); $event.stopPropagation()">
+                            <mat-icon *ngIf="expandedElement !== element">keyboard_arrow_down</mat-icon>
+                            <mat-icon *ngIf="expandedElement === element">keyboard_arrow_up</mat-icon>
+                        </button>
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="expandedDetail">
+                    <td mat-cell *matCellDef="let element" [attr.colspan]="columnsToDisplayWithExpand.length"
+                        style="padding: 0px">
+                        <div class="element-detail"
+                            [@detailExpand]="element === expandedElement ? 'expanded' : 'collapsed'">
+                            <table mat-table [dataSource]="element.fichados" class="w-full custom-table">
+                                <ng-container matColumnDef="dia">
+                                    <th mat-header-cell *matHeaderCellDef>{{'FICHADO_PROCESAMIENTO.TABLE_DETALLE.DIA' |
+                                        translate}}</th>
+                                    <td mat-cell *matCellDef="let fichado">{{fichado.dia}}</td>
+                                </ng-container>
+                                <ng-container matColumnDef="fecha">
+                                    <th mat-header-cell *matHeaderCellDef>{{'FICHADO_PROCESAMIENTO.TABLE_DETALLE.FECHA'
+                                        | translate}}</th>
+                                    <td mat-cell *matCellDef="let fichado">{{fichado.fecha}}</td>
+                                </ng-container>
+                                <ng-container matColumnDef="entrada1">
+                                    <th mat-header-cell *matHeaderCellDef>
+                                        {{'FICHADO_PROCESAMIENTO.TABLE_DETALLE.ENTRADA1' | translate}}</th>
+                                    <td mat-cell *matCellDef="let fichado">{{fichado.entrada1}}</td>
+                                </ng-container>
+                                <ng-container matColumnDef="salida1">
+                                    <th mat-header-cell *matHeaderCellDef>
+                                        {{'FICHADO_PROCESAMIENTO.TABLE_DETALLE.SALIDA1' | translate}}</th>
+                                    <td mat-cell *matCellDef="let fichado">{{fichado.salida1}}</td>
+                                </ng-container>
+                                <ng-container matColumnDef="entrada2">
+                                    <th mat-header-cell *matHeaderCellDef>
+                                        {{'FICHADO_PROCESAMIENTO.TABLE_DETALLE.ENTRADA2' | translate}}</th>
+                                    <td mat-cell *matCellDef="let fichado">{{fichado.entrada2}}</td>
+                                </ng-container>
+                                <ng-container matColumnDef="salida2">
+                                    <th mat-header-cell *matHeaderCellDef>
+                                        {{'FICHADO_PROCESAMIENTO.TABLE_DETALLE.SALIDA2' | translate}}</th>
+                                    <td mat-cell *matCellDef="let fichado">{{fichado.salida2}}</td>
+                                </ng-container>
+                                <ng-container matColumnDef="totalDia">
+                                    <th mat-header-cell *matHeaderCellDef>
+                                        {{'FICHADO_PROCESAMIENTO.TABLE_DETALLE.TOTAL_DIA' | translate}}</th>
+                                    <td mat-cell *matCellDef="let fichado">{{fichado.totalDia}}</td>
+                                </ng-container>
+                                <ng-container matColumnDef="descanso">
+                                    <th mat-header-cell *matHeaderCellDef>
+                                        {{'FICHADO_PROCESAMIENTO.TABLE_DETALLE.DESCANSO' | translate}}</th>
+                                    <td mat-cell *matCellDef="let fichado">{{fichado.descanso}}</td>
+                                </ng-container>
+                                <ng-container matColumnDef="normal">
+                                    <th mat-header-cell *matHeaderCellDef>{{'FICHADO_PROCESAMIENTO.TABLE_DETALLE.NORMAL'
+                                        | translate}}</th>
+                                    <td mat-cell *matCellDef="let fichado">{{fichado.normal}}</td>
+                                </ng-container>
+                                <ng-container matColumnDef="extra50">
+                                    <th mat-header-cell *matHeaderCellDef>
+                                        {{'FICHADO_PROCESAMIENTO.TABLE_DETALLE.EXTRA50' | translate}}</th>
+                                    <td mat-cell *matCellDef="let fichado">{{fichado.extra50}}</td>
+                                </ng-container>
+                                <ng-container matColumnDef="extra100">
+                                    <th mat-header-cell *matHeaderCellDef>
+                                        {{'FICHADO_PROCESAMIENTO.TABLE_DETALLE.EXTRA100' | translate}}</th>
+                                    <td mat-cell *matCellDef="let fichado">{{fichado.extra100}}</td>
+                                </ng-container>
+                                <ng-container matColumnDef="horaNoTipificada">
+                                    <th mat-header-cell *matHeaderCellDef>
+                                        {{'FICHADO_PROCESAMIENTO.TABLE_DETALLE.HORA_NO_TIPIFICADA' | translate}}</th>
+                                    <td mat-cell *matCellDef="let fichado">{{fichado.horaNoTipificada}}</td>
+                                </ng-container>
+                                <ng-container matColumnDef="tarde">
+                                    <th mat-header-cell *matHeaderCellDef>{{'FICHADO_PROCESAMIENTO.TABLE_DETALLE.TARDE'
+                                        | translate}}</th>
+                                    <td mat-cell *matCellDef="let fichado">{{fichado.tarde}}</td>
+                                </ng-container>
+                                <ng-container matColumnDef="comentarios">
+                                    <th mat-header-cell *matHeaderCellDef>
+                                        {{'FICHADO_PROCESAMIENTO.TABLE_DETALLE.COMENTARIOS' | translate}}</th>
+                                    <td mat-cell *matCellDef="let fichado">{{fichado.comentarios}}</td>
+                                </ng-container>
+                                <ng-container matColumnDef="horasProductivas">
+                                    <th mat-header-cell *matHeaderCellDef>
+                                        {{'FICHADO_PROCESAMIENTO.TABLE_DETALLE.HORAS_PRODUCTIVAS' | translate}}</th>
+                                    <td mat-cell *matCellDef="let fichado">{{fichado.horasProductivas}}</td>
+                                </ng-container>
+
+                                <tr mat-header-row *matHeaderRowDef="fichadosDisplayedColumns"></tr>
+                                <tr mat-row *matRowDef="let row; columns: fichadosDisplayedColumns;"></tr>
+                            </table>
+                        </div>
+                    </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="columnsToDisplayWithExpand"></tr>
+                <tr mat-row *matRowDef="let element; columns: columnsToDisplayWithExpand;" class="element-row"
+                    [class.expanded-row]="expandedElement === element" (click)="expandRow(element)">
+                </tr>
+                <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="detail-row"></tr>
+            </table>
+        </div>
+    </div>
+</div>
