@@ -18,6 +18,8 @@ import { PERMISO_DEF } from './permiso/permiso.def';
 import { SEGURIDAD_GRUPO_PERMISO_DEF } from './seguridad_grupo_permiso/seguridad_grupo_permiso.def';
 import { SEGURIDAD_GRUPO_USUARIO_DEF } from './seguridad_grupo_usuario/seguridad_grupo_usuario.def';
 import { SEGURIDAD_GRUPO_DEF } from './seguridad_grupo/seguridad_grupo.def';
+import { FichadoProcesamientoComponent } from '../fichado-procesamiento/fichado-procesamiento.component';
+import { locale as fichadoLocale } from '../fichado-procesamiento/i18n/es';
 
 export const ROUTES: Routes = [
   {
@@ -67,6 +69,12 @@ export const ROUTES: Routes = [
     component: RecibosProcesamientoComponent,
     canActivate: [AuthGuardService],
     data: { title: recibosProcesamientoLocale.data.RECIBOS_PROCESAMIENTO.TITULO_CORTO }
+  },
+  {
+    path: 'fichado-procesamiento',
+    component: FichadoProcesamientoComponent,
+    canActivate: [AuthGuardService],
+    data: { title: fichadoLocale.data.FICHADO_PROCESAMIENTO.TITULO_CORTO }
   },
   {
     path: 'auth/password-update',

@@ -12,6 +12,7 @@ import { FwkModule } from '../../modules/fwk/core/fwk.module';
 import { DashboardModule } from '../content/dashboard/dashboard.module';
 import { GenerarQrModule } from '../content/generar-qr/generar-qr.module';
 import { RecibosProcesamientoModule as Recibos } from '../content/recibos-procesamiento/recibos-procesamiento.module';
+import { FichadoProcesamientoModule as Fichados } from '../content/fichado-procesamiento/fichado-procesamiento.module';
 import { AppRoutingModule } from '../../app-routing.module';
 import { environment } from 'environments/environment';
 import { AppConfigService } from './config/app.config.service';
@@ -50,6 +51,7 @@ const routes = [
         DashboardModule,
         GenerarQrModule,
         Recibos,
+        Fichados,
         IntegrationModule,
         FwkModule,
     ],
@@ -63,6 +65,7 @@ const routes = [
         DashboardModule,
         GenerarQrModule,
         Recibos,
+        Fichados,
         // AVACO
         FwkModule,
         AppRoutingModule

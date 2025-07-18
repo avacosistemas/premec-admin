@@ -44,6 +44,12 @@ export const navigation = [
                 'url': '/recibos-procesamiento'
             },
             {
+                'title': 'Procesar Fichados',
+                'type': 'item',
+                'icon': 'alarm_on',
+                'url': '/fichado-procesamiento'
+            },
+            {
                 'title': 'Seguridad',
                 'type': 'collapse',
                 'icon': 'security',
