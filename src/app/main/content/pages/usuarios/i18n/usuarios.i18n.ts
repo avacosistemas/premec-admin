@@ -45,5 +45,8 @@ export const USUARIOS_I18N_DEF = {
     usuarios_grid_def_column_usuariosap: 'Usuario SAP',
     usuarios_grid_def_column_admin: 'Es Admin',
     usuarios_grid_def_column_deposito: 'Depósito',
+    usuarios_grid_def_column_legajo: 'Legajo',
+    usuarios_create_form_fields_def_field_legajo: 'Legajo',
+    USUARIOS_UPDATE_FORM_FIELDS_DEF_FIELD_legajo: 'Legajo'
   }
 };

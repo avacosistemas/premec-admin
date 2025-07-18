@@ -38,6 +38,10 @@ export const USUARIOS_GRID_DEF = {
     {
       columnDef: 'deposito',
       columnNameKey: 'usuarios_grid_def_column_deposito'
+    },
+    {
+      columnDef: 'legajoFichaje',
+      columnNameKey: 'usuarios_grid_def_column_legajo'
     }
   ],
   sortAllColumns: true,
@@ -47,11 +51,12 @@ export const USUARIOS_GRID_DEF = {
     'username',
     'name',
     'lastname',
+    'usuariosap',
+    'deposito',
+    'legajoFichaje',
     'email',
     'enabled',
-    'usuariosap',
-    'admin',
-    'deposito'
+    'admin'
   ],
   actions: [
       {

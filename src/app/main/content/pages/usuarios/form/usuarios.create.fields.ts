@@ -51,5 +51,11 @@ export const USUARIOS_CREATE_FORM_FIELDS_DEF = [
     labelKey: 'usuarios_create_form_fields_def_field_deposito',
     type: 'string',
     controlType: 'textbox'
+  },
+  {
+    key: 'legajoFichaje',
+    labelKey: 'usuarios_create_form_fields_def_field_legajo',
+    type: 'string',
+    controlType: 'textbox'
   }
 ];

@@ -61,5 +61,10 @@ export const USUARIOS_UPDATE_FORM_FIELDS_DEF = [
     type: 'string',
     controlType: 'textbox'
   },
-
+  {
+    key: 'legajoFichaje',
+    labelKey: 'USUARIOS_UPDATE_FORM_FIELDS_DEF_FIELD_legajo',
+    type: 'string',
+    controlType: 'textbox'
+  }
 ];

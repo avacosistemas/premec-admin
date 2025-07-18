@@ -1,5 +1,5 @@
-export const PREFIX_DOMAIN_API =  'http://premec.ddns.net:48080/ws-rest/';
-export const PREFIX_DOMAIN_WEB =  'http://premec.ddns.net:48080/';
+export const PREFIX_DOMAIN_API =  'http://premec.ddns.net:48080/ws-rest-test/';
+export const PREFIX_DOMAIN_WEB =  'http://premec.ddns.net:48080/test/';
 
 export const environment = {
     localAuth: true,
