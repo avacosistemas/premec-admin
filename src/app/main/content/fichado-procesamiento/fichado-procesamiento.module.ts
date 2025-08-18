@@ -17,6 +17,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { FichadoProcesamientoComponent } from './fichado-procesamiento.component';
 import { FichadoProcesamientoService } from './fichado-procesamiento.service';
+import { ErrorModalModule } from 'app/main/components/error-modal/error-modal.module'; 
 
 const routes: Routes = [
     {
@@ -43,7 +44,7 @@ const routes: Routes = [
         MatIconModule,
         MatProgressSpinnerModule,
         MatTableModule,
-
+        ErrorModalModule,
         TranslateModule,
         FlexLayoutModule,
     ],

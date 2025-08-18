@@ -7,7 +7,7 @@ import { locale as esLocale } from './i18n/es';
 import { TranslateService } from '@ngx-translate/core';
 import { NotificationService } from 'app/modules/fwk/core/service/notification/notification.service';
 import { MatDialog } from '@angular/material/dialog';
-import { ErrorModalComponent } from 'app/error-modal/error-modal.component';
+import { ErrorModalComponent } from 'app/main/components/error-modal/error-modal.component';
 
 
 @Component({
