@@ -1,0 +1,13 @@
+<h2>Errores encontrados</h2>
+<div style="max-height: 400px; overflow-y: auto;">
+<ul *ngIf="data && objectKeys(data).length">
+  <li *ngFor="let key of objectKeys(data)">
+    <strong>{{ key }}:</strong> {{ data[key] }}
+  </li>
+</ul>
+</div>
+<div *ngIf="!data || !objectKeys(data).length">
+  No se encontraron errores.
+</div>
+<br>
+<button mat-button (click)="close()">Cerrar</button>

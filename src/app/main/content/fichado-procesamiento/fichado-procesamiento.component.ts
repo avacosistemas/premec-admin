@@ -6,6 +6,8 @@ import { FichadoEmpleado, FichadoDetalle, Empleado, FichadoApiResponse } from '.
 import { locale as esLocale } from './i18n/es';
 import { TranslateService } from '@ngx-translate/core';
 import { NotificationService } from 'app/modules/fwk/core/service/notification/notification.service';
+import { MatDialog } from '@angular/material/dialog';
+import { ErrorModalComponent } from 'app/error-modal/error-modal.component';
 
 
 @Component({
@@ -44,7 +46,8 @@ export class FichadoProcesamientoComponent implements OnInit {
     constructor(
         private fichadoService: FichadoProcesamientoService,
         private translateService: TranslateService,
-        private notificationService: NotificationService
+        private notificationService: NotificationService,
+        private dialog: MatDialog
     ) {
         this.translateService.setTranslation('es', esLocale.data, true);
         this.translateService.use('es');
@@ -158,6 +161,12 @@ export class FichadoProcesamientoComponent implements OnInit {
             error: (err) => {
                 this.isSendingToSap = false;
                 this.notificationService.notifyError('Error al enviar los datos a SAP.');
+                
+                this.dialog.open(ErrorModalComponent, {
+                    data: err.error.errors,
+                    width: '600px'
+                    });
+                
                 console.error(err);
             }
         });
