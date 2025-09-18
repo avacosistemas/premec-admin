@@ -1,0 +1,42 @@
+export const locale = {
+    lang: 'es',
+    data: {
+        'CIERRE_MES': {
+            'TITULO': 'Cierre de Mes',
+            'MES': 'Mes',
+            'ANIO': 'Año',
+            'ERROR_ANIO': 'El año debe ser entre 2001 y {{year}}',
+            'VISTA_PREVIA': 'Vista Previa',
+            'GUARDAR': 'Guardar Cierres',
+            'CARGANDO': 'Cargando...',
+            'EXITO_GUARDADO': 'Los cierres se han guardado correctamente.',
+            'ERROR_GUARDADO': 'Ocurrió un error al guardar los cierres.',
+            'ERROR_VISTA_PREVIA': 'Ocurrió un error al obtener la vista previa.',
+            'NO_HAY_RESULTADOS': 'No se encontraron resultados para el período seleccionado.',
+            'LEGAJO': 'Legajo',
+            'USUARIOSAP': 'Usuario SAP',
+            'NOMBRE': 'Nombre',
+            'FACTURABLESHORA': 'Hs. Facturables',
+            'OCIOSASHORA': 'Hs. Ociosas',
+            'FICHADOHORA': 'Hs. Fichado',
+            'EFECTIVIDAD': 'Efectividad',
+            'CANTMB': 'MB',
+            'CANTB': 'B',
+            'CANTR': 'R',
+            'CANTM': 'M',
+            'CANTSV': 'SV',
+            'CANTIDADACTIVIDADES': 'Actividades',
+            'PORCENTAJEVALORACION': '% Valoración',
+            'OBJETIVOACTIVIDADES': 'Objetivo Act.',
+            'CUMPLIMIENTOOBJETIVO': 'Cumplimiento Obj.',
+            'VIATICOS': 'Viáticos',
+            'ADELANTO': 'Adelanto',
+            'PRESTAMO': 'Préstamo',
+            'PREMIOASISTENCIA': 'Premio Asistencia',
+            'NOVEDADES': 'Novedades',
+            'GRATIFICACIONESAUMENTOS': 'Gratificaciones/Aumentos',
+            'EDITAR_NOVEDADES': 'Editar Novedades',
+            'EDITAR_GRATIFICACIONES': 'Editar Gratificaciones'
+        }
+    }
+};

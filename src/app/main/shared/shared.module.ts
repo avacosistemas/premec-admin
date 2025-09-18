@@ -13,6 +13,7 @@ import { DashboardModule } from '../content/dashboard/dashboard.module';
 import { GenerarQrModule } from '../content/generar-qr/generar-qr.module';
 import { RecibosProcesamientoModule as Recibos } from '../content/recibos-procesamiento/recibos-procesamiento.module';
 import { FichadoProcesamientoModule as Fichados } from '../content/fichado-procesamiento/fichado-procesamiento.module';
+import { CierreMesModule } from '../content/cierre-mes/cierre-mes.module';
 import { AppRoutingModule } from '../../app-routing.module';
 import { environment } from 'environments/environment';
 import { AppConfigService } from './config/app.config.service';
@@ -50,6 +51,7 @@ const routes = [
         FuseMainModule,
         DashboardModule,
         GenerarQrModule,
+        CierreMesModule,
         Recibos,
         Fichados,
         IntegrationModule,
@@ -64,6 +66,7 @@ const routes = [
         FuseMainModule,
         DashboardModule,
         GenerarQrModule,
+        CierreMesModule,
         Recibos,
         Fichados,
         // AVACO

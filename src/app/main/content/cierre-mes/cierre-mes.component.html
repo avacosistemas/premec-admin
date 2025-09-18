@@ -1,0 +1,150 @@
+<div class="content-app-cierre-mes">
+    <div class="top-header-cierre-mes">
+        <p>{{ translate('CIERRE_MES.TITULO') }}</p>
+        <ng-container *ngIf="dataSource.data.length > 0">
+            <button mat-raised-button color="accent" (click)="guardarCierres()" [disabled]="saving" class="save-button">
+                <ng-container *ngIf="saving; else saveButtonContent">
+                    <div class="loading-spinner">
+                        <mat-spinner diameter="24"></mat-spinner>
+                        <span>{{ translate('CIERRE_MES.CARGANDO') }}</span>
+                    </div>
+                </ng-container>
+                <ng-template #saveButtonContent>
+                    {{ translate('CIERRE_MES.GUARDAR') }}
+                </ng-template>
+            </button>
+        </ng-container>
+    </div>
+
+    <div class="container-cierre-mes">
+        <mat-card class="form-card" class="card-content">
+            <mat-card-content>
+                <form [formGroup]="cierreForm" (ngSubmit)="vistaPrevia()" class="form-container">
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>{{ translate('CIERRE_MES.MES') }}</mat-label>
+                        <mat-select formControlName="mes">
+                            <mat-option *ngFor="let mes of meses" [value]="mes.value">
+                                {{ mes.viewValue }}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>{{ translate('CIERRE_MES.ANIO') }}</mat-label>
+                        <input matInput type="number" formControlName="anio" min="2001" [max]="currentYear">
+                        <mat-error
+                            *ngIf="cierreForm.controls.anio.hasError('min') || cierreForm.controls.anio.hasError('max')">
+                            {{ translate('CIERRE_MES.ERROR_ANIO', { year: currentYear }) }}
+                        </mat-error>
+                    </mat-form-field>
+
+                    <button mat-raised-button color="primary" type="submit" [disabled]="cierreForm.invalid || loading"
+                        class="preview-button">
+                        <ng-container *ngIf="loading; else previewButtonContent">
+                            <div class="loading-spinner">
+                                <mat-spinner diameter="24"></mat-spinner>
+                                <span>{{ translate('CIERRE_MES.CARGANDO') }}</span>
+                            </div>
+                        </ng-container>
+                        <ng-template #previewButtonContent>
+                            {{ translate('CIERRE_MES.VISTA_PREVIA') }}
+                        </ng-template>
+                    </button>
+                </form>
+            </mat-card-content>
+        </mat-card>
+
+        <div class="table-container" *ngIf="dataSource.data.length > 0">
+            <table mat-table [dataSource]="dataSource" multiTemplateDataRows class="cierre-mes-table">
+
+                <div>
+                    <ng-container matColumnDef="{{column}}" *ngFor="let column of columnsToDisplay">
+                        <th mat-header-cell *matHeaderCellDef> {{ translate('CIERRE_MES.' + column.toUpperCase()) }}
+                        </th>
+                        <td mat-cell *matCellDef="let element"> {{element[column]}} </td>
+                    </ng-container>
+                </div>
+
+                <ng-container matColumnDef="expand">
+                    <th mat-header-cell *matHeaderCellDef aria-label="row actions">&nbsp;</th>
+                    <td mat-cell *matCellDef="let element" class="td-mat-cell-right">
+                        <button mat-icon-button aria-label="expand row"
+                            (click)="(expandedElement = expandedElement === element ? null : element); $event.stopPropagation()">
+                            <mat-icon *ngIf="expandedElement !== element">keyboard_arrow_down</mat-icon>
+                            <mat-icon *ngIf="expandedElement === element">keyboard_arrow_up</mat-icon>
+                        </button>
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="expandedDetail">
+                    <td mat-cell *matCellDef="let element" class="td-row"
+                        [attr.colspan]="columnsToDisplayWithExpand.length">
+                        <div class="element-detail"
+                            [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+                            <div class="detail-grid">
+                                <div class="item-row-1">
+                                    <div><strong>{{ translate('CIERRE_MES.CANTMB') }}:</strong> {{element.cantMB}}</div>
+                                    <div><strong>{{ translate('CIERRE_MES.CANTB') }}:</strong> {{element.cantB}}</div>
+                                    <div><strong>{{ translate('CIERRE_MES.CANTR') }}:</strong> {{element.cantR}}</div>
+                                    <div><strong>{{ translate('CIERRE_MES.CANTM') }}:</strong> {{element.cantM}}</div>
+                                    <div><strong>{{ translate('CIERRE_MES.CANTSV') }}:</strong> {{element.cantSV}}</div>
+                                    <div><strong>{{ translate('CIERRE_MES.PORCENTAJEVALORACION') }}:</strong>
+                                        {{element.porcentajeValoracion}}</div>
+                                    <div><strong>{{ translate('CIERRE_MES.OBJETIVOACTIVIDADES') }}:</strong>
+                                        {{element.objetivoActividades}}</div>
+                                    <div class="grid-col-span-3"><strong>{{ translate('CIERRE_MES.CANTIDADACTIVIDADES')
+                                            }}:</strong> {{element.cantidadActividades}}</div>
+                                </div>
+
+                                <div class="item-row-2">
+                                    <mat-form-field appearance="outline">
+                                        <mat-label>{{ translate('CIERRE_MES.VIATICOS') }}</mat-label>
+                                        <input matInput type="number" [(ngModel)]="element.viaticos" min="0"
+                                            step="0.01">
+                                    </mat-form-field>
+
+                                    <mat-form-field appearance="outline">
+                                        <mat-label>{{ translate('CIERRE_MES.ADELANTO') }}</mat-label>
+                                        <input matInput type="number" [(ngModel)]="element.adelanto" min="0"
+                                            step="0.01">
+                                    </mat-form-field>
+
+                                    <mat-form-field appearance="outline">
+                                        <mat-label>{{ translate('CIERRE_MES.PRESTAMO') }}</mat-label>
+                                        <input matInput type="number" [(ngModel)]="element.prestamo" min="0"
+                                            step="0.01">
+                                    </mat-form-field>
+
+                                    <mat-slide-toggle [(ngModel)]="element.premioAsistencia" color="primary"
+                                        class="premio-asistencia-toggle">
+                                        {{ translate('CIERRE_MES.PREMIOASISTENCIA') }}
+                                    </mat-slide-toggle>
+                                </div>
+
+                                <div class="item-row-3">
+                                    <mat-form-field appearance="outline" class="full-width">
+                                        <mat-label>{{ translate('CIERRE_MES.NOVEDADES') }}</mat-label>
+                                        <input matInput type="text" [(ngModel)]="element.novedades" />
+                                    </mat-form-field>
+                                    <mat-form-field appearance="outline" class="full-width">
+                                        <mat-label>{{ translate('CIERRE_MES.GRATIFICACIONESAUMENTOS') }}</mat-label>
+                                        <input matInput type="text" [(ngModel)]="element.gratificacionesAumentos" />
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="columnsToDisplayWithExpand"></tr>
+                <tr mat-row *matRowDef="let element; columns: columnsToDisplayWithExpand;" class="element-row"
+                    [class.expanded-row]="expandedElement === element"
+                    (click)="expandedElement = expandedElement === element ? null : element">
+                </tr>
+                <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="detail-row"></tr>
+            </table>
+
+            <mat-paginator [pageSize]="10" [pageSizeOptions]="[10, 20, 50]" showFirstLastButtons></mat-paginator>
+        </div>
+    </div>
+</div>

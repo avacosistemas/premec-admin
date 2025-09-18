@@ -62,7 +62,7 @@
         </mat-card>
 
 
-        <div class="table-container">
+        <div class="table-container" *ngIf="dataSource.data.length > 0">
             <mat-table [dataSource]="dataSource" matSort class="recibos-table">
 
                 <ng-container matColumnDef="legajo">

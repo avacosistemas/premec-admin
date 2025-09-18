@@ -50,6 +50,12 @@ export const navigation = [
                 'url': '/fichado-procesamiento'
             },
             {
+                'title': 'Cierre de Mes',
+                'type': 'item',
+                'icon': 'event_available',
+                'url': '/cierre-mes'
+            },
+            {
                 'title': 'Seguridad',
                 'type': 'collapse',
                 'icon': 'security',
