@@ -40,7 +40,9 @@ export class FichadoProcesamientoComponent implements OnInit {
     fichadosDisplayedColumns: string[] = [
         'dia', 'fecha', 'entrada1', 'salida1', 'entrada2', 'salida2',
         'totalDia', 'descanso', 'normal', 'extra50', 'extra100',
-        'horaNoTipificada', 'tarde', 'comentarios', 'horasProductivas'
+        // 'horaNoTipificada', 
+        'tarde', 'comentarios', 
+        // 'horasProductivas'
     ];
 
     constructor(

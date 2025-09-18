@@ -32,10 +32,10 @@ export interface FichadoDetalle {
     normal: string;
     extra50: string;
     extra100: string;
-    horaNoTipificada: string;
+    // horaNoTipificada: string;
     tarde: string;
     comentarios: string;
-    horasProductivas: number | null;
+    // horasProductivas: number | null;
 }
 
 export interface FichadoSendPayload {

@@ -133,11 +133,11 @@
                                         {{'FICHADO_PROCESAMIENTO.TABLE_DETALLE.EXTRA100' | translate}}</th>
                                     <td mat-cell *matCellDef="let fichado">{{fichado.extra100}}</td>
                                 </ng-container>
-                                <ng-container matColumnDef="horaNoTipificada">
+                                <!-- <ng-container matColumnDef="horaNoTipificada">
                                     <th mat-header-cell *matHeaderCellDef>
                                         {{'FICHADO_PROCESAMIENTO.TABLE_DETALLE.HORA_NO_TIPIFICADA' | translate}}</th>
                                     <td mat-cell *matCellDef="let fichado">{{fichado.horaNoTipificada}}</td>
-                                </ng-container>
+                                </ng-container> -->
                                 <ng-container matColumnDef="tarde">
                                     <th mat-header-cell *matHeaderCellDef>{{'FICHADO_PROCESAMIENTO.TABLE_DETALLE.TARDE'
                                         | translate}}</th>
@@ -148,11 +148,11 @@
                                         {{'FICHADO_PROCESAMIENTO.TABLE_DETALLE.COMENTARIOS' | translate}}</th>
                                     <td mat-cell *matCellDef="let fichado">{{fichado.comentarios}}</td>
                                 </ng-container>
-                                <ng-container matColumnDef="horasProductivas">
+                                <!-- <ng-container matColumnDef="horasProductivas">
                                     <th mat-header-cell *matHeaderCellDef>
                                         {{'FICHADO_PROCESAMIENTO.TABLE_DETALLE.HORAS_PRODUCTIVAS' | translate}}</th>
                                     <td mat-cell *matCellDef="let fichado">{{fichado.horasProductivas}}</td>
-                                </ng-container>
+                                </ng-container> -->
 
                                 <tr mat-header-row *matHeaderRowDef="fichadosDisplayedColumns"></tr>
                                 <tr mat-row *matRowDef="let row; columns: fichadosDisplayedColumns;"></tr>

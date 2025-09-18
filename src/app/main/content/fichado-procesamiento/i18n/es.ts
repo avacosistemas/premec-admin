@@ -31,10 +31,10 @@ export const locale = {
                 'NORMAL': 'Normal',
                 'EXTRA50': 'Extra 50%',
                 'EXTRA100': 'Extra 100%',
-                'HORA_NO_TIPIFICADA': 'Hora no Tipificada',
+                // 'HORA_NO_TIPIFICADA': 'Hora no Tipificada',
                 'TARDE': 'Tarde',
                 'COMENTARIOS': 'Comentarios',
-                'HORAS_PRODUCTIVAS': 'Hs. Productivas'
+                // 'HORAS_PRODUCTIVAS': 'Hs. Productivas'
             }
         }
     }
