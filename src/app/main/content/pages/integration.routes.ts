@@ -20,7 +20,10 @@ import { SEGURIDAD_GRUPO_USUARIO_DEF } from './seguridad_grupo_usuario/seguridad
 import { SEGURIDAD_GRUPO_DEF } from './seguridad_grupo/seguridad_grupo.def';
 import { FichadoProcesamientoComponent } from '../fichado-procesamiento/fichado-procesamiento.component';
 import { CierreMesComponent } from 'app/main/content/cierre-mes/cierre-mes.component';
+import { NovedadesContadorComponent } from 'app/main/content/novedades-contador/novedades-contador.component';
+import { NOVEDADES_CONTADOR_SECURITY_DEF } from '../novedades-contador/security/novedades-contador.security';
 import { locale as fichadoLocale } from '../fichado-procesamiento/i18n/es';
+// import { PermissionGuard } from 'app/modules/fwk/core/service/security/permission-guard.service';
 
 export const ROUTES: Routes = [
   {
@@ -81,6 +84,17 @@ export const ROUTES: Routes = [
     path: 'cierre-mes',
     component: CierreMesComponent,
     canActivate: [AuthGuardService]
+  },
+  {
+    path: 'novedades-contador',
+    component: NovedadesContadorComponent,
+    canActivate: [
+      AuthGuardService, 
+      // PermissionGuard
+    ],
+    // data: {
+    //   permission: NOVEDADES_CONTADOR_SECURITY_DEF.readAccess
+    // }
   },
   {
     path: 'auth/password-update',

@@ -9,11 +9,14 @@ import { FuseModule } from '@fuse/fuse.module';
 import { FuseSharedModule } from '@fuse/shared.module';
 import { FuseMainModule } from '../main.module';
 import { FwkModule } from '../../modules/fwk/core/fwk.module';
+
 import { DashboardModule } from '../content/dashboard/dashboard.module';
 import { GenerarQrModule } from '../content/generar-qr/generar-qr.module';
 import { RecibosProcesamientoModule as Recibos } from '../content/recibos-procesamiento/recibos-procesamiento.module';
 import { FichadoProcesamientoModule as Fichados } from '../content/fichado-procesamiento/fichado-procesamiento.module';
 import { CierreMesModule } from '../content/cierre-mes/cierre-mes.module';
+import { NovedadesContadorModule } from '../content/novedades-contador/novedades-contador.module';
+
 import { AppRoutingModule } from '../../app-routing.module';
 import { environment } from 'environments/environment';
 import { AppConfigService } from './config/app.config.service';
@@ -52,6 +55,7 @@ const routes = [
         DashboardModule,
         GenerarQrModule,
         CierreMesModule,
+        NovedadesContadorModule,
         Recibos,
         Fichados,
         IntegrationModule,
@@ -67,6 +71,7 @@ const routes = [
         DashboardModule,
         GenerarQrModule,
         CierreMesModule,
+        NovedadesContadorModule,
         Recibos,
         Fichados,
         // AVACO

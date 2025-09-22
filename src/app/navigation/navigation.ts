@@ -5,6 +5,7 @@ import { RECIBOS_NAV_DEF } from 'app/main/content/pages/recibos/navigation/recib
 import { PERMISO_DEF } from 'app/main/content/pages/permiso/permiso.def';
 import { SEGURIDAD_GRUPO_DEF } from 'app/main/content/pages/seguridad_grupo/seguridad_grupo.def';
 import { USUARIOS_DEF } from 'app/main/content/pages/usuarios/usuarios.def';
+import { NOVEDADES_CONTADOR_SECURITY_DEF } from 'app/main/content/novedades-contador/security/novedades-contador.security';
 
 export const navigation = [
     {
@@ -54,6 +55,13 @@ export const navigation = [
                 'type': 'item',
                 'icon': 'event_available',
                 'url': '/cierre-mes'
+            },
+            {
+                'title': 'Novedades Contador',
+                'type': 'item',
+                'icon': 'request_quote',
+                'url': '/novedades-contador',
+                'permission': NOVEDADES_CONTADOR_SECURITY_DEF.readAccess
             },
             {
                 'title': 'Seguridad',

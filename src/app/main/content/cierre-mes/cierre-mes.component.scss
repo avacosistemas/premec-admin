@@ -12,17 +12,26 @@
     color: white;
     font-weight: bold;
     background-color: #3400ff;
+    margin-bottom: 24px;
+
+    p {
+        font-size: 24px;
+    }
 }
 
 .container-cierre-mes {
     width: 100%;
-    padding: 0 35px 35px 35px;
+    height: 70vh;
+    padding: 35px;
+    padding-top: 0px;
     transform: translateY(-62px);
+    place-content: flex-start;
+    align-items: flex-start;
+    flex-flow: wrap;
+    gap: 25px;
+    flex-direction: row;
     box-sizing: border-box;
     display: flex;
-    flex-direction: column;
-    gap: 24px;
-    margin-top: 20px;
 }
 
 .form-card {
@@ -31,6 +40,9 @@
 
 .card-content {
     padding-bottom: 0px !important;
+    flex: 1 1 100%;
+    box-sizing: border-box;
+    max-width: 100%;
 }
 
 .form-container {
