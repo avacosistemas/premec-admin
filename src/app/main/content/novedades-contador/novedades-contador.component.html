@@ -1,0 +1,282 @@
+<div class="content-app-novedades-contador">
+    <div class="top-header-novedades-contador">
+        <p>{{ translate('NOVEDADES_CONTADOR.TITULO') }}</p>
+        <ng-container *ngIf="novedadesData">
+            <button mat-raised-button color="accent" (click)="guardarNovedades()" [disabled]="saving"
+                class="save-button">
+                <ng-container *ngIf="saving; else saveButtonContent">
+                    <div class="loading-spinner">
+                        <mat-spinner diameter="24"></mat-spinner>
+                        <span>{{ translate('NOVEDADES_CONTADOR.GUARDANDO') }}</span>
+                    </div>
+                </ng-container>
+                <ng-template #saveButtonContent>
+                    {{ translate('NOVEDADES_CONTADOR.GUARDAR') }}
+                </ng-template>
+            </button>
+        </ng-container>
+    </div>
+
+    <div class="container-novedades-contador">
+        <mat-card class="form-card">
+            <mat-card-content>
+                <form [formGroup]="novedadesForm" (ngSubmit)="vistaPrevia()" class="form-container">
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>{{ translate('NOVEDADES_CONTADOR.MES') }}</mat-label>
+                        <mat-select formControlName="mes">
+                            <mat-option *ngFor="let mes of meses" [value]="mes.value">
+                                {{ mes.viewValue }}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>{{ translate('NOVEDADES_CONTADOR.ANIO') }}</mat-label>
+                        <input matInput type="number" formControlName="anio" min="2001" [max]="currentYear">
+                        <mat-error
+                            *ngIf="novedadesForm.controls.anio.hasError('min') || novedadesForm.controls.anio.hasError('max')">
+                            {{ translate('NOVEDADES_CONTADOR.ERROR_ANIO', { year: currentYear }) }}
+                        </mat-error>
+                    </mat-form-field>
+
+                    <button mat-raised-button color="primary" type="submit"
+                        [disabled]="novedadesForm.invalid || loading" class="preview-button">
+                        <ng-container *ngIf="loading; else previewButtonContent">
+                            <div class="loading-spinner">
+                                <mat-spinner diameter="24"></mat-spinner>
+                                <span>{{ translate('NOVEDADES_CONTADOR.CARGANDO') }}</span>
+                            </div>
+                        </ng-container>
+                        <ng-template #previewButtonContent>
+                            {{ translate('NOVEDADES_CONTADOR.VISTA_PREVIA') }}
+                        </ng-template>
+                    </button>
+                </form>
+            </mat-card-content>
+        </mat-card>
+
+        <div class="table-container-novedades-contador" style="width:100%" *ngIf="novedadesData">
+            <mat-tab-group animationDuration="0ms">
+                <mat-tab [label]="translate('NOVEDADES_CONTADOR.TAB_JORNALES')">
+                    <ng-template matTabContent>
+                        <div class="table-container">
+                            <table mat-table [dataSource]="jornalesDataSource" multiTemplateDataRows class="novedades-table">
+                                <ng-container matColumnDef="legajo">
+                                    <th mat-header-cell *matHeaderCellDef>{{ translate('NOVEDADES_CONTADOR.COLUMNAS.LEGAJO') }}</th>
+                                    <td mat-cell *matCellDef="let e"> {{e.legajo}} </td>
+                                </ng-container>
+                                <ng-container matColumnDef="nombreCompleto">
+                                    <th mat-header-cell *matHeaderCellDef>{{ translate('NOVEDADES_CONTADOR.COLUMNAS.NOMBRE_COMPLETO') }}</th>
+                                    <td mat-cell *matCellDef="let e"> {{e.nombre}} {{e.apellido}} </td>
+                                </ng-container>
+                                <ng-container matColumnDef="cuil">
+                                    <th mat-header-cell *matHeaderCellDef>{{ translate('NOVEDADES_CONTADOR.COLUMNAS.CUIL') }}</th>
+                                    <td mat-cell *matCellDef="let e"> {{e.cuil}} </td>
+                                </ng-container>
+                                <ng-container matColumnDef="gratificaciones">
+                                    <th mat-header-cell *matHeaderCellDef>{{ translate('NOVEDADES_CONTADOR.COLUMNAS.GRATIFICACIONES') }}</th>
+                                    <td mat-cell *matCellDef="let element" (click)="$event.stopPropagation()">
+                                        <mat-form-field appearance="outline" class="editable-field">
+                                            <input matInput [(ngModel)]="element.gratificaciones">
+                                        </mat-form-field>
+                                    </td>
+                                </ng-container>
+                                <ng-container matColumnDef="novedades">
+                                    <th mat-header-cell *matHeaderCellDef>{{ translate('NOVEDADES_CONTADOR.COLUMNAS.NOVEDADES') }}</th>
+                                    <td mat-cell *matCellDef="let element" (click)="$event.stopPropagation()">
+                                        <mat-form-field appearance="outline" class="editable-field">
+                                            <input matInput [(ngModel)]="element.novedades">
+                                        </mat-form-field>
+                                    </td>
+                                </ng-container>
+
+                                <ng-container matColumnDef="expand">
+                                    <th mat-header-cell *matHeaderCellDef></th>
+                                    <td mat-cell *matCellDef="let element">
+                                        <button mat-icon-button (click)="(expandedJornalElement = expandedJornalElement === element ? null : element); $event.stopPropagation()">
+                                            <mat-icon *ngIf="expandedJornalElement !== element">keyboard_arrow_down</mat-icon>
+                                            <mat-icon *ngIf="expandedJornalElement === element">keyboard_arrow_up</mat-icon>
+                                        </button>
+                                    </td>
+                                </ng-container>
+
+                                <ng-container matColumnDef="expandedDetail">
+                                    <td mat-cell *matCellDef="let element" [attr.colspan]="jornalesDisplayedColumns.length">
+                                        <div class="element-detail" [@detailExpand]="element == expandedJornalElement ? 'expanded' : 'collapsed'">
+                                            <div class="detail-item"><span class="detail-label">{{ translate('NOVEDADES_CONTADOR.COLUMNAS.CATEGORIA') }}</span><span class="detail-value">{{element.categoria}}</span></div>
+                                            <div class="detail-item"><span class="detail-label">{{ translate('NOVEDADES_CONTADOR.COLUMNAS.VALORHORA') }}</span><span class="detail-value">{{element.valorHora}}</span></div>
+                                            <div class="detail-item"><span class="detail-label">{{ translate('NOVEDADES_CONTADOR.COLUMNAS.HSNORMALES') }}</span><span class="detail-value">{{element.hsNormales}}</span></div>
+                                            <div class="detail-item"><span class="detail-label">{{ translate('NOVEDADES_CONTADOR.COLUMNAS.HS50') }}</span><span class="detail-value">{{element.hs50}}</span></div>
+                                            <div class="detail-item"><span class="detail-label">{{ translate('NOVEDADES_CONTADOR.COLUMNAS.HS100') }}</span><span class="detail-value">{{element.hs100}}</span></div>
+                                            <div class="detail-item"><span class="detail-label">{{ translate('NOVEDADES_CONTADOR.COLUMNAS.FERIADO') }}</span><span class="detail-value">{{element.feriado}}</span></div>
+                                            <div class="detail-item"><span class="detail-label">{{ translate('NOVEDADES_CONTADOR.COLUMNAS.FERIADOEXTRA') }}</span><span class="detail-value">{{element.feriadoExtra}}</span></div>
+                                            <div class="detail-item"><span class="detail-label">{{ translate('NOVEDADES_CONTADOR.COLUMNAS.COMIDA') }}</span><span class="detail-value">{{element.comida}}</span></div>
+                                            <div class="detail-item"><span class="detail-label">{{ translate('NOVEDADES_CONTADOR.COLUMNAS.PREMIO') }}</span><span class="detail-value">{{element.premio}}</span></div>
+                                            <div class="detail-item"><span class="detail-label">{{ translate('NOVEDADES_CONTADOR.COLUMNAS.ADELANTOSUELDO') }}</span><span class="detail-value">{{element.adelantoSueldo}}</span></div>
+                                            <div class="detail-item"><span class="detail-label">{{ translate('NOVEDADES_CONTADOR.COLUMNAS.PRESTAMOS') }}</span><span class="detail-value">{{element.prestamos}}</span></div>
+                                        </div>
+                                    </td>
+                                </ng-container>
+
+                                <tr mat-header-row *matHeaderRowDef="jornalesDisplayedColumns"></tr>
+                                <tr mat-row *matRowDef="let element; columns: jornalesDisplayedColumns;" class="element-row" [class.expanded-row]="expandedJornalElement === element" (click)="expandedJornalElement = expandedJornalElement === element ? null : element"></tr>
+                                <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="detail-row"></tr>
+                               <tr class="mat-row" *matNoDataRow>
+                                    <td class="mat-cell no-records-cell" [attr.colspan]="jornalesDisplayedColumns.length">
+                                        {{ translate('NOVEDADES_CONTADOR.NO_HAY_REGISTROS') }}
+                                    </td>
+                                </tr>
+                            </table>
+                            <mat-paginator #jornalesPaginator [pageSizeOptions]="[10, 20, 50]" showFirstLastButtons></mat-paginator>
+                        </div>
+                    </ng-template>
+                </mat-tab>
+
+                <!-- PESTAÑA FUERA DE CONVENIO -->
+                <mat-tab [label]="translate('NOVEDADES_CONTADOR.TAB_FUERACONVENIO')">
+                    <ng-template matTabContent>
+                        <div class="table-container">
+                            <table mat-table [dataSource]="fueraConvenioDataSource" multiTemplateDataRows class="novedades-table">
+                                <ng-container matColumnDef="legajo">
+                                    <th mat-header-cell *matHeaderCellDef>{{ translate('NOVEDADES_CONTADOR.COLUMNAS.LEGAJO') }}</th>
+                                    <td mat-cell *matCellDef="let e"> {{e.legajo}} </td>
+                                </ng-container>
+                                <ng-container matColumnDef="nombreCompleto">
+                                    <th mat-header-cell *matHeaderCellDef>{{ translate('NOVEDADES_CONTADOR.COLUMNAS.NOMBRE_COMPLETO') }}</th>
+                                    <td mat-cell *matCellDef="let e"> {{e.nombre}} {{e.apellido}} </td>
+                                </ng-container>
+                                <ng-container matColumnDef="cuil">
+                                    <th mat-header-cell *matHeaderCellDef>{{ translate('NOVEDADES_CONTADOR.COLUMNAS.CUIL') }}</th>
+                                    <td mat-cell *matCellDef="let e"> {{e.cuil}} </td>
+                                </ng-container>
+                                <ng-container matColumnDef="gratificaciones">
+                                    <th mat-header-cell *matHeaderCellDef>{{ translate('NOVEDADES_CONTADOR.COLUMNAS.GRATIFICACIONES') }}</th>
+                                    <td mat-cell *matCellDef="let element" (click)="$event.stopPropagation()">
+                                        <mat-form-field appearance="outline" class="editable-field">
+                                            <input matInput [(ngModel)]="element.gratificaciones">
+                                        </mat-form-field>
+                                    </td>
+                                </ng-container>
+                                <ng-container matColumnDef="novedades">
+                                    <th mat-header-cell *matHeaderCellDef>{{ translate('NOVEDADES_CONTADOR.COLUMNAS.NOVEDADES') }}</th>
+                                    <td mat-cell *matCellDef="let element" (click)="$event.stopPropagation()">
+                                        <mat-form-field appearance="outline" class="editable-field">
+                                            <input matInput [(ngModel)]="element.novedades">
+                                        </mat-form-field>
+                                    </td>
+                                </ng-container>
+
+                                <ng-container matColumnDef="expand">
+                                    <th mat-header-cell *matHeaderCellDef></th>
+                                    <td mat-cell *matCellDef="let element">
+                                        <button mat-icon-button (click)="(expandedFueraConvenioElement = expandedFueraConvenioElement === element ? null : element); $event.stopPropagation()">
+                                            <mat-icon *ngIf="expandedFueraConvenioElement !== element">keyboard_arrow_down</mat-icon>
+                                            <mat-icon *ngIf="expandedFueraConvenioElement === element">keyboard_arrow_up</mat-icon>
+                                        </button>
+                                    </td>
+                                </ng-container>
+
+                                <ng-container matColumnDef="expandedDetail">
+                                    <td mat-cell *matCellDef="let element" [attr.colspan]="fueraConvenioDisplayedColumns.length">
+                                        <div class="element-detail" [@detailExpand]="element == expandedFueraConvenioElement ? 'expanded' : 'collapsed'">
+                                            <div class="detail-item"><span class="detail-label">{{ translate('NOVEDADES_CONTADOR.COLUMNAS.CATEGORIA') }}</span><span class="detail-value">{{element.categoria}}</span></div>
+                                            <div class="detail-item"><span class="detail-label">{{ translate('NOVEDADES_CONTADOR.COLUMNAS.FERIADO') }}</span><span class="detail-value">{{element.feriado}}</span></div>
+                                            <div class="detail-item"><span class="detail-label">{{ translate('NOVEDADES_CONTADOR.COLUMNAS.ADELANTOSUELDO') }}</span><span class="detail-value">{{element.adelantoSueldo}}</span></div>
+                                            <div class="detail-item"><span class="detail-label">{{ translate('NOVEDADES_CONTADOR.COLUMNAS.PRESTAMOS') }}</span><span class="detail-value">{{element.prestamos}}</span></div>
+                                        </div>
+                                    </td>
+                                </ng-container>
+
+                                <tr mat-header-row *matHeaderRowDef="fueraConvenioDisplayedColumns"></tr>
+                                <tr mat-row *matRowDef="let element; columns: fueraConvenioDisplayedColumns;" class="element-row" [class.expanded-row]="expandedFueraConvenioElement === element" (click)="expandedFueraConvenioElement = expandedFueraConvenioElement === element ? null : element"></tr>
+                                <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="detail-row"></tr>
+                                <tr class="mat-row" *matNoDataRow>
+                                    <td class="mat-cell no-records-cell" [attr.colspan]="fueraConvenioDisplayedColumns.length">
+                                        {{ translate('NOVEDADES_CONTADOR.NO_HAY_REGISTROS') }}
+                                    </td>
+                                </tr>
+                            </table>
+                            <mat-paginator #fueraConvenioPaginator [pageSizeOptions]="[10, 20, 50]" showFirstLastButtons></mat-paginator>
+                        </div>
+                    </ng-template>
+                </mat-tab>
+
+                <!-- PESTAÑA MENSUAL -->
+                <mat-tab [label]="translate('NOVEDADES_CONTADOR.TAB_MENSUAL')">
+                    <ng-template matTabContent>
+                        <div class="table-container">
+                            <table mat-table [dataSource]="mensualDataSource" multiTemplateDataRows class="novedades-table">
+                                <ng-container matColumnDef="legajo">
+                                    <th mat-header-cell *matHeaderCellDef>{{ translate('NOVEDADES_CONTADOR.COLUMNAS.LEGAJO') }}</th>
+                                    <td mat-cell *matCellDef="let e"> {{e.legajo}} </td>
+                                </ng-container>
+                                <ng-container matColumnDef="nombreCompleto">
+                                    <th mat-header-cell *matHeaderCellDef>{{ translate('NOVEDADES_CONTADOR.COLUMNAS.NOMBRE_COMPLETO') }}</th>
+                                    <td mat-cell *matCellDef="let e"> {{e.nombre}} {{e.apellido}} </td>
+                                </ng-container>
+                                <ng-container matColumnDef="cuil">
+                                    <th mat-header-cell *matHeaderCellDef>{{ translate('NOVEDADES_CONTADOR.COLUMNAS.CUIL') }}</th>
+                                    <td mat-cell *matCellDef="let e"> {{e.cuil}} </td>
+                                </ng-container>
+                                <ng-container matColumnDef="gratificaciones">
+                                    <th mat-header-cell *matHeaderCellDef>{{ translate('NOVEDADES_CONTADOR.COLUMNAS.GRATIFICACIONES') }}</th>
+                                    <td mat-cell *matCellDef="let element" (click)="$event.stopPropagation()">
+                                        <mat-form-field appearance="outline" class="editable-field">
+                                            <input matInput [(ngModel)]="element.gratificaciones">
+                                        </mat-form-field>
+                                    </td>
+                                </ng-container>
+                                <ng-container matColumnDef="novedades">
+                                    <th mat-header-cell *matHeaderCellDef>{{ translate('NOVEDADES_CONTADOR.COLUMNAS.NOVEDADES') }}</th>
+                                    <td mat-cell *matCellDef="let element" (click)="$event.stopPropagation()">
+                                        <mat-form-field appearance="outline" class="editable-field">
+                                            <input matInput [(ngModel)]="element.novedades">
+                                        </mat-form-field>
+                                    </td>
+                                </ng-container>
+
+                                <ng-container matColumnDef="expand">
+                                    <th mat-header-cell *matHeaderCellDef></th>
+                                    <td mat-cell *matCellDef="let element">
+                                        <button mat-icon-button (click)="(expandedMensualElement = expandedMensualElement === element ? null : element); $event.stopPropagation()">
+                                            <mat-icon *ngIf="expandedMensualElement !== element">keyboard_arrow_down</mat-icon>
+                                            <mat-icon *ngIf="expandedMensualElement === element">keyboard_arrow_up</mat-icon>
+                                        </button>
+                                    </td>
+                                </ng-container>
+
+                                <ng-container matColumnDef="expandedDetail">
+                                    <td mat-cell *matCellDef="let element" [attr.colspan]="mensualDisplayedColumns.length">
+                                        <div class="element-detail" [@detailExpand]="element == expandedMensualElement ? 'expanded' : 'collapsed'">
+                                            <div class="detail-item"><span class="detail-label">{{ translate('NOVEDADES_CONTADOR.COLUMNAS.CATEGORIA') }}</span><span class="detail-value">{{element.categoria}}</span></div>
+                                            <div class="detail-item"><span class="detail-label">{{ translate('NOVEDADES_CONTADOR.COLUMNAS.VALORHORA') }}</span><span class="detail-value">{{element.valorHora}}</span></div>
+                                            <div class="detail-item"><span class="detail-label">{{ translate('NOVEDADES_CONTADOR.COLUMNAS.HSNORMALES') }}</span><span class="detail-value">{{element.hsNormales}}</span></div>
+                                            <div class="detail-item"><span class="detail-label">{{ translate('NOVEDADES_CONTADOR.COLUMNAS.HS50') }}</span><span class="detail-value">{{element.hs50}}</span></div>
+                                            <div class="detail-item"><span class="detail-label">{{ translate('NOVEDADES_CONTADOR.COLUMNAS.HS100') }}</span><span class="detail-value">{{element.hs100}}</span></div>
+                                            <div class="detail-item"><span class="detail-label">{{ translate('NOVEDADES_CONTADOR.COLUMNAS.FERIADO') }}</span><span class="detail-value">{{element.feriado}}</span></div>
+                                            <div class="detail-item"><span class="detail-label">{{ translate('NOVEDADES_CONTADOR.COLUMNAS.FERIADOEXTRA') }}</span><span class="detail-value">{{element.feriadoExtra}}</span></div>
+                                            <div class="detail-item"><span class="detail-label">{{ translate('NOVEDADES_CONTADOR.COLUMNAS.COMIDA') }}</span><span class="detail-value">{{element.comida}}</span></div>
+                                            <div class="detail-item"><span class="detail-label">{{ translate('NOVEDADES_CONTADOR.COLUMNAS.PREMIO') }}</span><span class="detail-value">{{element.premio}}</span></div>
+                                            <div class="detail-item"><span class="detail-label">{{ translate('NOVEDADES_CONTADOR.COLUMNAS.ADELANTOSUELDO') }}</span><span class="detail-value">{{element.adelantoSueldo}}</span></div>
+                                            <div class="detail-item"><span class="detail-label">{{ translate('NOVEDADES_CONTADOR.COLUMNAS.PRESTAMOS') }}</span><span class="detail-value">{{element.prestamos}}</span></div>
+                                        </div>
+                                    </td>
+                                </ng-container>
+
+                                <tr mat-header-row *matHeaderRowDef="mensualDisplayedColumns"></tr>
+                                <tr mat-row *matRowDef="let element; columns: mensualDisplayedColumns;" class="element-row" [class.expanded-row]="expandedMensualElement === element" (click)="expandedMensualElement = expandedMensualElement === element ? null : element"></tr>
+                                <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="detail-row"></tr>
+                              <tr class="mat-row" *matNoDataRow>
+                                    <td class="mat-cell no-records-cell" [attr.colspan]="mensualDisplayedColumns.length">
+                                        {{ translate('NOVEDADES_CONTADOR.NO_HAY_REGISTROS') }}
+                                    </td>
+                                </tr>
+                            </table>
+                            <mat-paginator #mensualPaginator [pageSizeOptions]="[10, 20, 50]" showFirstLastButtons></mat-paginator>
+                        </div>
+                    </ng-template>
+                </mat-tab>
+            </mat-tab-group>
+        </div>
+    </div>
+</div>

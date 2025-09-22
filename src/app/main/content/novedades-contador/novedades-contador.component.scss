@@ -1,0 +1,222 @@
+.content-app-novedades-contador {
+    width: 100%;
+}
+
+.top-header-novedades-contador {
+    width: 100%;
+    padding: 10px 35px 40px 35px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 25px;
+    color: white;
+    font-weight: bold;
+    background-color: #3400ff;
+    margin-bottom: 24px;
+
+    p {
+        font-size: 24px;
+    }
+}
+
+.container-novedades-contador {
+    width: 100%;
+    height: 80vh;
+    padding: 35px;
+    padding-top: 0px;
+    transform: translateY(-62px);
+    place-content: flex-start;
+    align-items: flex-start;
+    flex-flow: wrap;
+    flex-direction: row;
+    box-sizing: border-box;
+    display: flex;
+}
+
+.form-card {
+    flex: 1 1 100%;
+    box-sizing: border-box;
+    max-width: 100%;
+    padding-bottom: 0px !important;
+}
+
+.form-container {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    flex-wrap: nowrap;
+    flex-direction: row;
+}
+
+.full-width {
+    flex-grow: 1;
+}
+
+.preview-button {
+    height: 43px;
+    max-width: 300px;
+    margin-top: 4px;
+}
+
+.save-button {
+    height: 38px;
+    max-width: 200px;
+    background-color: #ff7a00 !important;
+    color: white;
+}
+
+.loading-spinner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.results-container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    background-color: white;
+    padding: 24px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 5px -2px rgba(0, 0, 0, 0.2), 0px 7px 10px 1px rgba(0, 0, 0, 0.14), 0px 2px 16px 1px rgba(0, 0, 0, 0.12);
+}
+
+.periodo-title {
+    font-size: 1.25rem;
+    font-weight: 500;
+    margin: 0 0 16px 0;
+}
+
+.table-container {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    overflow: hidden;
+    box-shadow: 0px 4px 5px -2px rgba(0, 0, 0, 0.2), 0px 7px 10px 1px rgba(0, 0, 0, 0.14), 0px 2px 16px 1px rgba(0, 0, 0, 0.12);
+    max-height: 60vh;
+    overflow-y: auto;
+}
+
+.novedades-table {
+    width: 100%;
+}
+
+.editable-field {
+    width: 95%;
+
+    .mat-form-field-wrapper {
+        padding-bottom: 0;
+    }
+
+    .mat-form-field-underline {
+        display: none;
+    }
+}
+
+.mat-header-row {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.mat-table-sticky {
+    display: none;
+    bottom: 0px;
+    z-index: 10;
+    position: -webkit-sticky;
+    position: sticky;
+
+}
+
+::ng-deep .table-container-novedades-contador .mat-tab-body-wrapper {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    transition: height 500ms cubic-bezier(0.35, 0, 0.25, 1);
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    overflow: hidden;
+    box-shadow: 0px 4px 5px -2px rgba(0, 0, 0, 0.2), 0px 7px 10px 1px rgba(0, 0, 0, 0.14), 0px 2px 16px 1px rgba(0, 0, 0, 0.12);
+    max-height: 60vh;
+    overflow-y: auto;
+}
+
+::ng-deep .table-container-novedades-contador .mat-form-field-wrapper {
+    padding: 0.9em 0px !important;
+}
+
+.mat-paginator {
+    position: sticky;
+    bottom: 0;
+    z-index: 10;
+    background: white;
+}
+
+::ng-deep .table-container-novedades-contador .mat-form-field-appearance-outline .mat-form-field-outline {
+    background-color: white;
+    border-radius: 5px;
+}
+
+.novedades-table {
+    width: 100%;
+
+    .mat-row {
+        cursor: pointer;
+        transition: background-color 0.2s ease-in-out;
+    }
+
+    .expanded-row {
+        background-color: #3400fd;
+
+        td {
+            color: white;
+            font-weight: 600;
+        }
+
+        mat-icon {
+            color: white;
+        }
+    }
+
+    .detail-row {
+        height: 0;
+        background-color: #fafafa;
+    }
+
+    .element-detail {
+        overflow: hidden;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 24px;
+    }
+
+    .detail-item {
+        display: flex;
+        flex-direction: column;
+        padding: 15px 0px
+    }
+
+    .detail-label {
+        font-weight: bold;
+        color: rgba(0, 0, 0, .54);
+        font-size: 12px;
+    }
+
+    .detail-value {
+        font-size: 14px;
+    }
+}
+
+.editable-field {
+    .mat-form-field-wrapper {
+        padding-bottom: 0;
+    }
+}
+
+.no-records-cell {
+    text-align: center;
+    padding: 24px;
+    color: rgba(0, 0, 0, 0.54);
+}
