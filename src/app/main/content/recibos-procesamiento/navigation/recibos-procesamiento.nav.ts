@@ -1,7 +1,5 @@
-import { NavigationDef } from 'app/modules/fwk/core/model/component-def/navigation-def';
-
-export const RECIBOS_PROCESAMIENTO_NAV_DEF: NavigationDef = {
-  id: 'RECIBOS',
-  translateKey: 'NAV.RECIBOS.TITLE',
-  url: '/recibos'
+export const RECIBOS_PROCESAMIENTO_NAV_DEF = {
+    id: 'RECIBOS_PROCESAMIENTO',
+    translateKey: 'recibos_procesamiento_nav_def',
+    url: '/recibos-procesamiento'
 };

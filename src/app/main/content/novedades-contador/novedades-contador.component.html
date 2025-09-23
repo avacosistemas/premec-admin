@@ -73,14 +73,6 @@
                                     <th mat-header-cell *matHeaderCellDef>{{ translate('NOVEDADES_CONTADOR.COLUMNAS.CUIL') }}</th>
                                     <td mat-cell *matCellDef="let e"> {{e.cuil}} </td>
                                 </ng-container>
-                                <ng-container matColumnDef="gratificaciones">
-                                    <th mat-header-cell *matHeaderCellDef>{{ translate('NOVEDADES_CONTADOR.COLUMNAS.GRATIFICACIONES') }}</th>
-                                    <td mat-cell *matCellDef="let element" (click)="$event.stopPropagation()">
-                                        <mat-form-field appearance="outline" class="editable-field">
-                                            <input matInput [(ngModel)]="element.gratificaciones">
-                                        </mat-form-field>
-                                    </td>
-                                </ng-container>
                                 <ng-container matColumnDef="novedades">
                                     <th mat-header-cell *matHeaderCellDef>{{ translate('NOVEDADES_CONTADOR.COLUMNAS.NOVEDADES') }}</th>
                                     <td mat-cell *matCellDef="let element" (click)="$event.stopPropagation()">
@@ -114,6 +106,7 @@
                                             <div class="detail-item"><span class="detail-label">{{ translate('NOVEDADES_CONTADOR.COLUMNAS.PREMIO') }}</span><span class="detail-value">{{element.premio}}</span></div>
                                             <div class="detail-item"><span class="detail-label">{{ translate('NOVEDADES_CONTADOR.COLUMNAS.ADELANTOSUELDO') }}</span><span class="detail-value">{{element.adelantoSueldo}}</span></div>
                                             <div class="detail-item"><span class="detail-label">{{ translate('NOVEDADES_CONTADOR.COLUMNAS.PRESTAMOS') }}</span><span class="detail-value">{{element.prestamos}}</span></div>
+                                            <div class="detail-item"><span class="detail-label">{{ translate('NOVEDADES_CONTADOR.COLUMNAS.GRATIFICACIONES') }}</span><span class="detail-value">{{element.gratificaciones}}</span></div>
                                         </div>
                                     </td>
                                 </ng-container>
@@ -149,14 +142,6 @@
                                     <th mat-header-cell *matHeaderCellDef>{{ translate('NOVEDADES_CONTADOR.COLUMNAS.CUIL') }}</th>
                                     <td mat-cell *matCellDef="let e"> {{e.cuil}} </td>
                                 </ng-container>
-                                <ng-container matColumnDef="gratificaciones">
-                                    <th mat-header-cell *matHeaderCellDef>{{ translate('NOVEDADES_CONTADOR.COLUMNAS.GRATIFICACIONES') }}</th>
-                                    <td mat-cell *matCellDef="let element" (click)="$event.stopPropagation()">
-                                        <mat-form-field appearance="outline" class="editable-field">
-                                            <input matInput [(ngModel)]="element.gratificaciones">
-                                        </mat-form-field>
-                                    </td>
-                                </ng-container>
                                 <ng-container matColumnDef="novedades">
                                     <th mat-header-cell *matHeaderCellDef>{{ translate('NOVEDADES_CONTADOR.COLUMNAS.NOVEDADES') }}</th>
                                     <td mat-cell *matCellDef="let element" (click)="$event.stopPropagation()">
@@ -183,6 +168,7 @@
                                             <div class="detail-item"><span class="detail-label">{{ translate('NOVEDADES_CONTADOR.COLUMNAS.FERIADO') }}</span><span class="detail-value">{{element.feriado}}</span></div>
                                             <div class="detail-item"><span class="detail-label">{{ translate('NOVEDADES_CONTADOR.COLUMNAS.ADELANTOSUELDO') }}</span><span class="detail-value">{{element.adelantoSueldo}}</span></div>
                                             <div class="detail-item"><span class="detail-label">{{ translate('NOVEDADES_CONTADOR.COLUMNAS.PRESTAMOS') }}</span><span class="detail-value">{{element.prestamos}}</span></div>
+                                            <div class="detail-item"><span class="detail-label">{{ translate('NOVEDADES_CONTADOR.COLUMNAS.GRATIFICACIONES') }}</span><span class="detail-value">{{element.gratificaciones}}</span></div>
                                         </div>
                                     </td>
                                 </ng-container>
@@ -218,14 +204,6 @@
                                     <th mat-header-cell *matHeaderCellDef>{{ translate('NOVEDADES_CONTADOR.COLUMNAS.CUIL') }}</th>
                                     <td mat-cell *matCellDef="let e"> {{e.cuil}} </td>
                                 </ng-container>
-                                <ng-container matColumnDef="gratificaciones">
-                                    <th mat-header-cell *matHeaderCellDef>{{ translate('NOVEDADES_CONTADOR.COLUMNAS.GRATIFICACIONES') }}</th>
-                                    <td mat-cell *matCellDef="let element" (click)="$event.stopPropagation()">
-                                        <mat-form-field appearance="outline" class="editable-field">
-                                            <input matInput [(ngModel)]="element.gratificaciones">
-                                        </mat-form-field>
-                                    </td>
-                                </ng-container>
                                 <ng-container matColumnDef="novedades">
                                     <th mat-header-cell *matHeaderCellDef>{{ translate('NOVEDADES_CONTADOR.COLUMNAS.NOVEDADES') }}</th>
                                     <td mat-cell *matCellDef="let element" (click)="$event.stopPropagation()">
@@ -236,8 +214,8 @@
                                 </ng-container>
 
                                 <ng-container matColumnDef="expand">
-                                    <th mat-header-cell *matHeaderCellDef></th>
-                                    <td mat-cell *matCellDef="let element">
+                                    <th mat-header-cell *matHeaderCellDef class="button-expanded-column"></th>
+                                    <td mat-cell *matCellDef="let element" class="button-expanded-column">
                                         <button mat-icon-button (click)="(expandedMensualElement = expandedMensualElement === element ? null : element); $event.stopPropagation()">
                                             <mat-icon *ngIf="expandedMensualElement !== element">keyboard_arrow_down</mat-icon>
                                             <mat-icon *ngIf="expandedMensualElement === element">keyboard_arrow_up</mat-icon>
@@ -259,6 +237,7 @@
                                             <div class="detail-item"><span class="detail-label">{{ translate('NOVEDADES_CONTADOR.COLUMNAS.PREMIO') }}</span><span class="detail-value">{{element.premio}}</span></div>
                                             <div class="detail-item"><span class="detail-label">{{ translate('NOVEDADES_CONTADOR.COLUMNAS.ADELANTOSUELDO') }}</span><span class="detail-value">{{element.adelantoSueldo}}</span></div>
                                             <div class="detail-item"><span class="detail-label">{{ translate('NOVEDADES_CONTADOR.COLUMNAS.PRESTAMOS') }}</span><span class="detail-value">{{element.prestamos}}</span></div>
+                                            <div class="detail-item"><span class="detail-label">{{ translate('NOVEDADES_CONTADOR.COLUMNAS.GRATIFICACIONES') }}</span><span class="detail-value">{{element.gratificaciones}}</span></div>
                                         </div>
                                     </td>
                                 </ng-container>

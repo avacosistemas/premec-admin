@@ -3,7 +3,7 @@ export const REPORTE_HORAS_MAQUINA_I18N_DEF = {
   lang: 'es',
   words: {
     page_title: 'Reporte Horas Maquina por Numero de Serie',
-    reporte_horas_maquina_nav_def: 'Reporte Horas Maquina por Numero de Serie',
+    reporte_horas_maquina_nav_def: 'Reporte Horas Maquina',
     reporte_horas_maquina_create_form_fields_def_field_servicecallid: 'Service Call',
     reporte_horas_maquina_create_form_fields_def_field_idactividad: 'Actividad',
     reporte_horas_maquina_create_form_fields_def_field_fecha: 'Fecha y Hora',

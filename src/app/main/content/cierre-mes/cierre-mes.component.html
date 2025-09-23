@@ -115,21 +115,15 @@
                                             step="0.01">
                                     </mat-form-field>
 
-                                    <mat-slide-toggle [(ngModel)]="element.premioAsistencia" color="primary"
-                                        class="premio-asistencia-toggle">
-                                        {{ translate('CIERRE_MES.PREMIOASISTENCIA') }}
-                                    </mat-slide-toggle>
-                                </div>
-
-                                <div class="item-row-3">
-                                    <mat-form-field appearance="outline" class="full-width">
-                                        <mat-label>{{ translate('CIERRE_MES.NOVEDADES') }}</mat-label>
-                                        <input matInput type="text" [(ngModel)]="element.novedades" />
-                                    </mat-form-field>
                                     <mat-form-field appearance="outline" class="full-width">
                                         <mat-label>{{ translate('CIERRE_MES.GRATIFICACIONESAUMENTOS') }}</mat-label>
                                         <input matInput type="text" [(ngModel)]="element.gratificacionesAumentos" />
                                     </mat-form-field>
+
+                                    <mat-slide-toggle [(ngModel)]="element.premioAsistencia" color="primary"
+                                        class="premio-asistencia-toggle">
+                                        {{ translate('CIERRE_MES.PREMIOASISTENCIA') }}
+                                    </mat-slide-toggle>
                                 </div>
                             </div>
                         </div>

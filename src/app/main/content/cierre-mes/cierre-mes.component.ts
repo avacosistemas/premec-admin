@@ -110,7 +110,6 @@ export class CierreMesComponent implements OnInit {
           adelanto: item.adelanto || 0,
           prestamo: item.prestamo || 0,
           premioAsistencia: item.premioAsistencia || false,
-          novedades: item.novedades || '',
           gratificacionesAumentos: item.gratificacionesAumentos || ''
         }));
 

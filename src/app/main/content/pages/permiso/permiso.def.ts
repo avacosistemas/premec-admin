@@ -26,9 +26,9 @@ export const PERMISO_DEF: CrudDef = {
     },
     forms: {
         filter: PERMISO_FILTER_FORM_FIELDS_DEF, // Si el crud tiene campos de busqueda, entonces se agrega su definicion.
-        // create: PERMISO_CREATE_FORM_FIELDS_DEF, // Si el crud tiene formulario de alta, entonces se agrega su definicion.
-        // update: PERMISO_UPDATE_FORM_FIELDS_DEF, // Si el crud tiene formulario de modificacion, entonces se agrega su definicion.
-        // read:  PERMISO_READ_FORM_FIELDS_DEF // Si existe un formulario de edicion no exite uno de solo lectura
+        create: PERMISO_CREATE_FORM_FIELDS_DEF, // Si el crud tiene formulario de alta, entonces se agrega su definicion.
+        update: PERMISO_UPDATE_FORM_FIELDS_DEF, // Si el crud tiene formulario de modificacion, entonces se agrega su definicion.
+        read:  PERMISO_READ_FORM_FIELDS_DEF // Si existe un formulario de edicion no exite uno de solo lectura
     },
     navigation: PERMISO_NAV_DEF,
     security: PERMISO_SECURITY_DEF,

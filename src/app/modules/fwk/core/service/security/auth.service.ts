@@ -105,4 +105,15 @@ export class AuthService extends HttpService {
   getUserAdmin(): any {
     return this.localStorageService.get(USER_DATA);
   }
+
+  public hasPermission(permissionCode: string): boolean {
+    const user = this.getUserLocalStorage();
+    if (user && user.permissions) {
+      if (user.admin === true) {
+        return true;
+      }
+      return user.permissions.some(p => p.code === permissionCode);
+    }
+    return false;
+  }
 }

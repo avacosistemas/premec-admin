@@ -4,6 +4,7 @@ import { RECIBOS_FILTER_FORM_FIELDS_DEF } from './form/recibos.filter.fields';
 import { RECIBOS_I18N_DEF } from './i18n/recibos.i18n';
 import { RECIBOS_GRID_DEF } from './grid/recibos.grid';
 import { RECIBOS_NAV_DEF } from './navigation/recibos.nav';
+import { RECIBOS_SECURITY_DEF } from './security/recibos.security';
 
 export const RECIBOS_DEF: CrudDef = {
     name: 'RECIBOS',
@@ -21,6 +22,7 @@ export const RECIBOS_DEF: CrudDef = {
         width: '400px'
     },
     backButton: false,
+    security: RECIBOS_SECURITY_DEF,
     pagination: {
         page: 0,
         pageSize: 10

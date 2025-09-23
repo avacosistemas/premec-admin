@@ -3,7 +3,7 @@ export const locale = {
     data: {
         'FICHADO_PROCESAMIENTO': {
             'TITULO': 'Procesamiento de Fichados',
-            'TITULO_CORTO': 'Fichados',
+            'TITULO_CORTO': 'Procesar Fichados',
             'PROCESANDO': 'Procensando...',
             'ENVIANDO': 'Enviando...',
             'CARGA_SECTION': {

@@ -155,6 +155,7 @@ tr.element-row:not(.expanded-row):hover {
     display: flex;
     grid-template-columns: repeat(5, 1fr);
     gap: 16px;
+    width: 100%;
 }
 
 .detail-grid .item-row-3 {

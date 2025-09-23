@@ -40,9 +40,9 @@ export class NovedadesContadorComponent implements OnInit {
     fueraConvenioDataSource = new MatTableDataSource<FueraConvenio>();
     mensualDataSource = new MatTableDataSource<Mensual>();
 
-    jornalesDisplayedColumns = ['legajo', 'nombreCompleto', 'cuil', 'gratificaciones', 'novedades', 'expand'];
-    fueraConvenioDisplayedColumns = ['legajo', 'nombreCompleto', 'cuil', 'gratificaciones', 'novedades', 'expand'];
-    mensualDisplayedColumns = ['legajo', 'nombreCompleto', 'cuil', 'gratificaciones', 'novedades', 'expand'];
+    jornalesDisplayedColumns = ['legajo', 'nombreCompleto', 'cuil', 'novedades', 'expand'];
+    fueraConvenioDisplayedColumns = ['legajo', 'nombreCompleto', 'cuil', 'novedades', 'expand'];
+    mensualDisplayedColumns = ['legajo', 'nombreCompleto', 'cuil', 'novedades', 'expand'];
 
     @ViewChild('jornalesPaginator') jornalesPaginator: MatPaginator;
     @ViewChild('fueraConvenioPaginator') fueraConvenioPaginator: MatPaginator;
@@ -104,19 +104,16 @@ export class NovedadesContadorComponent implements OnInit {
                 this.novedadesData = response.data;
 
                 this.novedadesData.jornales.forEach(item => {
-                    item.gratificaciones = item.gratificaciones || '';
                     item.novedades = item.novedades || '';
                 });
                 this.jornalesDataSource.data = this.novedadesData.jornales;
 
                 this.novedadesData.fueraConvenio.forEach(item => {
-                    item.gratificaciones = item.gratificaciones || '';
                     item.novedades = item.novedades || '';
                 });
                 this.fueraConvenioDataSource.data = this.novedadesData.fueraConvenio;
 
                 this.novedadesData.mensual.forEach(item => {
-                    item.gratificaciones = item.gratificaciones || '';
                     item.novedades = item.novedades || '';
                 });
                 this.mensualDataSource.data = this.novedadesData.mensual;

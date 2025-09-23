@@ -3,7 +3,7 @@ export const locale = {
     data: {
         'RECIBOS_PROCESAMIENTO': {
             'TITULO': 'Procesar Recibos',
-            'TITULO_CORTO': 'Recibos',
+            'TITULO_CORTO': 'Enviar Recibos',
             'CARGANDO': 'Cargando...',
             'PROCESS_SECTION': {
                 'TITLE': 'Cargar Archivo y Tipo de Recibo',
