@@ -130,7 +130,8 @@ export class CierreMesComponent implements OnInit {
     const allData = this.dataSource.data;
 
     this.saving = true;
-    this.cierreMesService.saveCierres(allData).subscribe({
+    const { anio, mes } = this.cierreForm.value;
+    this.cierreMesService.saveCierres(allData, anio, mes).subscribe({
       next: () => {
         this.notificationService.notifySuccess(this.translate('CIERRE_MES.EXITO_GUARDADO'));
         this.saving = false;
