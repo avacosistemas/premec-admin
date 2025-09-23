@@ -28,6 +28,7 @@ export interface Jornal {
     novedades: string | null;
     premio: string;
     comida: string;
+    ausencias: string | null;
 }
 
 export interface FueraConvenio {
@@ -41,6 +42,7 @@ export interface FueraConvenio {
     prestamos: string | null;
     gratificaciones: string | null;
     novedades: string | null;
+    ausencias: string | null;
 }
 
 export interface Mensual {
@@ -61,4 +63,5 @@ export interface Mensual {
     novedades: string | null;
     premio: string;
     comida: string;
+    ausencias: string | null;
 }

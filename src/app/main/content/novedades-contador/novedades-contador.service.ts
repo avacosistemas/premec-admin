@@ -7,7 +7,7 @@ import { NovedadesContadorApiResponse, NovedadesContadorData } from './novedades
 @Injectable()
 export class NovedadesContadorService {
     private url = `${PREFIX_DOMAIN_API}novedadescontadorpreview`;
-private urls = `${PREFIX_DOMAIN_API}novedadescontadorprevi`;
+    private urls = `${PREFIX_DOMAIN_API}enviarnovedadescontador`;
     constructor(private http: HttpClient) { }
 
     getPreview(anio: number, mes: number): Observable<NovedadesContadorApiResponse> {
