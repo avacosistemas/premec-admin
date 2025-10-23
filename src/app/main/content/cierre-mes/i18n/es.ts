@@ -32,8 +32,10 @@ export const locale = {
             'VIATICOS': 'Viáticos',
             'ADELANTO': 'Adelanto',
             'PRESTAMO': 'Préstamo',
+            'TARDE': 'Tarde',
             'PREMIOASISTENCIA': 'Premio',
             'GRATIFICACIONESAUMENTOS': 'Gratificaciones/Aumentos',
+            'HSPRODUCTIVAS' : "Hs. Prod.",
             'EDITAR_GRATIFICACIONES': 'Editar Gratificaciones'
         }
     }

@@ -34,9 +34,11 @@ export const locale = {
                 'ADELANTOSUELDO': 'Adelanto Sueldo',
                 'PRESTAMOS': 'Préstamos',
                 'GRATIFICACIONES': 'Gratificaciones',
+                'TARDE': 'Tarde',
                 'NOVEDADES': 'Novedades',
                 'PREMIO': 'Premio',
-                'COMIDA': 'Comida'
+                'COMIDA': 'Comida',
+                'HSPRODUCTIVAS': 'Hs. Prod.'
             }
         }
     }

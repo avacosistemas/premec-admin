@@ -25,10 +25,12 @@ export interface Jornal {
     hs50: string;
     hs100: string;
     gratificaciones: string | null;
+    tarde: string | null;
     novedades: string | null;
     premio: string;
     comida: string;
     ausencias: string | null;
+    hsProductivas: string | null;
 }
 
 export interface FueraConvenio {
@@ -41,6 +43,7 @@ export interface FueraConvenio {
     adelantoSueldo: string | null;
     prestamos: string | null;
     gratificaciones: string | null;
+    tarde: string | null;
     novedades: string | null;
     ausencias: string | null;
 }
@@ -60,6 +63,7 @@ export interface Mensual {
     hs50: string;
     hs100: string;
     gratificaciones: string | null;
+    tarde: string | null;
     novedades: string | null;
     premio: string;
     comida: string;
