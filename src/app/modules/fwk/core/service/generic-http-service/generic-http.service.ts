@@ -30,7 +30,7 @@ export class GenericHttpService extends HttpService {
 
     basicDeleteTernaria(url, data, querystring): Observable<any> {
         if (querystring && data) {
-            let qsBuilder = '';
+            let qsBuilder = '/';
             let andString = '';
             querystring.forEach(key => {
                 if (key) {

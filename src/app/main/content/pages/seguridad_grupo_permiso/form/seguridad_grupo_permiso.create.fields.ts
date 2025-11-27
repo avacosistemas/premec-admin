@@ -17,7 +17,7 @@ export const SEGURIDAD_GRUPO_PERMISO_CREATE_FORM_FIELDS_DEF = [
     required: true,
     options: {
       transferIdToField: 'idPermiso',
-      elementLabel: 'code',
+      elementLabel: 'description',
       elementValue: 'id',
       useNativeFilter: false,
       selectElementOrCleanField: 'Debe seleccionar un elemento o limpiar el campo'
