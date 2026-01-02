@@ -117,7 +117,7 @@
 
                                     <mat-form-field appearance="outline" class="full-width">
                                         <mat-label>{{ translate('CIERRE_MES.GRATIFICACIONESAUMENTOS') }}</mat-label>
-                                        <input matInput type="text" [(ngModel)]="element.gratificacionesAumentos" />
+                                        <input matInput type="text" [(ngModel)]="element.gratificacionesAumentos"  maxlength="200" />
                                     </mat-form-field>
 
                                     <mat-slide-toggle [(ngModel)]="element.premioAsistencia" color="primary"
